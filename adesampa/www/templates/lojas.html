@@ -1,54 +1,114 @@
-<ion-view title="Lojas" id="page11" class=" page-list-shops">
+<ion-view title="Lojas" hide-back-button="true" id="page11" class=" page-shops-list">
     <ion-content padding="true" class="has-header">
-        <a ui-sref="tabsController.circuitos2" id="lojas-button28" style="text-align:left;border-radius:0px 0px 0px 0px;" class=" button button-positive  button-block button-clear icon-left ion-android-arrow-back btn-back">Brás dia/mês/ano</a>
-        <div id="lojas-button-bar1" class=" button-bar ">
-            <button id="lojas-button29" style="border-radius:0px 0px 0px 0px;" class=" button button-positive button-small button-block button-clear btn-show-list">ver em lista</button>
-            <button id="lojas-button31" style="border-radius:0px 0px 0px 0px;" class=" button button-positive button-small button-block button-clear btn-show-map">ver no mapa</button>
+        <a ui-sref="tabsController.circuitos2" id="lojas-button28" style="text-align:left;border-radius:0px 0px 0px 0px;" class=" button button-positive button-small button-block button-clear icon-left ion-android-arrow-back btn-back">Brás (dia/mês/ano)</a>
+        <div id="lojas-button-bar1" class=" button-bar btn-group-views">
+            <button id="lojas-button29" style="border-radius:0px 0px 0px 0px;" class=" button button-positive button-small button-block button-clear btn-view-list">ver em lista</button>
+            <button id="lojas-button31" style="border-radius:0px 0px 0px 0px;" class=" button button-positive button-small button-block button-clear btn-view-map">ver no mapa</button>
         </div>
-        <div class="item item-body " id="lojas-list-item-container17">
-            <button id="lojas-button21" style="font-weight:500;font-size:24px;text-align:left;border-radius:0px 0px 0px 0px;" class=" button button-positive  button-block button-clear shop-name">loja</button>
-            <p id="lojas-markdown33" style="color:#000000;" class=" ">categorias:
-                <a href="#">lorem</a>,
-                <a href="#">ipsum</a>,
-                <a href="#">dolor</a>
-            </p>
-            <p id="lojas-markdown46" style="color:#000000;" class=" ">segmentos:
-                <a href="#">lorem</a>,
-                <a href="#">ipsum</a>,
-                <a href="#">dolor</a>
-            </p>
-            <button id="lojas-button4" style="font-size:12px;" class=" button button-stable  button-icon icon-left ion-trash-a btn-delete">remover</button>
-            <button id="lojas-button5" style="font-size:12px;" class=" button button-stable  button-icon icon-left ion-star btn-bookmark">adicionar aos favoritos</button>
-        </div>
-        <div class="item item-body " id="lojas-list-item-container24">
-            <button id="lojas-button22" style="font-weight:500;font-size:24px;text-align:left;border-radius:0px 0px 0px 0px;" class=" button button-positive  button-block button-clear shop-name">loja</button>
-            <p id="lojas-markdown47" style="color:#000000;" class=" ">categorias:
-                <a href="#">lorem</a>,
-                <a href="#">ipsum</a>,
-                <a href="#">dolor</a>
-            </p>
-            <p id="lojas-markdown48" style="color:#000000;" class=" ">segmentos:
-                <a href="#">lorem</a>,
-                <a href="#">ipsum</a>,
-                <a href="#">dolor</a>
-            </p>
-            <button id="lojas-button23" style="font-size:12px;" class=" button button-stable  button-icon icon-left ion-trash-a btn-delete">remover</button>
-            <button id="lojas-button24" style="font-size:12px;" class=" button button-stable  button-icon icon-left ion-star btn-bookmark">adicionar aos favoritos</button>
-        </div>
-        <div class="item item-body " id="lojas-list-item-container25">
-            <button id="lojas-button25" style="font-weight:500;font-size:24px;text-align:left;border-radius:0px 0px 0px 0px;" class=" button button-positive  button-block button-clear shop-name">loja</button>
-            <p id="lojas-markdown49" style="color:#000000;" class=" ">categorias:
-                <a href="#">lorem</a>,
-                <a href="#">ipsum</a>,
-                <a href="#">dolor</a>
-            </p>
-            <p id="lojas-markdown50" style="color:#000000;" class=" ">segmentos:
-                <a href="#">lorem</a>,
-                <a href="#">ipsum</a>,
-                <a href="#">dolor</a>
-            </p>
-            <button id="lojas-button26" style="font-size:12px;" class=" button button-stable  button-icon icon-left ion-trash-a btn-delete">remover</button>
-            <button id="lojas-button27" style="font-size:12px;" class=" button button-stable  button-icon icon-left ion-star btn-bookmark">adicionar aos favoritos</button>
-        </div>
+        <ion-list id="lojas-list11" class=" shop-information-list">
+            <div class="item item-body shop-title" id="lojas-list-item-container53">
+                <a ui-sref="tabsController.loja" id="lojas-button68" style="font-weight:500;font-size:30px;text-align:left;" class=" button button-positive button-large button-block button-clear icon-right ion-ios-arrow-forward btn-title">loja</a>
+            </div>
+            <div class="item item-body shop-categories" id="lojas-list-item-container54">
+                <p id="lojas-markdown33" style="color:#000000;" class=" ">categorias:
+                    <a href="#">
+                        <strong>lorem</strong>
+                    </a>,
+                    <a href="#">
+                        <strong>ipsum</strong>
+                    </a>,
+                    <a href="#">
+                        <strong>dolor</strong>
+                    </a>
+                </p>
+            </div>
+            <div class="item item-body shop-segment" id="lojas-list-item-container55">
+                <p id="lojas-markdown46" style="color:#000000;" class=" ">segmentos:
+                    <a href="#">
+                        <strong>lorem</strong>
+                    </a>,
+                    <a href="#">
+                        <strong>ipsum</strong>
+                    </a>,
+                    <a href="#">
+                        <strong>dolor</strong>
+                    </a>
+                </p>
+            </div>
+            <div class="item item-body shop-actions" id="lojas-list-item-container57">
+                <button id="lojas-button4" class=" button button-stable button-small button-icon icon-left ion-trash-a btn-delete">remover</button>
+                <button id="lojas-button5" class=" button button-stable button-small button-icon icon-left ion-star btn-bookmark">adicionar aos favoritos</button>
+            </div>
+        </ion-list>
+        <ion-list id="lojas-list12" class=" shop-information-list">
+            <div class="item item-body shop-title" id="lojas-list-item-container58">
+                <a ui-sref="tabsController.loja" id="lojas-button69" style="font-weight:500;font-size:30px;text-align:left;" class=" button button-positive button-large button-block button-clear icon-right ion-ios-arrow-forward btn-title">loja</a>
+            </div>
+            <div class="item item-body shop-categories" id="lojas-list-item-container59">
+                <p id="lojas-markdown75" style="color:#000000;" class=" ">categorias:
+                    <a href="#">
+                        <strong>lorem</strong>
+                    </a>,
+                    <a href="#">
+                        <strong>ipsum</strong>
+                    </a>,
+                    <a href="#">
+                        <strong>dolor</strong>
+                    </a>
+                </p>
+            </div>
+            <div class="item item-body shop-segment" id="lojas-list-item-container60">
+                <p id="lojas-markdown76" style="color:#000000;" class=" ">segmentos:
+                    <a href="#">
+                        <strong>lorem</strong>
+                    </a>,
+                    <a href="#">
+                        <strong>ipsum</strong>
+                    </a>,
+                    <a href="#">
+                        <strong>dolor</strong>
+                    </a>
+                </p>
+            </div>
+            <div class="item item-body shop-actions" id="lojas-list-item-container61">
+                <button id="lojas-button70" class=" button button-stable button-small button-icon icon-left ion-trash-a btn-delete">remover</button>
+                <button id="lojas-button71" class=" button button-stable button-small button-icon icon-left ion-star btn-bookmark">adicionar aos favoritos</button>
+            </div>
+        </ion-list>
+        <ion-list id="lojas-list13" class=" shop-information-list">
+            <div class="item item-body shop-title" id="lojas-list-item-container62">
+                <a ui-sref="tabsController.loja" id="lojas-button72" style="font-weight:500;font-size:30px;text-align:left;" class=" button button-positive button-large button-block button-clear icon-right ion-ios-arrow-forward btn-title">loja</a>
+            </div>
+            <div class="item item-body shop-categories" id="lojas-list-item-container63">
+                <p id="lojas-markdown77" style="color:#000000;" class=" ">categorias:
+                    <a href="#">
+                        <strong>lorem</strong>
+                    </a>,
+                    <a href="#">
+                        <strong>ipsum</strong>
+                    </a>,
+                    <a href="#">
+                        <strong>dolor</strong>
+                    </a>
+                </p>
+            </div>
+            <div class="item item-body shop-segment" id="lojas-list-item-container64">
+                <p id="lojas-markdown78" style="color:#000000;" class=" ">segmentos:
+                    <a href="#">
+                        <strong>lorem</strong>
+                    </a>,
+                    <a href="#">
+                        <strong>ipsum</strong>
+                    </a>,
+                    <a href="#">
+                        <strong>dolor</strong>
+                    </a>
+                </p>
+            </div>
+            <div class="item item-body shop-actions" id="lojas-list-item-container65">
+                <button id="lojas-button73" class=" button button-stable button-small button-icon icon-left ion-trash-a btn-delete">remover</button>
+                <button id="lojas-button74" class=" button button-stable button-small button-icon icon-left ion-star btn-bookmark">adicionar aos favoritos</button>
+            </div>
+        </ion-list>
     </ion-content>
 </ion-view>

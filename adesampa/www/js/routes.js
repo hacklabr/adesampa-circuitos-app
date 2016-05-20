@@ -36,16 +36,6 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
-  .state('tabsController.favoritos', {
-    url: '/bookmarks',
-    views: {
-      'tab2': {
-        templateUrl: 'templates/favoritos.html',
-        controller: 'favoritosCtrl'
-      }
-    }
-  })
-
   /* 
     The IonicUIRouter.js UI-Router Modification is being used for this route.
     To navigate to this route, do NOT use a URL. Instead use one of the following:
@@ -57,12 +47,22 @@ angular.module('app.routes', ['ionicUIRouter'])
     If you're setting a Tabs default page or modifying the .otherwise for your app and
     must use a URL, use one of the following:
       /page1/tab1/routes
+      /page1/tab4/routes
+      /page1/tab2/routes
       /page1/tab5/routes
   */
   .state('tabsController.circuitos', {
     url: '/routes',
     views: {
       'tab1': {
+        templateUrl: 'templates/circuitos.html',
+        controller: 'circuitosCtrl'
+      },
+      'tab4': {
+        templateUrl: 'templates/circuitos.html',
+        controller: 'circuitosCtrl'
+      },
+      'tab2': {
         templateUrl: 'templates/circuitos.html',
         controller: 'circuitosCtrl'
       },
@@ -101,13 +101,23 @@ angular.module('app.routes', ['ionicUIRouter'])
     This allows your app to figure out which Tab to open this page in on the fly.
     If you're setting a Tabs default page or modifying the .otherwise for your app and
     must use a URL, use one of the following:
-      /page1/tab1/list-routes
-      /page1/tab5/list-routes
+      /page1/tab1/routes-list
+      /page1/tab4/routes-list
+      /page1/tab2/routes-list
+      /page1/tab5/routes-list
   */
   .state('tabsController.circuitos2', {
-    url: '/list-routes',
+    url: '/routes-list',
     views: {
       'tab1': {
+        templateUrl: 'templates/circuitos2.html',
+        controller: 'circuitos2Ctrl'
+      },
+      'tab4': {
+        templateUrl: 'templates/circuitos2.html',
+        controller: 'circuitos2Ctrl'
+      },
+      'tab2': {
         templateUrl: 'templates/circuitos2.html',
         controller: 'circuitos2Ctrl'
       },
@@ -128,13 +138,23 @@ angular.module('app.routes', ['ionicUIRouter'])
     This allows your app to figure out which Tab to open this page in on the fly.
     If you're setting a Tabs default page or modifying the .otherwise for your app and
     must use a URL, use one of the following:
-      /page1/tab1/list-shops
-      /page1/tab5/list-shops
+      /page1/tab1/shops-list
+      /page1/tab4/shops-list
+      /page1/tab2/shops-list
+      /page1/tab5/shops-list
   */
   .state('tabsController.lojas', {
-    url: '/list-shops',
+    url: '/shops-list',
     views: {
       'tab1': {
+        templateUrl: 'templates/lojas.html',
+        controller: 'lojasCtrl'
+      },
+      'tab4': {
+        templateUrl: 'templates/lojas.html',
+        controller: 'lojasCtrl'
+      },
+      'tab2': {
         templateUrl: 'templates/lojas.html',
         controller: 'lojasCtrl'
       },
@@ -145,10 +165,51 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
-  .state('loja', {
-    url: '/shop',
-    templateUrl: 'templates/loja.html',
-    controller: 'lojaCtrl'
+  .state('tabsController.favoritos', {
+    url: '/bookmarks',
+    views: {
+      'tab2': {
+        templateUrl: 'templates/favoritos.html',
+        controller: 'favoritosCtrl'
+      }
+    }
+  })
+
+  /* 
+    The IonicUIRouter.js UI-Router Modification is being used for this route.
+    To navigate to this route, do NOT use a URL. Instead use one of the following:
+      1) Using the ui-sref HTML attribute:
+        ui-sref='tabsController.loja'
+      2) Using $state.go programatically:
+        $state.go('tabsController.loja');
+    This allows your app to figure out which Tab to open this page in on the fly.
+    If you're setting a Tabs default page or modifying the .otherwise for your app and
+    must use a URL, use one of the following:
+      /page1/tab1/shop-single
+      /page1/tab4/shop-single
+      /page1/tab2/shop-single
+      /page1/tab5/shop-single
+  */
+  .state('tabsController.loja', {
+    url: '/shop-single',
+    views: {
+      'tab1': {
+        templateUrl: 'templates/loja.html',
+        controller: 'lojaCtrl'
+      },
+      'tab4': {
+        templateUrl: 'templates/loja.html',
+        controller: 'lojaCtrl'
+      },
+      'tab2': {
+        templateUrl: 'templates/loja.html',
+        controller: 'lojaCtrl'
+      },
+      'tab5': {
+        templateUrl: 'templates/loja.html',
+        controller: 'lojaCtrl'
+      }
+    }
   })
 
 $urlRouterProvider.otherwise('/page1/home')

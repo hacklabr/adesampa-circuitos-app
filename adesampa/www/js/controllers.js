@@ -12,10 +12,6 @@ angular.module('app.controllers', [])
 
 })
    
-.controller('favoritosCtrl', function($scope) {
-
-})
-   
 .controller('circuitosCtrl', function($scope) {
 
 })
@@ -33,6 +29,10 @@ angular.module('app.controllers', [])
 })
    
 .controller('lojasCtrl', function($scope) {
+
+})
+   
+.controller('favoritosCtrl', function($scope) {
 
 })
    
