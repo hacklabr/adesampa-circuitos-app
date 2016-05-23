@@ -1,12 +1,7 @@
 <ion-view title="Favoritos" id="page13" class=" page-bookmarks">
     <ion-content padding="true" class="has-header">
-        <a ui-sref="tabsController.circuitos2" id="favoritos-button11" style="text-align:left;border-radius:0px 0px 0px 0px;" class=" button button-positive button-small button-clear icon-left ion-android-arrow-back btn-back">Favoritos (lista de lojas)</a>
-        <form id="favoritos-form1" class="list form-search-list">
-            <label class="item item-input" name="search-list">
-                <i class="icon ion-search placeholder-icon"></i>
-                <input type="search" placeholder="buscar na lista">
-            </label>
-        </form>
+        <a ui-sref="tabsController.lojas" id="favoritos-button11" style="text-align:left;border-radius:0px 0px 0px 0px;" class=" button button-positive button-small button-clear icon-left ion-android-arrow-back btn-back">Favoritos (lista de lojas)</a>
+        <button id="favoritos-button97" style="text-align:right;border-radius:0px 0px 0px 0px;" class=" button button-positive button-small button-clear icon-right ion-search btn-search-list">buscar na lista</button>
         <div id="favoritos-button-bar2" class=" button-bar btn-group-views">
             <button id="favoritos-button13" style="border-radius:0px 0px 0px 0px;" class=" button button-positive button-small button-block button-clear btn-view-list">ver em lista</button>
             <button id="favoritos-button20" style="border-radius:0px 0px 0px 0px;" class=" button button-positive button-small button-block button-clear btn-view-map">ver no mapa</button>
@@ -46,5 +41,26 @@
                 <button id="favoritos-button77" class=" button button-stable button-small button-icon icon-left ion-star btn-bookmark">adicionar aos favoritos</button>
             </div>
         </ion-list>
+        <div class="list card " id="favoritos-card23">
+            <ion-item class="item-icon-right  " id="favoritos-list-item16">filtrar a lista
+                <i class="icon ion-close icon-accessory"></i>
+            </ion-item>
+            <div class="item item-body " id="favoritos-list-item-container105">
+                <p id="favoritos-markdown110" style="color:#000000;" class=" ">escolha uma categoria geral</p>
+                <form id="favoritos-form4" class="list ">
+                    <label class="item item-select " id="favoritos-select4">
+                        <span class="input-label"></span>
+                        <select>
+                            <option>--/--</option>
+                            <option>Opção 1</option>
+                            <option>Opção 2</option>
+                            <option>Opção 3</option>
+                        </select>
+                    </label>
+                </form>
+                <button id="favoritos-button107" style="text-align:left;" class=" button button-positive button-small button-block button-clear icon-left ion-android-add-circle ">adicione mais categorias</button>
+                <button id="favoritos-button108" class=" button button-positive button-large ">usar</button>
+            </div>
+        </div>
     </ion-content>
 </ion-view>

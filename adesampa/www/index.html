@@ -12,12 +12,10 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
-    -->
 
     
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     
 
     <style type="text/css">
@@ -29,6 +27,15 @@
       }
       .manual-remove-top-padding .scroll{
         padding-top:0px !important;
+      }
+      ion-list.manual-list-fullwidth div.list, .list.card.manual-card-fullwidth {
+        margin-left:-10px;
+        margin-right:-10px;
+      }
+      ion-list.manual-list-fullwidth div.list > .item, .list.card.manual-card-fullwidth > .item {
+        border-radius:0px;
+        border-left:0px;
+        border-right: 0px;
       }
     </style>
 
@@ -64,7 +71,7 @@
                     <ion-item id="menu-list-item1" ui-sref="tabsController.inCio" menu-close="" class="  " data-componentid="list-item1">Página inicial</ion-item>
                     <ion-item id="menu-list-item2" class="  " data-componentid="list-item2">FAQs</ion-item>
                     <ion-item id="menu-list-item3" class="  " data-componentid="list-item3">Ver próximos a mim</ion-item>
-                    <ion-item id="menu-list-item4" ui-sref="tabsController.circuitos_tab5" menu-close="" class="  " data-componentid="list-item4">Circuitos</ion-item>
+                    <ion-item id="menu-list-item4" ui-sref="tabsController.circuitos_tab1" menu-close="" class="  " data-componentid="list-item4">Circuitos</ion-item>
                     <ion-item id="menu-list-item5" class="  " data-componentid="list-item5">Favoritos</ion-item>
                     <ion-item id="menu-list-item6" ui-sref="souLojista" menu-close="" class="  " data-componentid="list-item6">Sou lojista</ion-item>
                 </ion-list>

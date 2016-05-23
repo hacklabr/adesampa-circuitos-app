@@ -20,12 +20,6 @@ angular.module('app.routes', ['ionicUIRouter'])
     }
   })
 
-  .state('inCioV2', {
-    url: '/home2',
-    templateUrl: 'templates/inCioV2.html',
-    controller: 'inCioV2Ctrl'
-  })
-
   .state('tabsController.mapa', {
     url: '/map',
     views: {
@@ -91,39 +85,12 @@ angular.module('app.routes', ['ionicUIRouter'])
     controller: 'souLojistaCtrl'
   })
 
-  /* 
-    The IonicUIRouter.js UI-Router Modification is being used for this route.
-    To navigate to this route, do NOT use a URL. Instead use one of the following:
-      1) Using the ui-sref HTML attribute:
-        ui-sref='tabsController.circuitos2'
-      2) Using $state.go programatically:
-        $state.go('tabsController.circuitos2');
-    This allows your app to figure out which Tab to open this page in on the fly.
-    If you're setting a Tabs default page or modifying the .otherwise for your app and
-    must use a URL, use one of the following:
-      /page1/tab1/routes-list
-      /page1/tab4/routes-list
-      /page1/tab2/routes-list
-      /page1/tab5/routes-list
-  */
-  .state('tabsController.circuitos2', {
+  .state('tabsController.listaDeCircuitos', {
     url: '/routes-list',
     views: {
-      'tab1': {
-        templateUrl: 'templates/circuitos2.html',
-        controller: 'circuitos2Ctrl'
-      },
-      'tab4': {
-        templateUrl: 'templates/circuitos2.html',
-        controller: 'circuitos2Ctrl'
-      },
-      'tab2': {
-        templateUrl: 'templates/circuitos2.html',
-        controller: 'circuitos2Ctrl'
-      },
       'tab5': {
-        templateUrl: 'templates/circuitos2.html',
-        controller: 'circuitos2Ctrl'
+        templateUrl: 'templates/listaDeCircuitos.html',
+        controller: 'listaDeCircuitosCtrl'
       }
     }
   })
@@ -208,6 +175,43 @@ angular.module('app.routes', ['ionicUIRouter'])
       'tab5': {
         templateUrl: 'templates/loja.html',
         controller: 'lojaCtrl'
+      }
+    }
+  })
+
+  /* 
+    The IonicUIRouter.js UI-Router Modification is being used for this route.
+    To navigate to this route, do NOT use a URL. Instead use one of the following:
+      1) Using the ui-sref HTML attribute:
+        ui-sref='tabsController.circuito'
+      2) Using $state.go programatically:
+        $state.go('tabsController.circuito');
+    This allows your app to figure out which Tab to open this page in on the fly.
+    If you're setting a Tabs default page or modifying the .otherwise for your app and
+    must use a URL, use one of the following:
+      /page1/tab1/route-single
+      /page1/tab4/route-single
+      /page1/tab2/route-single
+      /page1/tab5/route-single
+  */
+  .state('tabsController.circuito', {
+    url: '/route-single',
+    views: {
+      'tab1': {
+        templateUrl: 'templates/circuito.html',
+        controller: 'circuitoCtrl'
+      },
+      'tab4': {
+        templateUrl: 'templates/circuito.html',
+        controller: 'circuitoCtrl'
+      },
+      'tab2': {
+        templateUrl: 'templates/circuito.html',
+        controller: 'circuitoCtrl'
+      },
+      'tab5': {
+        templateUrl: 'templates/circuito.html',
+        controller: 'circuitoCtrl'
       }
     }
   })

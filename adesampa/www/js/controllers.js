@@ -4,10 +4,6 @@ angular.module('app.controllers', [])
 
 })
    
-.controller('inCioV2Ctrl', function($scope) {
-
-})
-   
 .controller('mapaCtrl', function($scope) {
 
 })
@@ -24,7 +20,7 @@ angular.module('app.controllers', [])
 
 })
    
-.controller('circuitos2Ctrl', function($scope) {
+.controller('listaDeCircuitosCtrl', function($scope) {
 
 })
    
@@ -37,6 +33,10 @@ angular.module('app.controllers', [])
 })
    
 .controller('lojaCtrl', function($scope) {
+
+})
+   
+.controller('circuitoCtrl', function($scope) {
 
 })
  
