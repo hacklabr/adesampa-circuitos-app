@@ -12,10 +12,12 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
-    <!-- compiled css output -->
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
+    -->
 
     
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     
 
     <style type="text/css">
@@ -64,16 +66,16 @@
         </ion-side-menu-content>
         <ion-side-menu side="left" id="side-menu21">
             <ion-header-bar class="bar-stable">
-                <div class="title">Menu</div>
+                <div class="title">sidemenu</div>
             </ion-header-bar>
             <ion-content padding="false" class="side-menu-left has-header">
-                <ion-list id="menu-list1" class=" " data-componentid="list1">
-                    <ion-item id="menu-list-item1" ui-sref="tabsController.inCio" menu-close="" class="  " data-componentid="list-item1">Página inicial</ion-item>
-                    <ion-item id="menu-list-item2" class="  " data-componentid="list-item2">FAQs</ion-item>
-                    <ion-item id="menu-list-item3" class="  " data-componentid="list-item3">Ver próximos a mim</ion-item>
-                    <ion-item id="menu-list-item4" ui-sref="tabsController.circuitos_tab1" menu-close="" class="  " data-componentid="list-item4">Circuitos</ion-item>
-                    <ion-item id="menu-list-item5" class="  " data-componentid="list-item5">Favoritos</ion-item>
-                    <ion-item id="menu-list-item6" ui-sref="souLojista" menu-close="" class="  " data-componentid="list-item6">Sou lojista</ion-item>
+                <ion-list id="sidemenu-list1" class=" sidemenu-list" data-componentid="list1">
+                    <ion-item id="sidemenu-list-item1" ui-sref="tabsController.home" menu-close="" class="  sidemenu-list-item" data-componentid="list-item1">Página inicial</ion-item>
+                    <ion-item id="sidemenu-list-item2" class="  sidemenu-list-item" data-componentid="list-item2">FAQs</ion-item>
+                    <ion-item id="sidemenu-list-item3" class="  sidemenu-list-item" data-componentid="list-item3">Ver próximos a mim</ion-item>
+                    <ion-item id="sidemenu-list-item4" ui-sref="tabsController.routes_tab1" menu-close="" class="  sidemenu-list-item" data-componentid="list-item4">Circuitos</ion-item>
+                    <ion-item id="sidemenu-list-item5" ui-sref="tabsController.bookmarks" menu-close="" class="  sidemenu-list-item" data-componentid="list-item5">Favoritos</ion-item>
+                    <ion-item id="sidemenu-list-item6" ui-sref="shopkeeper" menu-close="" class="  sidemenu-list-item" data-componentid="list-item6">Sou lojista</ion-item>
                 </ion-list>
             </ion-content>
         </ion-side-menu>

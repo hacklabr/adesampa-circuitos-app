@@ -1,42 +1,42 @@
 angular.module('app.controllers', [])
   
-.controller('inCioCtrl', function($scope) {
+.controller('homeCtrl', function($scope) {
 
 })
    
-.controller('mapaCtrl', function($scope) {
+.controller('mapCtrl', function($scope) {
 
 })
    
-.controller('circuitosCtrl', function($scope) {
+.controller('routesCtrl', function($scope) {
 
 })
          
-.controller('fAQsCtrl', function($scope) {
+.controller('faqsCtrl', function($scope) {
 
 })
    
-.controller('souLojistaCtrl', function($scope) {
+.controller('shopkeeperCtrl', function($scope) {
 
 })
    
-.controller('listaDeCircuitosCtrl', function($scope) {
+.controller('routesListCtrl', function($scope) {
 
 })
    
-.controller('lojasCtrl', function($scope) {
+.controller('shopsListCtrl', function($scope) {
 
 })
    
-.controller('favoritosCtrl', function($scope) {
+.controller('bookmarksCtrl', function($scope) {
 
 })
    
-.controller('lojaCtrl', function($scope) {
+.controller('shopSingleCtrl', function($scope) {
 
 })
    
-.controller('circuitoCtrl', function($scope) {
+.controller('routeSingleCtrl', function($scope) {
 
 })
  
