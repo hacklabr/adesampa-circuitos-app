@@ -1,0 +1,30 @@
+// Colors variables
+
+$gray:              #5c5c5c;
+$gray-light:        #d8d8d8;
+$gray-lighter:      #ececed;
+
+$green:             #5fb030;
+$purple:            #8e1b5a;
+$red:               #db0d17;
+$yellow:            #f49a18;
+
+$bras:              $green;
+$bom-retiro:        $red;
+$santa-ifigenia:    $purple;
+$vinte-e-cinco:     $yellow;
+
+// Typography variables
+
+$lighter:           300;
+$normal:            400;
+$semi-bold:         600;
+$bold:              700;
+$extra-bold:        800;
+
+// Override Ionic font variables
+$font-family-sans-serif:          "Open Sans", '-apple-system', "Helvetica Neue", "Roboto", "Segoe UI", sans-serif !default;
+
+$font-family-light-sans-serif:    "Open Sans", '-apple-system', "HelveticaNeue-Light", "Roboto-Light", "Segoe UI-Light", sans-serif-light !default;
+
+$font-family-serif:               "Open Sans", '-apple-system', "HelveticaNeue-Light", "Roboto-Light", "Segoe UI-Light", sans-serif-light !default;
