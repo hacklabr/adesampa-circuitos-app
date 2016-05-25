@@ -1,5 +1,61 @@
 //** Routes
 
+// Global styles
+.route {
+    .list {      
+        .item {
+            background-color: transparent;
+            border: 0;
+            color: #fff;
+            margin-top: 0;
+            overflow: hidden;
+            padding: 0;
+            @extend %container;
+        }
+        .route-link {
+            display: block;
+            padding: 4% 14% 4% 8%;
+            text-decoration: none;
+        }
+        .route-title {
+            font-size: 5vmax;
+            font-weight: $bold;
+        }
+        .route-subtitle {
+            font-size: 2.2vmax;
+            font-weight: $bold;
+            margin-top: 1%;
+        }
+        .route-description {
+            font-size: 1.8vmax;
+            font-weight: $normal;
+            line-height: 150%;
+            margin-top: 3%;
+        }
+    }
+}
+
+// Styles per route
+.bom-retiro {
+    .list {
+        background-color: $bom-retiro;
+    }
+}
+.bras {
+    .list {
+        background-color: $bras;
+    }        
+}
+.santa-ifigenia {
+    .list {
+        background-color: $santa-ifigenia;
+    }        
+}
+.vinte-e-cinco {
+    .list {
+        background-color: $vinte-e-cinco;
+    }        
+}
 
 //** Routes List
 
