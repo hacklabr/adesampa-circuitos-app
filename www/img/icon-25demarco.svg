@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="239.11375"
+   height="239.11125"
+   id="svg3212"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="Logo_SantaIfigenia.svg">
+  <defs
+     id="defs3214">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath38">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 244.766,387.011 154.704,0 0,82.729 -154.704,0 0,-82.729 z"
+         id="path40" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath50">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 0,595.28 1275.59,0 L 1275.59,0 0,0 0,595.28 z"
+         id="path52" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath160">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 673.844,453.17 38.051,0 0,40.724 -38.051,0 0,-40.724 z"
+         id="path162" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath198">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 0,595.28 1275.59,0 L 1275.59,0 0,0 0,595.28 z"
+         id="path200" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="170.71578"
+     inkscape:cy="146.40301"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="650"
+     inkscape:window-height="716"
+     inkscape:window-x="715"
+     inkscape:window-y="336"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata3217">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-195.19456,-348.991)">
+    <g
+       transform="matrix(1.25,0,0,-1.25,-619.57919,683.03775)"
+       id="g3664">
+      <g
+         transform="translate(843.11,171.5934)"
+         id="g184">
+        <path
+           inkscape:connector-curvature="0"
+           id="path186"
+           style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           d="m 0,0 c 0,52.822 -42.825,95.644 -95.645,95.644 l -95.646,0 0,-95.644 c 0,-52.822 42.821,-95.645 95.646,-95.645 L 0,-95.645 0,0 z" />
+      </g>
+      <g
+         id="g194">
+        <g
+           clip-path="url(#clipPath198)"
+           id="g196">
+          <g
+             transform="translate(831.7503,172.937)"
+             id="g202">
+            <path
+               inkscape:connector-curvature="0"
+               id="path204"
+               style="fill:#f78f1d;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               d="m 0,0 c 0,46.867 -37.998,84.862 -84.863,84.862 l -84.863,0 0,-84.862 c 0,-46.867 37.994,-84.863 84.863,-84.863 L 0,-84.863 0,0 z" />
+          </g>
+        </g>
+      </g>
+      <text
+         id="text206"
+         transform="matrix(1,0,0,-1,674.8525,133.6533)">
+        <tspan
+           id="tspan208"
+           sodipodi:role="line"
+           y="0"
+           x="0 70.887222"
+           style="font-size:118.54049683px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Gotham;-inkscape-font-specification:Gotham-Bold">25</tspan>
+      </text>
+    </g>
+  </g>
+</svg>
