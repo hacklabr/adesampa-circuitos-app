@@ -142,9 +142,7 @@ angular.module('app.controllers', [])
     var api = spaceApi('http://mapa.desenvolvimentolocal.hacklab.com.br/');
     var route = ROUTES_INDEX[$stateParams.route]
     api.util.applyMe.apply($scope);
-    console.log(route)
     api.find({regiao: $EQ(route.title)}).then(function (shops) {
-        console.log(shops);
         $scope.shops = shops;
     });
 }])
@@ -153,9 +151,21 @@ angular.module('app.controllers', [])
 
 })
    
-.controller('shopSingleCtrl', function($scope) {
-
-})
+.controller('shopSingleCtrl', [ '$scope', '$stateParams', 'mapas.service.space', function($scope, $stateParams, spaceApi) {
+    var api = spaceApi('http://mapa.desenvolvimentolocal.hacklab.com.br/');
+    api.util.applyMe.apply($scope);
+    api.findOne({id: $EQ($stateParams.shop)}).then(function (shop) {
+        // TODO: remover isso depois de arrumar os dados no servidor
+        if (shop.emailPublico.match(/^E-mail: /)) {
+            shop.emailPublico = shop.emailPublico.replace(/^E-mail: /, '');
+        }
+        if (shop.telefonePublico) {
+            shop.phoneHref = shop.telefonePublico.replace(/\D/g, '').replace(/^/, '+55');
+        }
+        $scope.shop = shop;
+        console.log(shop);
+    });
+}])
    
 .controller('routeSingleCtrl', function($scope, $stateParams) {
     $scope.route = ROUTES_INDEX[$stateParams.route];

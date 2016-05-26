@@ -10,16 +10,16 @@
 
         <ion-list class="shop-single-content">
             <div class="item item-body shop-single-title">
-                <h1>Loja de tal</h1>
+                <h1>{{shop.name}}</h1>
             </div>
             <div class="item item-body shop-single-information">
-                <p><strong>endereço:</strong> Av. Lorem ipsum dolor sit amet, XX</p>
-                <p><strong>espaço:</strong> Se estiver dentro de uma galeria de lojas</p>
-                <p><strong>telefone:</strong> +XX (XX) XXXX-XXXX</p>
-                <p><strong>e-mail:</strong> taldetal@gmail.com</p>
+                <p><strong>endereço:</strong> {{shop.endereco}}</p>
+                <p ng-if="shop.horario"><strong>horario:</strong> {{shop.horario}}</p>
+                <p ng-if="shop.telefonePublico"><strong>telefone:</strong> <a ng-href="tel:{{shop.phoneHref}}">{{shop.telefonePublico}}</a></p>
+                <p ng-if="shop.emailPublico"><strong>e-mail:</strong> <a ng-href="mailto:{{shop.emailPublico}}">{{shop.emailPublico}}</a></p>
             </div>
             <div class="item item-body shop-single-description">
-                <p>Descrição do lojista sobre sua loja, lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>{{shop.shortDescription}}</p>
             </div>
         </ion-list>
     </ion-content>

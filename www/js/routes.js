@@ -158,7 +158,7 @@ angular.module('app.routes', ['ionicUIRouter'])
       /tabs/tab5/shopsingle
   */
   .state('tabsController.shopSingle', {
-    url: '/shopsingle',
+    url: '/shopsingle/:shop',
     views: {
       'tab1': {
         templateUrl: 'templates/shopSingle.html',
