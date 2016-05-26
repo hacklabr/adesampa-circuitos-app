@@ -195,7 +195,7 @@ angular.module('app.routes', ['ionicUIRouter'])
       /tabs/tab5/routesingle
   */
   .state('tabsController.routeSingle', {
-    url: '/routesingle',
+    url: '/routesingle/:route',
     views: {
       'tab1': {
         templateUrl: 'templates/routeSingle.html',

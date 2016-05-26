@@ -1,73 +1,20 @@
 <ion-view title="" hide-back-button="true" id="routes" class="page-routes">
     <ion-content padding="false" class="has-header">
-
-        <ion-list class="route bom-retiro">
-            <a ui-sref="tabsController.routeSingle" class="route-link">
+      <ng-repeat ng-repeat="route in routes">
+        <ion-list class="route {{route.name}}">
+            <a ui-sref="tabsController.routeSingle({route:route.name})" class="route-link">
                 <h1 class="item item-body route-title">
-                    Bom Retiro
+                  {{route.title}}
                 </h1>
                 <h2 class="item item-body route-subtitle">
-                    Moda para todos os gostos e bolsos
+                    {{route.headline}}
                 </h2>
                 <p class="item item-body route-description">
-                    No famoso bairro do Brás você encontre as 
-                    melhores lojas de moda e produtos de qualidade 
-                    com preços especiais.
+                  {{route.description}}
                 </p>
                 <div class="icon ion-ios-arrow-forward"></div>
             </a>
         </ion-list>
-
-        <ion-list class="route bras">
-            <a ui-sref="tabsController.routeSingle" class="route-link">
-                <h1 class="item item-body route-title">
-                    Brás
-                </h1>
-                <h2 class="item item-body route-subtitle">
-                    O destino de quem procura roupas a bom preço</h2>
-                </h2>
-                <p class="item item-body route-description">
-                    O bairro Bom Retiro abriga as mais variadas e 
-                    excelentes lojas no setor de moda e vestuário
-                    da cidade de São Paulo. Conheça!
-                </p>
-                <div class="icon ion-ios-arrow-forward"></div>
-            </a>
-        </ion-list>
-
-        <ion-list class="route santa-ifigenia">
-            <a ui-sref="tabsController.routeSingle" class="route-link">
-                <h1 class="item item-body route-title">
-                    Santa Ifigênia
-                </h1>
-                <h2 class="item item-body route-subtitle">
-                    O maior oferta de eletrônicos do país
-                </h2>
-                <p class="item item-body route-description">
-                    O bairro é destino conhecido pela grande quantidade 
-                    de lojas especializadas em eletrônicos com o menor 
-                    preço do mercado.
-                </p>
-                <div class="icon ion-ios-arrow-forward"></div>
-            </a>
-        </ion-list>
-
-        <ion-list class="route vinte-e-cinco">
-            <a ui-sref="tabsController.routeSingle" class="route-link">
-                <h1 class="item item-body route-title">
-                    25 de Março
-                </h1>
-                <h2 class="item item-body route-subtitle">
-                    Aqui você encontra de tudo um pouco
-                </h2>
-                <p class="item item-body route-description">
-                    O bairro é considerado o maior centro comercial
-                    da América Latina. O mais movimentado e diversificado 
-                    centro de compras varejista e atacadista.
-                </p>
-                <div class="icon ion-ios-arrow-forward"></div>
-            </a>
-        </ion-list>
-
+      </ng-repeat>
     </ion-content>
 </ion-view>
