@@ -1,0 +1,31 @@
+.tabs {
+    background-color: $gray-lighter !important;
+    .tab-item {  
+        .icon {
+            color: $gray !important;
+            font-size: 24px;
+            height: 24px;
+            margin-top: 5px;
+        }
+        .tab-title {
+            color: $gray !important;
+            font-weight: $extra-bold;
+        }
+    }
+    .tab-item-active {
+        .icon {
+            color: #000 !important;
+        }
+        .tab-title {
+            color: #000 !important;
+        }
+    }
+}
+
+// remove border-bottom when it's on a android device
+.tabs-top.tabs-striped {
+    .tab-item.tab-item-active {
+        border-width: 0 !important;
+        margin-top: 5px !important;
+    }
+}
