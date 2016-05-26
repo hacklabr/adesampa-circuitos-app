@@ -1,6 +1,8 @@
 .bar {
     .title {
         background: url(../img/logo-app.svg) no-repeat center center;
-        background-size: 50%;
+        background-size: contain;
+        height: 33px;
+        margin: 5px 0;
     }
 }
