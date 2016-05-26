@@ -111,7 +111,7 @@ angular.module('app.routes', ['ionicUIRouter'])
       /tabs/tab5/shopslist
   */
   .state('tabsController.shopsList', {
-    url: '/shopslist',
+    url: '/shopslist/:route',
     views: {
       'tab1': {
         templateUrl: 'templates/shopsList.html',

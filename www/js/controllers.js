@@ -138,9 +138,16 @@ angular.module('app.controllers', [])
 .controller('routesListCtrl', function($scope) {
 })
    
-.controller('shopsListCtrl', function($scope) {
-
-})
+.controller('shopsListCtrl', [ '$scope', '$stateParams', 'mapas.service.space', function($scope, $stateParams, spaceApi) {
+    var api = spaceApi('http://mapa.desenvolvimentolocal.hacklab.com.br/');
+    var route = ROUTES_INDEX[$stateParams.route]
+    api.util.applyMe.apply($scope);
+    console.log(route)
+    api.find({regiao: $EQ(route.title)}).then(function (shops) {
+        console.log(shops);
+        $scope.shops = shops;
+    });
+}])
    
 .controller('bookmarksCtrl', function($scope) {
 
