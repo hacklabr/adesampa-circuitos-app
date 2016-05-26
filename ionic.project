@@ -1,6 +1,6 @@
 {
   "name": "adesampa",
-  "app_id": "",
+  "app_id": "f580b959",
   "gulpStartupTasks": [
     "sass",
     "watch"
