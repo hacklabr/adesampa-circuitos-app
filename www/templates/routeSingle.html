@@ -34,9 +34,7 @@
                             <span class="input-label"></span>
                             <select>
                                 <option>--/--</option>
-                                <option>Opção 1</option>
-                                <option>Opção 2</option>
-                                <option>Opção 3</option>
+                                <option ng-repeat="category in route.categories">{{category}}</option>
                             </select>
                         </label>
                         <button class="button button-positive button-small button-clear icon-left ion-android-add-circle ">adicione mais categorias</button>
