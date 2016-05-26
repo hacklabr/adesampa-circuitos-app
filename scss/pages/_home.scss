@@ -1,0 +1,55 @@
+.page-home {
+    background: url(../img/background-maps.svg);
+    background-size: contain;
+
+    .padding {
+        padding: 10px 20px;
+    }
+
+    .home-logo {
+        background: url(../img/logo-app.svg) no-repeat center center;
+        background-size: contain;
+        height: 12vmax;
+        margin: 0 auto; 
+        width: 36vmax;
+    }
+    .home-slogan {
+        color: $gray;
+        font-size: 2.6vmax;
+        text-align: center;
+    }
+    .button-splash {
+        background: $pink;
+        color: #fff;
+        font-weight: $bold;
+        margin: 35% auto 0;
+        max-width: 530px;
+        text-transform: uppercase;
+    }
+    .home-affiliates {
+        bottom: 30px;
+        left: 50%;
+        margin-left: -24vmax;
+        position: absolute;
+        text-align: center;
+        %logo {
+            background-repeat: no-repeat;
+            background-size: contain;
+            float: left;
+            height: 8vmax;
+            width: 24vmax;
+        }
+        .logo-adesampa {
+            background-image: url(../img/logo-adesampa.svg);
+            background-position: center left;
+            border-right: 2px solid red;
+            @extend %logo;
+
+        }
+        .logo-prefeitura {
+            background-image: url(../img/logo-prefeitura.svg);
+            background-position: center right;
+            @extend %logo;
+        }
+    }
+}
