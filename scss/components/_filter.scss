@@ -1,0 +1,80 @@
+.filter {
+    .item {
+        background-color: transparent;
+        border: 0;
+        margin-top: 0;
+        overflow: hidden;
+        padding: 0;
+        @extend %container;
+    }
+    .filter-title {
+        background: transparent;
+        border: 0;
+        font-size: 2.6vmax;
+        font-weight: $bold;
+        line-height: 100%;
+        padding: 4%;
+    }
+    .filter-form {
+        fieldset {
+            border: 0;
+        }
+        legend {
+            border: 0;
+            font-size: 2.2vmax;
+            font-weight: $bold;
+        }
+        label {
+            background-color: #fff;
+        }
+        .filter-label {
+            font-size: 2.2vmax;
+            margin-bottom: 2%;
+        }
+        .input-label {
+            padding: 2%;
+        }
+        .button-add-categories {
+            font-size: 2vmax;
+            line-height: 190%;
+            padding: 0;
+            text-align: left;
+            &:before {
+                font-size: 3vmax;
+                margin-right: 1%;
+            }
+        }
+        .button-use-filter {
+            font-size: 2.5vmax;
+            font-weight: $semi-bold;
+            margin: 4%;
+        }
+    }
+}
+
+.filter-modal {
+    background-color: $gray-light;
+    border-radius: 2vmax;
+    display: block;
+    left: 50%;
+    top: 150px;
+    position: absolute;
+    margin-left: -150px;
+    width: 300px;
+    .icon-accessory {
+        color: $gray;
+    }
+    .filter-form {
+        .button-add-categories {
+            color: $gray;
+            margin-bottom: 0;
+        }
+        .button-use-filter {
+            background-color: $green;
+            color: #fff;
+            line-height: 150%;
+            margin: 0 0 4% 4%; 
+            min-height: initial;
+        }
+    }
+}

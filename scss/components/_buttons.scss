@@ -1,0 +1,27 @@
+.button {
+    line-height: 270%;
+}
+
+.button-bar {
+    border-radius: 0 !important;
+    .button {
+        border-bottom: 3px solid transparent;
+        border-radius: 0 !important;
+    }
+    &.button-bar-inline {
+        .button {
+            display: inline-block;
+            -webkit-box-flex: initial;
+            -webkit-flex: initial;
+            -moz-box-flex: initial;
+            -moz-flex: initial;
+            -ms-flex: initial;
+            flex: initial;
+            font-size: 2vmax;
+            font-weight: $bold;
+            margin-right: 5vmax;
+            padding: 0;
+            width: initial;
+        }
+    }
+}

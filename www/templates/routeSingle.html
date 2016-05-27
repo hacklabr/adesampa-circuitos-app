@@ -1,47 +1,49 @@
 <ion-view title="" hide-back-button="true" id="route-single" class="page-route-single">
-    <ion-content padding="true" class="has-header">
+    <ion-content padding="false" class="has-header">
         
-        <a ui-sref="tabsController.routes" class="button button-positive button-small button-block button-clear icon-left ion-android-arrow-back button-back"></a>
-        <h1>encontrar lojas no circuito</h1>
-        
-        <div class="button-bar">
-            <button class="button button-positive button-small button-clear button-view-information">histórico</button>
-            <button class="button button-positive button-small button-clear button-view-photos">fotos</button>
-        </div>
+        <ion-list class="page-header">
+            <a ui-sref="tabsController.routes" class="button button-clear ion-arrow-left-c button-back"></a>
+            <h1 class="page-title">encontrar lojas no circuito</h1>
+        </ion-list>
 
-        <ion-list>
-            <div class="route-single-content">
-                <div class="item item-body route-single-title">
-                    <h1>{{route.title}}</h1>
+        <ion-list class="route-single-content">
+            <div class="route-information">
+                <div class="button-bar button-bar-inline item">
+                    <button class="button button-positive button-small button-clear button-view-information">histórico</button>
+                    <button class="button button-positive button-small button-clear button-view-photos">fotos</button>
                 </div>
-
-                <div class="item item-body route-single-description">
-                    <p>{{route.description}}</p>
-                </div>
+                <h1 class="item item-body route-title">
+                    {{route.title}}
+                </h1>
+                <p class="item item-body route-description">
+                    {{route.description}}
+                </p>
             </div>
         </ion-list>
 
-        <ion-list class="route-filter">
-            <div class="item item-body route-filter-title">
-                <h2>escolha os filtros de produto</h2>
-            </div>
-            <div class="item item-body">
-                <h3>primeiro filtro</h3>
-                <form class="list">
+        <ion-list class="filter">
+            <h2 class="item item-body filter-title">
+                escolha os filtros de produto
+            </h2>
+            <form class="filter-form">
+                <div class="filter-content">
                     <fieldset>
-                        <legend>escolha uma categoria</legend>
-                        <label class="item item-select " id="routeSingle-select3">
-                            <span class="input-label"></span>
-                            <select>
-                                <option>--/--</option>
+                        <legend>primeiro filtro</legend>
+                        <div class="item item-body filter-label">escolha uma categoria:</div>
+                        <label class="item item-input item-select" for="select-categories">
+                            <span class="input-label">--/--</span>
+                            <select id="select-categories">
+                                <option></option>
                                 <option ng-repeat="category in route.categories">{{category}}</option>
                             </select>
                         </label>
-                        <button class="button button-positive button-small button-clear icon-left ion-android-add-circle ">adicione mais categorias</button>
-                        <a ui-sref="tabsController.shopsList({route:route.name})" class="button button-positive button-block">criar lista de lojas</a>
+                        <div class="item item-body">
+                            <button class="button button-small button-block button-clear button-add-categories icon-left ion-android-add-circle">adicione mais categorias</button>
+                        </div>
                     </fieldset>
-                </form>
-            </div>
+                </div>
+                <a ui-sref="tabsController.shopsList({route:route.name})" class="button button-block button-use-filter">criar lista de lojas</a>
+            </form>
         </ion-list>
 
     </ion-content>

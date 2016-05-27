@@ -1,0 +1,30 @@
+.page-header {
+    .list {
+        background: $gray-lighter;
+    }
+    .button-back {
+        color: $pink;
+        display: inline-block;
+        min-width: 5vmax;
+        &:before {
+            font-size: 4.5vmax;
+            vertical-align: middle;
+        }
+    }
+    .page-title {
+        box-sizing: border-box;
+        display: inline-block;
+        font-size: 2.6vmax;
+        font-weight: $bold;
+        line-height: 150%;
+        margin: 0; 
+        min-height: 47px;
+        padding: 10px 0;
+        span {
+            display: inline-block;
+            font-size: 2.2vmax;
+            font-weight: $normal;
+            margin-left: 0.8vmax;
+        }
+    }
+}

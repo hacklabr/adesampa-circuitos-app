@@ -1,9 +1,8 @@
 //** Routes
 
 // Global styles
-.route {
-    .list {
-        border-bottom: 1px solid #fff;    
+.route, .route-single-content {
+    .list {  
         .item {
             background-color: transparent;
             border: 0;
@@ -13,28 +12,11 @@
             padding: 0;
             @extend %container;
         }
-        .route-link {
-            display: block;
-            padding: 4% 14% 4% 8%;
-            position: relative;
-            text-decoration: none;
-        }
-        .route-title {
-            font-size: 5vmax;
-            font-weight: $bold;
-            line-height: 130%;
-        }
-        .route-subtitle {
-            font-size: 2.2vmax;
-            font-weight: $bold;
-            line-height: 130%;
-        }
-        .route-description {
-            font-size: 1.8vmax;
-            font-weight: $normal;
-            line-height: 150%;
-            margin-top: 3%;
-        }
+    }
+}
+.route {
+    .list {
+        border-bottom: 1px solid #fff;    
         .ion-ios-arrow-forward {
             color: #fff;
             font-size: 10vmax;
@@ -44,6 +26,28 @@
             top: 50%;
         }
     }
+}
+.route-link {
+    display: block;
+    padding: 4% 14% 4% 8%;
+    position: relative;
+    text-decoration: none;
+}
+.route-title {
+    font-size: 5vmax;
+    font-weight: $bold;
+    line-height: 130%;
+}
+.route-subtitle {
+    font-size: 2.2vmax;
+    font-weight: $bold;
+    line-height: 130%;
+}
+.route-description {
+    font-size: 1.8vmax;
+    font-weight: $normal;
+    line-height: 140%;
+    margin-top: 3%;
 }
 
 // Styles per route
@@ -72,3 +76,44 @@
 
 
 //** Route Single
+
+.page-route-single {
+    .route-single-content {
+        background-color: $gray;
+        display: block;
+        .route-information {
+            padding: 4%;
+            .button-bar {
+                margin-bottom: 6%;
+                .button {
+                    border-bottom-color: #fff;
+                    color: #fff;
+                }
+            }
+            .route-description {
+                font-size: 2.3vmax;
+            }
+        }
+    }
+    .filter {
+        .filter-content {
+            background: $gray;
+            fieldset {
+                @extend %container;
+            }
+            legend {
+                color: #fff;
+            }
+        }
+        .filter-label {
+            color: #fff;
+        }
+        .button-add-categories {
+            color: #fff;
+        }
+        .button-use-filter {
+            background-color: $pink;
+            color: #fff;
+        }
+    }  
+}
