@@ -1,4 +1,68 @@
-//** Shops List
+//** shops
 
+// Global styles
+.shop, .shop-single-content {
+    .list {  
+        .item {
+            background-color: transparent;
+            border: 0;
+            color: #fff;
+            margin-top: 0;
+            overflow: hidden;
+            padding: 0;
+        }
+    }
+}
+.shop {
+    .list {
+        background-color: $gray;
+        border-bottom: 1px solid #fff;    
+        .ion-ios-arrow-forward {
+            color: #fff;
+            font-size: 10vmax;
+            margin-top: -5vmax;
+            position: absolute;
+            right: 5%;
+            top: 50%;
+        }
+    }
+}
+.shop-link {
+    @extend %container;
+    @extend %wrapper-link;
+    padding: 4% 14% 0% 8%;
+}
+.shop-wrapper {
+    @extend %container;
+    @extend %wrapper-link;
+    padding: 2% 14% 4% 8%;
+}
+.shop-title {
+    font-size: 3.5vmax;
+    font-weight: $bold;
+    line-height: 130%;
+}
+.shop-description {
+    font-size: 1.8vmax;
+    font-weight: $normal;
+    line-height: 140%;
+    margin-top: 3%;
+}
+.button-bookmark, .button-delete {
+    color: #fff;
+    font-weight: $bold;
+    margin-top: 2%;
+    padding: 0;
+    &:hover {
+        color: #fff;
+    }
+    &:before {
+        font-size: 3.5vmax !important;
+        line-height: 130% !important;
+        margin: 0 0.5vmax 0 0 !important;
+    }
+}
 
 //** Shop Single
+
+

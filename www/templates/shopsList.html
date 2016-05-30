@@ -1,32 +1,25 @@
 <ion-view title="" hide-back-button="true" id="shop-list" class="page-shops-list">
-    <ion-content padding="true" class="has-header">
-
+    <ion-content padding="false" class="has-header">
         <ion-list class="page-header">
             <a ui-sref="tabsController.routesList" class="button button-clear ion-arrow-left-c button-back"></a>
-            <h1 class="page-title">{{route.title}} <span>{{created|date:"dd/MM/yy HH:mm:ss"}}</span></h1>
+            <h1 class="page-title">{{route.title}} <span>{{created|date:"dd/MM/yy"}}</span></h1>
         </ion-list>
-
         <div class="button-bar">
-            <button class="button button-positive button-small button-clear button-view-list">ver em lista</button>
-            <button class="button button-positive button-small button-clear button-view-map">ver no mapa</button>
+            <button class="button button-small button-clear button-view-list active">ver em lista</button>
+            <button class="button button-small button-clear button-view-map">ver no mapa</button>
         </div>
-
-        <ion-list ng-repeat="shop in shops">
-          <div class="shop-information-list">
-            <div class="item item-body shop-title">
-              <h1><a ui-sref="tabsController.shopSingle({shop:shop.id})">{{shop.name}}</a></h1>
-            </div>
-            <div class="item item-body shop-segment">
-              <p>segmentos: <strong>{{shop.terms.area.join(", ")}}</strong>
-              </p>
-            </div>
+        <ion-list ng-repeat="shop in shops" class="shop">
+          <a ui-sref="tabsController.shopSingle({shop:shop.id})" class="shop-link">
+            <h1 class="item item-body shop-title">{{shop.name}}</h1>
+          </a>
+          <div class="shop-wrapper">
+            <p class="item item-body shop-description">segmentos: <strong>{{shop.terms.area.join(", ")}}</strong></p>
             <div class="item item-body shop-actions">
-              <button class="button button-stable button-small button-icon icon-left ion-trash-a button-delete">remover</button>
-              <button ng-if="isBookmark(shop)" ng-click="removeBookmark(shop)" class="selected button button-stable button-small button-icon icon-left ion-star button-bookmark">remover dos favoritos</button>
-              <button ng-if="!isBookmark(shop)" ng-click="addBookmark(shop)" class="button button-stable button-small button-icon icon-left ion-star button-bookmark">adicionar aos favoritos</button>
+              <button ng-if="isBookmark(shop)" ng-click="removeBookmark(shop)" class="button button-small button-icon icon-left ion-trash-a button-delete">remover dos favoritos</button>
+              <button ng-if="!isBookmark(shop)" ng-click="addBookmark(shop)" class="button button-small button-icon icon-left ion-star button-bookmark">adicionar aos favoritos</button>
             </div>
           </div>
+          <a ui-sref="tabsController.shopSingle({shop:shop.id})"><div class="icon ion-ios-arrow-forward"></div></a>
         </ion-list>
-
     </ion-content>
 </ion-view>

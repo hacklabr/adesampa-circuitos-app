@@ -1,8 +1,17 @@
+// limit the width of a container
 %container {
     margin: 0 auto; 
     max-width: 768px;
 }
 
+// wrappers links for items
+%wrapper-link {
+    display: block;
+    position: relative;
+    text-decoration: none;
+}
+
+// text only for screen readers
 .sr-only {
     position: absolute;
     left: -10000px;

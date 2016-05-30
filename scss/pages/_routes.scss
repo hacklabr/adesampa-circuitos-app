@@ -28,10 +28,8 @@
     }
 }
 .route-link {
-    display: block;
+    @extend %wrapper-link;
     padding: 4% 14% 4% 8%;
-    position: relative;
-    text-decoration: none;
 }
 .route-title {
     font-size: 5vmax;

@@ -1,12 +1,19 @@
 .button {
     line-height: 270%;
 }
-
 .button-bar {
     border-radius: 0 !important;
     .button {
-        border-bottom: 3px solid transparent;
+        border-bottom: 4px solid #949494;
         border-radius: 0 !important;
+        color: #949494;
+        font-size: 2.1vmax;
+        font-weight: $extra-bold;
+        &.active {
+            border-bottom-color: #000;
+            color: #000;
+            opacity: 1;
+        }
     }
     &.button-bar-inline {
         .button {
@@ -17,6 +24,8 @@
             -moz-flex: initial;
             -ms-flex: initial;
             flex: initial;
+            border-bottom: 3px solid transparent;
+            color: #fff;
             font-size: 2vmax;
             font-weight: $bold;
             margin-right: 5vmax;
