@@ -1,103 +1,16 @@
 <ion-view title="" hide-back-button="true" id="routes-list" class="page-routes-list">
     <ion-content padding="true" class="has-header">
 
-        <ion-list>
+        <ion-list ng-repeat="route in userRoutes">
             <div class="route-information-list">
                 <div class="item item-body route-title">
-                    <h1><a ui-sref="tabsController.shopsList">circuito</a></h1>
+                  <h1 class="page-title">
+                    <a ui-sref="tabsController.shopsList({userRouteId:route.id})">
+                      {{route.route.title}} <span>{{route.created|date:"dd/MM/yy HH:mm:ss"}}</span>
+                  </a>
+                  </h1>
                 </div>
 
-                <div class="item item-body route-categories">
-                    <p>categorias:
-                        <a href="#">
-                            <strong>lorem</strong>
-                        </a>,
-                        <a href="#">
-                            <strong>ipsum</strong>
-                        </a>,
-                        <a href="#">
-                            <strong>dolor</strong>
-                        </a>
-                    </p>
-                </div>
-                <div class="item item-body route-segment">
-                    <p>segmentos:
-                        <a href="#">
-                            <strong>lorem</strong>
-                        </a>,
-                        <a href="#">
-                            <strong>ipsum</strong>
-                        </a>,
-                        <a href="#">
-                            <strong>dolor</strong>
-                        </a>
-                    </p>
-                </div>
-                
-                <div class="item item-body route-actions">
-                    <button class="button button-stable button-small button-icon icon-left ion-trash-a">remover</button>
-                </div>
-            </div>
-        </ion-list>
-
-        <ion-list>
-            <div class="route-information-list">
-                <div class="item item-body route-title">
-                    <h1><a ui-sref="tabsController.shopsList">circuito</a></h1>
-                </div>
-
-                <div class="item item-body route-categories">
-                    <p>categorias:
-                        <a href="#">
-                            <strong>lorem</strong>
-                        </a>,
-                        <a href="#">
-                            <strong>ipsum</strong>
-                        </a>,
-                        <a href="#">
-                            <strong>dolor</strong>
-                        </a>
-                    </p>
-                </div>
-                <div class="item item-body route-segment">
-                    <p>segmentos:
-                        <a href="#">
-                            <strong>lorem</strong>
-                        </a>,
-                        <a href="#">
-                            <strong>ipsum</strong>
-                        </a>,
-                        <a href="#">
-                            <strong>dolor</strong>
-                        </a>
-                    </p>
-                </div>
-                
-                <div class="item item-body route-actions">
-                    <button class="button button-stable button-small button-icon icon-left ion-trash-a">remover</button>
-                </div>
-            </div>
-        </ion-list>
-
-        <ion-list>
-            <div class="route-information-list">
-                <div class="item item-body route-title">
-                    <h1><a ui-sref="tabsController.shopsList">circuito</a></h1>
-                </div>
-
-                <div class="item item-body route-categories">
-                    <p>categorias:
-                        <a href="#">
-                            <strong>lorem</strong>
-                        </a>,
-                        <a href="#">
-                            <strong>ipsum</strong>
-                        </a>,
-                        <a href="#">
-                            <strong>dolor</strong>
-                        </a>
-                    </p>
-                </div>
                 <div class="item item-body route-segment">
                     <p>segmentos:
                         <a href="#">

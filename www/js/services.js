@@ -16,6 +16,12 @@ angular.module('app.services', [])
         });
         return indexed_obj;
     }
+    this.next_id = function(obj_list) {
+        if (obj_list.length == 0) {
+            return 1;
+        }
+        return Math.max.apply(Math, (obj_list.map(function(obj) { return obj.id || 0}))) + 1;
+    }
 })
 
 .service('Storage', function($localStorage, Util) {
@@ -34,7 +40,7 @@ angular.module('app.services', [])
     }
 
     this.storeUserRoute = function(userRoute) {
-        userRoute.id = Math.max.apply(Math, ($localStorage.userRoutes.map(function(obj) { return obj.id || 0}))) + 1;
+        userRoute.id = Util.next_id($localStorage.userRoutes);
         $localStorage.userRoutes.push(userRoute)
         userRouteIndex[userRoute.id] = userRoute;
         return userRoute.id;

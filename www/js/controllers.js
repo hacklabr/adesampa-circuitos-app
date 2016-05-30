@@ -20,7 +20,12 @@ angular.module('app.controllers', [])
 
 })
    
-.controller('routesListCtrl', function($scope) {
+.controller('routesListCtrl', function($scope, Storage) {
+    var userRoutes = JSON.parse(JSON.stringify(Storage.listUserRoutes()));
+    for (var i=0; i<userRoutes.length; i++) {
+        userRoutes[i].route = Storage.getRoute(userRoutes[i].route);
+    }
+    $scope.userRoutes = userRoutes;
 })
    
 .controller('shopsListCtrl', [ 'API', '$scope', '$stateParams', 'Storage', 'UserRoutes', function(API, $scope, $stateParams, Storage, UserRoutes) {
