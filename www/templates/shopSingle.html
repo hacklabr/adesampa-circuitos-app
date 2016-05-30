@@ -1,28 +1,25 @@
 <ion-view title="" hide-back-button="true" id="shop-single" class="page-shop-single">
-    <ion-content padding="true" class="has-header">
-        
+    <ion-content padding="false" class="has-header">
         <ion-list class="page-header">
             <a ui-sref="tabsController.shopsList" class="button button-clear ion-arrow-left-c button-back"></a>
-            <h1 class="page-title">lojas</h1>
+            <h1 class="page-title">loja</h1>
         </ion-list>
-
         <div class="button-bar">
-            <button class="button button-positive button-small button-clear button-view-list">ver em lista</button>
-            <button class="button button-positive button-small button-clear button-view-map">ver no mapa</button>
+            <button class="button button-small button-clear button-view-list active">ver em lista</button>
+            <button class="button button-small button-clear button-view-map">ver no mapa</button>
         </div>
-
-        <ion-list class="shop-single-content">
-            <div class="item item-body shop-single-title">
-                <h1>{{shop.name}}</h1>
-            </div>
-            <div class="item item-body shop-single-information">
-                <p><strong>endereço:</strong> {{shop.endereco}}</p>
-                <p ng-if="shop.horario"><strong>horario:</strong> {{shop.horario}}</p>
-                <p ng-if="shop.telefonePublico"><strong>telefone:</strong> <a ng-href="tel:{{shop.phoneHref}}">{{shop.telefonePublico}}</a></p>
-                <p ng-if="shop.emailPublico"><strong>e-mail:</strong> <a ng-href="mailto:{{shop.emailPublico}}">{{shop.emailPublico}}</a></p>
-            </div>
-            <div class="item item-body shop-single-description">
-                <p>{{shop.shortDescription}}</p>
+        <ion-list class="shop">
+            <div class="shop-wrapper">
+                <h1 class="item item-body shop-title">{{shop.name}}</h1>
+                <div class="item item-body shop-description">
+                    <p><strong>endereço:</strong> {{shop.endereco}}</p>
+                    <p ng-if="shop.horario"><strong>horario:</strong> {{shop.horario}}</p>
+                    <p ng-if="shop.telefonePublico"><strong>telefone:</strong> <a ng-href="tel:{{shop.phoneHref}}">{{shop.telefonePublico}}</a></p>
+                    <p ng-if="shop.emailPublico"><strong>e-mail:</strong> <a ng-href="mailto:{{shop.emailPublico}}">{{shop.emailPublico}}</a></p>
+                </div>
+                <div class="item item-body shop-description">
+                    <p>{{shop.shortDescription}}Descrição do lojista sobre sua loja, lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
             </div>
         </ion-list>
     </ion-content>

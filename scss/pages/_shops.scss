@@ -1,7 +1,7 @@
 //** shops
 
 // Global styles
-.shop, .shop-single-content {
+.shop {
     .list {  
         .item {
             background-color: transparent;
@@ -10,6 +10,13 @@
             margin-top: 0;
             overflow: hidden;
             padding: 0;
+            p {
+                color: #fff;
+            }
+            a {
+                color: #fff;
+                text-decoration: underline;
+            }
         }
     }
 }
@@ -47,6 +54,12 @@
     font-weight: $normal;
     line-height: 140%;
     margin-top: 3%;
+    p {
+        font-size: 1.8vmax;
+        font-weight: $normal;
+        line-height: 140%;
+        margin: 0; 
+    }
 }
 .button-bookmark, .button-delete {
     color: #fff;
@@ -65,4 +78,11 @@
 
 //** Shop Single
 
-
+.page-shop-single {
+    .shop-wrapper {
+        padding: 4% 8%;
+    }
+    .shop-description {
+        margin-top: 3% !important;
+    }
+}
