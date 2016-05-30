@@ -11,17 +11,8 @@
                   </h1>
                 </div>
 
-                <div class="item item-body route-segment">
-                    <p>segmentos:
-                        <a href="#">
-                            <strong>lorem</strong>
-                        </a>,
-                        <a href="#">
-                            <strong>ipsum</strong>
-                        </a>,
-                        <a href="#">
-                            <strong>dolor</strong>
-                        </a>
+                <div class="item item-body route-segment" ng-if="route.categories.length>0">
+                    <p>segmentos: <strong>{{route.categories.join(", ")}}</strong>
                     </p>
                 </div>
                 
