@@ -9,6 +9,7 @@
         color: #949494;
         font-size: 2.1vmax;
         font-weight: $extra-bold;
+        max-height: initial !important;
         &.active {
             border-bottom-color: #000;
             color: #000;
