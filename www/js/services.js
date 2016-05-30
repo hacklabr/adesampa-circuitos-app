@@ -67,7 +67,7 @@ angular.module('app.services', [])
 
     this.storeUserRoute = function(userRoute) {
         userRoute.id = Util.next_id($localStorage.userRoutes);
-        $localStorage.userRoutes.push(userRoute)
+        $localStorage.userRoutes.unshift(userRoute)
         userRouteIndex[userRoute.id] = userRoute;
         return userRoute.id;
     }
