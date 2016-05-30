@@ -27,10 +27,6 @@
         }
     }
 }
-.route-link {
-    @extend %wrapper-link;
-    padding: 4% 14% 4% 8%;
-}
 .route-title {
     font-size: 5vmax;
     font-weight: $bold;
@@ -70,8 +66,37 @@
     }        
 }
 
+//** Routes
+.page-routes {
+    .route-link {
+        @extend %wrapper-link;
+        padding: 4% 14% 4% 8%;
+    }
+}
+
 //** Routes List
 
+.page-routes-list {
+    .list {
+        background-color: $gray;
+    }
+    .route-title {
+        span {
+            font-size: 3vmax;
+            font-weight: $semi-bold;
+        }
+    }
+    .route-link {
+        @extend %container;
+        @extend %wrapper-link;
+        padding: 4% 14% 0% 8%;
+    }
+    .route-wrapper {
+        @extend %container;
+        @extend %wrapper-link;
+        padding: 2% 14% 4% 8%;
+    }
+}
 
 //** Route Single
 
