@@ -1,5 +1,5 @@
 <ion-view title="" id="bookmarks" class="page-bookmarks">
-    <ion-content padding="true" class="has-header">
+    <ion-content padding="false" class="has-header">
 
         <ion-list class="page-header">
             <a ui-sref="tabsController.shopsList" class="button button-clear ion-arrow-left-c button-back"></a>
@@ -9,51 +9,49 @@
         <button class="button button-positive button-small button-clear icon-right ion-search button-search-list">buscar na lista</button>
 
         <div class="button-bar">
-            <button class="button button-positive button-small button-clear button-view-list">ver em lista</button>
-            <button class="button button-positive button-small button-clear button-view-map">ver no mapa</button>
+            <button class="button button-small button-clear button-view-list active">ver em lista</button>
+            <button class="button button-small button-clear button-view-map">ver no mapa</button>
         </div>
 
-        <ion-list ng-repeat="shop in shops">
+        <ion-list ng-repeat="shop in shops" class="shop">
             <div class="shop-information-list">
-                <div class="item item-body shop-title">
-                    <h1><a ui-sref="tabsController.shopSingle({shop:shop.id})">{{shop.name}}</a></h1>
-                </div>
-                
-                <div class="item item-body shop-categories">
-                    <p><strong>Regiao: TODO</strong>
+                <a ui-sref="tabsController.shopSingle({shop:shop.id})" class="shop-link">
+                <h1 class="item item-body shop-title">{{shop.name}}</h1>
+                </a>
+                <div class="shop-wrapper">
+                    <p class="item item-body shop-description"><strong>Regiao: TODO</strong>
                     </p>
-                </div>
-                <div class="item item-body shop-segment">
-                  <p>segmentos: <strong>{{shop.terms.area.join(", ")}}</strong>
-                  </p>
-                </div>
-                <div class="item item-body shop-actions">
-                    <button ng-click="removeBookmark(shop)" class="button button-stable button-small button-icon icon-left ion-trash-a button-delete">remover</button>
+                    <p class="item item-body shop-description">segmentos: <strong>{{shop.terms.area.join(", ")}}</strong></p>
+                    <div class="item item-body shop-actions">
+                        <button ng-click="removeBookmark(shop)" class="button button-small button-icon icon-left ion-trash-a button-delete">remover</button>
+                    </div>
                 </div>
             </div>
         </ion-list>
-
-
-        <div class="card">
-            <ion-item class="item-icon-right card-title">filtrar a lista
-                <i class="icon ion-close icon-accessory"></i>
-            </ion-item>
-
-            <div class="item item-body">
-                <form class="list">
-                    <label class="item item-select">
-                        <span class="input-label">escolha uma categoria geral</span>
-                        <select>
-                            <option>--/--</option>
-                            <option>Opção 1</option>
-                            <option>Opção 2</option>
-                            <option>Opção 3</option>
-                        </select>
-                    </label>
-                    <button class="button button-positive button-small button-clear icon-left ion-android-add-circle ">adicione mais categorias</button>
-                    <button class="button button-positive button-block button-large ">usar</button>
-                </form>
-            </div>
-        </div>
     </ion-content>
+    <div class="modal-wrapper">
+        <ion-list class="filter filter-modal">
+            <h2 class="item item-body item-icon-right filter-title">
+                filtrar a lista <i class="icon ion-close icon-accessory"></i>
+            </h2>
+            <form class="filter-form">
+                <div class="filter-content">
+                    <fieldset>
+                        <div class="item item-body filter-label">escolha uma categoria:</div>
+                        <label class="item item-input item-select" for="select-categories">
+                            <span class="input-label">--/--</span>
+                            <select id="select-categories">
+                                <option></option>
+                                <option ng-repeat="category in route.categories">{{category}}</option>
+                            </select>
+                        </label>
+                        <div class="item item-body">
+                            <button class="button button-small button-block button-clear button-add-categories icon-left ion-android-add-circle">adicione mais categorias</button>
+                        </div>
+                    </fieldset>
+                </div>
+                <a ui-sref="tabsController.shopsList({route:route.id})" class="button button-use-filter">usar</a>
+            </form>
+        </ion-list>
+    </div>
 </ion-view>

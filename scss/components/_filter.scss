@@ -52,15 +52,29 @@
     }
 }
 
+.modal-wrapper {
+    background-color: rgba(0,0,0,0.7);
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 800; 
+}
+
 .filter-modal {
     background-color: $gray-light;
     border-radius: 2vmax;
     display: block;
     left: 50%;
-    top: 150px;
-    position: absolute;
     margin-left: -150px;
+    margin-top: -100px;
+    position: fixed;
+    top: 50%;
     width: 300px;
+    z-index: 900;
     .icon-accessory {
         color: $gray;
     }
