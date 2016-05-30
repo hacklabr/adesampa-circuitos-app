@@ -20,12 +20,21 @@ angular.module('app.controllers', [])
 
 })
    
-.controller('routesListCtrl', function($scope, Storage) {
-    var userRoutes = JSON.parse(JSON.stringify(Storage.listUserRoutes()));
+.controller('routesListCtrl', function($scope, Storage, UserRoutes) {
+    var userRoutes = JSON.parse(JSON.stringify(UserRoutes.list()));
     for (var i=0; i<userRoutes.length; i++) {
         userRoutes[i].route = Storage.getRoute(userRoutes[i].route);
     }
     $scope.userRoutes = userRoutes;
+    $scope.removeRoute = function(route) {
+        UserRoutes.remove(route.id);
+        for (var i=0; i<userRoutes.length; i++) {
+            if (userRoutes[i].id == route.id) {
+                userRoutes.splice(i, 1);
+                return;
+            }
+        }
+    };
 })
    
 .controller('shopsListCtrl', function(API, $scope, $stateParams, Storage, UserRoutes, Util) {

@@ -76,7 +76,7 @@ angular.module('app.services', [])
     this.getUserRoute = function(routeId) {
         return userRouteIndex[routeId];
     }
-    this.deleteUserRoute = function(routeId) {
+    this.removeUserRoute = function(routeId) {
         if (!userRouteIndex[routeId])
             return;
         delete userRouteIndex[routeId];
@@ -126,6 +126,7 @@ angular.module('app.services', [])
     }
     this.list = Storage.listUserRoutes;
     this.get = Storage.getUserRoute;
+    this.remove = Storage.removeUserRoute;
     this.storeShops = function(routeId, shops) {
         var route = self.get(routeId);
         route.shops = shops;
