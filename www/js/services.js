@@ -25,6 +25,25 @@ angular.module('app.services', [])
     this.find_obj = function(obj_list, obj_id) {
         return obj_list.map(function(obj) { return obj.id }).indexOf(obj_id)
     }
+    this.unique_sorted = function(list) {
+        var sorted = list.sort();
+        for (var i=1; i<sorted.length; ) {
+            if (sorted[i] == sorted[i-1])
+                sorted.splice(i, 1);
+            else
+                i++;
+        }
+        return sorted;
+    }
+    this.sort_by_key = function(list, key) {
+        return list.sort(function(a, b) {
+            if (a[key] > b[key])
+                return 1;
+            if (a[key] < b[key])
+                return -1;
+            return 0
+        });
+    }
 })
 
 .service('Storage', function($localStorage, Util) {
@@ -90,12 +109,14 @@ angular.module('app.services', [])
 })
 
 
-.service('UserRoutes', ['Storage', function(Storage) {
+.service('UserRoutes', function(Storage, Util) {
     var self = this;
-    this.create = function(route) {
+    this.create = function(route, categories) {
+        categories = Util.unique_sorted(categories)
         var userRoute = {
             'route': route,
             'created': new Date(),
+            'categories': categories,
             //'shops': shops,
         }
         Storage.storeUserRoute(userRoute)
@@ -108,7 +129,7 @@ angular.module('app.services', [])
         route.shops = shops;
     }
         
-}])
+})
 
 .factory('BlankFactory', [function(){
 

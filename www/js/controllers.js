@@ -28,10 +28,11 @@ angular.module('app.controllers', [])
     $scope.userRoutes = userRoutes;
 })
    
-.controller('shopsListCtrl', [ 'API', '$scope', '$stateParams', 'Storage', 'UserRoutes', function(API, $scope, $stateParams, Storage, UserRoutes) {
+.controller('shopsListCtrl', function(API, $scope, $stateParams, Storage, UserRoutes, Util) {
     var userRoute = UserRoutes.get($stateParams.userRouteId);
     $scope.route = Storage.getRoute(userRoute.route);
     $scope.created = userRoute.created;
+    $scope.categories = userRoute.categories;
 
     $scope.addBookmark = function(shop) {
         Storage.storeBookmark(shop);
@@ -50,12 +51,16 @@ angular.module('app.controllers', [])
 
     API.applyMe.apply($scope)
     var route = Storage.getRoute(userRoute.route)
-    API.find({regiao: $EQ(route.title)}).then(function (shops) {
+    var filters = {regiao: $EQ(route.title)}
+    if (userRoute.categories.length > 0)
+        filters['term:area'] = $IN(userRoute.categories)
+    API.find(filters).then(function (shops) {
+        shops = Util.sort_by_key(shops, 'name');
         UserRoutes.storeShops($stateParams.userRouteId, shops);
         $scope.shops = shops;
     });
 
-}])
+})
    
 .controller('bookmarksCtrl', function($scope, Storage) {
     $scope.shops = Storage.listBookmarks();
@@ -80,8 +85,22 @@ angular.module('app.controllers', [])
    
 .controller('routeSingleCtrl', function($scope, $stateParams, Storage, UserRoutes) {
     $scope.route = Storage.getRoute($stateParams.route);
+    $scope.data = {category: []}
+    $scope.filters = [
+        { index: 0,
+          verbose_order: 'primeiro',
+        },
+    ]
+    var orders = [ 'primeiro', 'segundo', 'terceiro', 'quarto', 'quinto', 
+                   'sexto', 'sétimo', 'oitavo', 'nono', 'décimo' ]
+    $scope.addFilter = function() {
+        if ($scope.filters.length >= orders.length)
+            return
+        $scope.filters.push({ index: $scope.filters.length,
+                              verbose_order: orders[$scope.filters.length]})
+    }
     $scope.createUserRoute = function() {
-        $scope.userRouteId = UserRoutes.create($stateParams.route)
+        $scope.userRouteId = UserRoutes.create($stateParams.route, $scope.data.category)
     };
 })
  

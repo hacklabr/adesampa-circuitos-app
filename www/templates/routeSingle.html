@@ -28,17 +28,19 @@
             <form class="filter-form">
                 <div class="filter-content">
                     <fieldset>
-                        <legend>primeiro filtro</legend>
+                      <ng-repeat ng-repeat="filter in filters">
+                        <legend>{{filter.verbose_order}} filtro</legend>
                         <div class="item item-body filter-label">escolha uma categoria:</div>
                         <label class="item item-input item-select" for="select-categories">
                             <span class="input-label">--/--</span>
-                            <select id="select-categories">
+                            <select id="select-categories" ng-model="data.category[filter.index]">
                                 <option></option>
-                                <option ng-repeat="category in route.categories">{{category}}</option>
+                                <option ng-repeat="category in route.categories" value="{{category}}">{{category}}</option>
                             </select>
                         </label>
-                        <div class="item item-body">
-                            <button class="button button-small button-block button-clear button-add-categories icon-left ion-android-add-circle">adicione mais categorias</button>
+                      </ng-repeat>
+                      <div class="item item-body">
+                            <button ng-click="addFilter()" class="button button-small button-block button-clear button-add-categories icon-left ion-android-add-circle">adicione mais categorias</button>
                         </div>
                     </fieldset>
                 </div>
