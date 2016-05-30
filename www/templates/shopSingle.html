@@ -18,8 +18,20 @@
                     <p ng-if="shop.emailPublico"><strong>e-mail:</strong> <a ng-href="mailto:{{shop.emailPublico}}">{{shop.emailPublico}}</a></p>
                 </div>
                 <div class="item item-body shop-description">
-                    <p>{{shop.shortDescription}}Descrição do lojista sobre sua loja, lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p>{{shop.shortDescription}}</p>
                 </div>
+                <ks-swiper-container slides-per-view="4"
+                slides-per-column="1"
+                space-between="10"
+                pagination-is-active="true"
+                pagination-clickable="true"
+                loop="true"
+                initial-slide="0"
+                direction="horizontal">
+                    <ks-swiper-slide class="swiper-slide" ng-repeat="s in [1,2,3,4,5,6,7,8]">
+                        <img ng-src="http://lorempixel.com/400/200/">
+                    </ks-swiper-slide>
+                </ks-swiper-container>
             </div>
         </ion-list>
     </ion-content>
