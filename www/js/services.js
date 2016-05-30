@@ -22,15 +22,22 @@ angular.module('app.services', [])
         }
         return Math.max.apply(Math, (obj_list.map(function(obj) { return obj.id || 0}))) + 1;
     }
+    this.find_obj = function(obj_list, obj_id) {
+        return obj_list.map(function(obj) { return obj.id }).indexOf(obj_id)
+    }
 })
 
 .service('Storage', function($localStorage, Util) {
     if (!$localStorage.userRoutes) {
         $localStorage.userRoutes = [];
     }
+    if (!$localStorage.bookmarks) {
+        $localStorage.bookmarks = [];
+    }
     
     var routeIndex = Util.index_obj(ROUTES)
     var userRouteIndex = Util.index_obj($localStorage.userRoutes)
+    var bookmarkIndex = Util.index_obj($localStorage.bookmarks)
 
     this.listRoutes = function() {
         return ROUTES;
@@ -49,15 +56,36 @@ angular.module('app.services', [])
         return userRouteIndex[routeId];
     }
     this.deleteUserRoute = function(routeId) {
-        for (var i=0; i<$localStorage.userRoutes.length; i++) {
-            if ($localStorage.userRoutes[i].id == routeId) {
-                delete userRouteIndex[routeId];
-                return $localStorage.userRoutes.splice(i, 1)[0];
-            }
-        }
+        if (!userRouteIndex[routeId])
+            return;
+        delete userRouteIndex[routeId];
+        var i = Util.find_obj($localStorage.userRoutes, routeId);
+        $localStorage.userRoutes.splice(i, 1);
     }
     this.listUserRoutes = function() {
         return $localStorage.userRoutes;
+    }
+
+    this.listBookmarks = function() {
+        return $localStorage.bookmarks;
+    }
+    this.storeBookmark = function(shop) {
+        if (bookmarkIndex[shop.id]) {
+            var i = Util.find_obj($localStorage.bookmarks, shop.id);
+            $localStorage.bookmarks.splice(i, 1);
+        }
+        $localStorage.bookmarks.unshift(shop);
+        bookmarkIndex[shop.id] = shop;
+    }
+    this.removeBookmark = function(shopId) {
+        if (!bookmarkIndex[shopId])
+            return;
+        delete bookmarkIndex[shopId];
+        var i = Util.find_obj($localStorage.bookmarks, shopId);
+        $localStorage.bookmarks.splice(i, 1);
+    }
+    this.isBookmark = function(shopId) {
+        return !!bookmarkIndex[shopId];
     }
 })
 

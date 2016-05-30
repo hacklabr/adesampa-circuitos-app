@@ -32,6 +32,17 @@ angular.module('app.controllers', [])
     var userRoute = UserRoutes.get($stateParams.userRouteId);
     $scope.route = Storage.getRoute(userRoute.route);
     $scope.created = userRoute.created;
+
+    $scope.addBookmark = function(shop) {
+        Storage.storeBookmark(shop);
+    };
+    $scope.removeBookmark = function(shop) {
+        Storage.removeBookmark(shop.id);
+    };
+    $scope.isBookmark = function(shop) {
+        return Storage.isBookmark(shop.id);
+    }
+
     if (userRoute.shops) {
         $scope.shops = userRoute.shops;
         return;
@@ -43,10 +54,14 @@ angular.module('app.controllers', [])
         UserRoutes.storeShops($stateParams.userRouteId, shops);
         $scope.shops = shops;
     });
+
 }])
    
-.controller('bookmarksCtrl', function($scope) {
-
+.controller('bookmarksCtrl', function($scope, Storage) {
+    $scope.shops = Storage.listBookmarks();
+    $scope.removeBookmark = function(shop) {
+        Storage.removeBookmark(shop.id);
+    };
 })
 
 .controller('shopSingleCtrl', [ 'API', '$scope', '$stateParams', function(API, $scope, $stateParams) {
