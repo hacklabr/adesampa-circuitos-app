@@ -27,10 +27,12 @@ angular.module('app.services', [])
     }
     this.unique_sorted = function(list) {
         var sorted = list.sort();
+        while (sorted[0] == '')
+            sorted.splice(0, 1)
         for (var i=1; i<sorted.length; ) {
-            if (sorted[i] == sorted[i-1])
+            if (sorted[i] == sorted[i-1] || sorted[i] == '')
                 sorted.splice(i, 1);
-            else
+            else 
                 i++;
         }
         return sorted;
