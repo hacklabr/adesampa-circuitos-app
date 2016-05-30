@@ -5,7 +5,11 @@ angular.module('app.controllers', [])
 })
    
 .controller('mapCtrl', function($scope) {
-
+    var map = L.map('mapid').setView([-23.5498,-46.6330], 14);
+    L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+        attribution: '&copy; Colaboradores do <a href="http://osm.org/copyright" title="OpenStreetMap" target="_blank">OpenStreetMap</a> ',
+        subdomains: ['otile1','otile2','otile3','otile4']
+    }).addTo( map );
 })
    
 .controller('routesCtrl', function($scope, Storage) {

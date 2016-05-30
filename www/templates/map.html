@@ -1,20 +1,21 @@
-<ion-view title="" hide-back-button="true" id="map" class="page-map">
+<ion-view title="" hide-back-button="true" id="map" class="page-map" ng-init="data.modal=false">
     <ion-content padding="false" class="has-header">
-        
-        <img class="map-iframe" style="background-image: url(img/background-maps.svg); background-size: contain;">
+      <!-- TODO ARIADNE: essa altura precisa ser fixa, mas a tela não tem altura fixa -->
+        <div id="mapid" style="height: 500px;"></div>
 
+        <div style="position: absolute; top: 0; left: 0; z-index: 10000">
         <ion-list class="page-header">
             <a ui-sref="tabsController.shopsList" class="button button-clear ion-arrow-left-c button-back"></a>
             <h1 class="page-title">Mapa <span>mostrando lojas próximas a mim</span></h1>
         </ion-list>
 
-        <button class="button button-stable icon-left ion-android-add-circle button-shop-filter">usar filtro de lojas</button>
-        
+        <button ng-click="data.modal=true" class="button button-stable icon-left ion-android-add-circle button-shop-filter">usar filtro de lojas</button>
+        </div>
     </ion-content>
-    <div class="modal-wrapper">
+    <div class="modal-wrapper" ng-if="data.modal" style="z-index: 100000">
         <ion-list class="filter filter-modal">
             <h2 class="item item-body item-icon-right filter-title">
-                filtrar a lista <i class="icon ion-close icon-accessory"></i>
+                filtrar a lista <i ng-click="data.modal=false" class="icon ion-close icon-accessory"></i>
             </h2>
             <form class="filter-form">
                 <div class="filter-content">

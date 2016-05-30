@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "ng-mapasculturais": "https://github.com/hacklabr/ng-mapasculturais.git",
-    "ngstorage": "ng-storage#~0.4.2"
+    "ngstorage": "ng-storage#~0.4.2",
+    "leaflet": ">= 1.0.0-rc.1"
   }
 }
