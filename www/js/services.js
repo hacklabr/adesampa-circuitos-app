@@ -158,6 +158,8 @@ angular.module('app.services', [])
         var map = document.getElementById('mapid');
         var element = document.getElementById('map-'+target);
         element.appendChild(map);
+        if (!element.style.height)
+            element.style.height = element.clientHeight + "px";
         map.style.height = element.style.height;
         map.style.width = element.style.width;
         if (self.target)
