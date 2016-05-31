@@ -14,10 +14,13 @@ angular.module('app.controllers', [])
     API.applyMe.apply($scope);
 
     $templateRequest("templates/parts/map-popup.html")
+    $templateRequest("templates/parts/map-loading.html")
 
-    var createMarker = function(latitude, longitude, shopId) {
-        var marker = L.marker([latitude, longitude]).addTo(map);
-        marker.bindPopup("Carregando...");
+    var createMarker = function(lat, lng, shopId) {
+        var marker = L.marker([lat, lng]);
+        $templateRequest("templates/parts/map-loading.html").then(function(html) {
+            marker.bindPopup(html);
+        });
         marker.loaded = false;
         marker.on('click', function(e) {
             if (marker.loaded)
@@ -35,15 +38,18 @@ angular.module('app.controllers', [])
                 });
             });
         });
+        return marker;
     };
 
     API.find().then(function (shops) {
         $scope.shops = shops;
-        var l;
-        for (var i=0; i<shops.length; i++) {
+        var markers = L.markerClusterGroup();
+        var i, l;
+        for (i=0; i<shops.length; i++) {
             l = shops[i].location;
-            createMarker(l.latitude, l.longitude, shops[i].id);
+            markers.addLayer(createMarker(l.latitude, l.longitude, shops[i].id));
         }
+        map.addLayer(markers);
     });
 
 })

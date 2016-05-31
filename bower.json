@@ -9,6 +9,7 @@
     "ng-mapasculturais": "https://github.com/hacklabr/ng-mapasculturais.git",
     "ngstorage": "ng-storage#~0.4.2",
     "leaflet": ">= 1.0.0-rc.1",
-    "angular-swiper": "~0.4.0"
+    "angular-swiper": "~0.4.0",
+    "leaflet.markercluster": ">= 1.0.0-rc.1"
   }
 }
