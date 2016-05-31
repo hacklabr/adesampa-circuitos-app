@@ -4,7 +4,7 @@ angular.module('app.controllers', [])
 
 })
    
-.controller('mapCtrl', function($scope, $compile, $templateRequest, API) {
+.controller('mapCtrl', function($scope, $compile, $templateRequest, API, Util) {
     var map = L.map('mapid').setView([-23.5498,-46.6330], 14);
     L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
         attribution: '&copy; Colaboradores do <a href="http://osm.org/copyright" title="OpenStreetMap" target="_blank">OpenStreetMap</a> ',
@@ -41,16 +41,46 @@ angular.module('app.controllers', [])
         return marker;
     };
 
-    API.find().then(function (shops) {
-        $scope.shops = shops;
-        var markers = L.markerClusterGroup();
-        var i, l;
-        for (i=0; i<shops.length; i++) {
-            l = shops[i].location;
-            markers.addLayer(createMarker(l.latitude, l.longitude, shops[i].id));
+    var markers = []
+    var clusterGroup = L.markerClusterGroup();
+    var loadShops = function(categories) {
+        while (markers.length > 0) {
+            clusterGroup.removeLayer(markers.pop());
         }
-        map.addLayer(markers);
-    });
+        var filters = {};
+        if (categories && categories.length > 0)
+            filters['term:area'] = $IN(categories);
+        API.find(filters).then(function (shops) {
+            $scope.shops = shops;
+            var i, l, marker;
+            for (i=0; i<shops.length; i++) {
+                l = shops[i].location;
+                marker = createMarker(l.latitude, l.longitude, shops[i].id);
+                clusterGroup.addLayer(marker);
+                markers.push(marker);
+            }
+            markersLayer = map.addLayer(clusterGroup);
+        });
+    };
+
+    loadShops();
+
+    var categories = Util.merge_lists(ROUTES.map(function(obj) { return obj.categories }));
+    $scope.categories = categories;
+
+    $scope.data = {
+        modal: false,
+        category: []
+    };
+    $scope.filters = [ 0 ];
+
+    $scope.addFilter = function() {
+        $scope.filters.push($scope.filters.length);
+    }
+    $scope.filterMap = function() {
+        loadShops($scope.data.category);
+        $scope.data.modal = false;
+    }
 
 })
    

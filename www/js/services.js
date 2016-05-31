@@ -9,6 +9,7 @@ angular.module('app.services', [])
 }])
 
 .service('Util', function() {
+    var self = this;
     this.index_obj = function(obj_list, key) {
         var indexed_obj = {};
         obj_list.forEach(function(obj) {
@@ -45,6 +46,15 @@ angular.module('app.services', [])
                 return -1;
             return 0
         });
+    }
+    this.merge_lists = function(lists) {
+        var big = []
+        for (var i=0; i<lists.length; i++) {
+            for (var j=0; j<lists[i].length; j++) {
+                big.push(lists[i][j]);
+            }
+        }
+        return self.unique_sorted(big);
     }
 })
 
