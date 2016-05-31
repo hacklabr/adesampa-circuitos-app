@@ -15,13 +15,31 @@
         min-width: initial;
         padding: 0.5vmax 2vmax;
         left: 2vmax;
-        top: 9vmax;
         &:before {
             font-size: 2.7vmax;
             line-height: 210%;
             padding-right: 1vmax; 
         }
     }
+}
+
+.platform-android {
+    .page-map {
+        .page-header {
+            top: 50px;
+        } 
+        .button-shop-filter {
+            top: 17vmax;
+        }
+    } 
+}
+
+.platform-ios {
+    .page-map {
+        .button-shop-filter {
+            top: 10vmax;
+        }
+    } 
 }
 
 .map-iframe {
