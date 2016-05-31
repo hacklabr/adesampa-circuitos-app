@@ -1,0 +1,9 @@
+<div>
+  <h2>{{shop.name}}</h2>
+  <div class="item item-body shop-description">
+    <p><strong>endereço:</strong> {{shop.endereco}}</p>
+    <p ng-if="shop.horario"><strong>horario:</strong> {{shop.horario}}</p>
+    <p ng-if="shop.telefonePublico"><strong>telefone:</strong> <a ng-href="tel:{{shop.phoneHref}}">{{shop.telefonePublico}}</a></p>
+    <p ng-if="shop.emailPublico"><strong>e-mail:</strong> <a ng-href="mailto:{{shop.emailPublico}}">{{shop.emailPublico}}</a></p>
+  </div>
+</div>
