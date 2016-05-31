@@ -1,0 +1,21 @@
+.shop, .route {
+
+    .swiper-container {
+        padding-bottom: 16%;
+    }
+
+    .swiper-container-horizontal > .swiper-pagination {
+        bottom: 15%;
+    }
+
+    .swiper-pagination-bullet {
+        opacity: 1;
+        height: 2.5vmax;
+        width: 2.5vmax;
+    }
+
+    .swiper-pagination-bullet-active {
+        background: $gray-light;
+    }
+
+}
