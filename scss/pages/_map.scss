@@ -1,5 +1,45 @@
+.page-map {
+    .page-header, .button-shop-filter {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100000;
+    }
+    .button-shop-filter {
+        background-color: $gray-lighter;
+        border-radius: 10px;
+        box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+        font-size: 2vmax;
+        min-height: initial;
+        min-width: initial;
+        padding: 0.5vmax 2vmax;
+        left: 2vmax;
+        top: 9vmax;
+        &:before {
+            font-size: 2.7vmax;
+            line-height: 210%;
+            padding-right: 1vmax; 
+        }
+    }
+}
+
 .map-iframe {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     height: 100%;
-    position: absolute;
     width: 100%;
+    position: absolute;
+    min-height: 640px;
+    @media screen and (min-height: 640px) {
+        min-height: 768px;
+    }
+    @media screen and (min-height: 768px) {
+        min-height: 1024px;
+    }
+    @media screen and (min-height: 1024px) {
+        min-height: 1280px;
+    }
 }
