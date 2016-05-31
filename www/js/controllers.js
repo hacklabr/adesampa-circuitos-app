@@ -71,7 +71,10 @@ angular.module('app.controllers', [])
     };
 })
    
-.controller('shopsListCtrl', function(API, $scope, $stateParams, Storage, UserRoutes, Util, Map) {
+.controller('shopsListCtrl', function(API, $scope, $stateParams, Storage, UserRoutes, Util, Map, $state) {
+    var mapid = $state.current.name.split(/\./)[1];
+    $scope.mapid = mapid;
+
     var userRoute = UserRoutes.get($stateParams.userRouteId);
     $scope.route = Storage.getRoute(userRoute.route);
     $scope.created = userRoute.created;
@@ -94,7 +97,7 @@ angular.module('app.controllers', [])
     $scope.selectMap = function() {
         $scope.isList = false;
         $scope.isMap = true;
-        Map.init('shopsList');
+        Map.init(mapid);
         Map.load($scope.shops);
     }
 

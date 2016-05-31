@@ -252,8 +252,7 @@ angular.module('app.services', [])
     };
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-        var tab = toState.name.split(/\./)[1].split(/_/)[0];
-        console.log(toState.name);
+        var tab = toState.name.split(/\./)[1]
         if (targets[tab]) {
             self.setTarget(tab);
         }
