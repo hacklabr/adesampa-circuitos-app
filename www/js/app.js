@@ -13,7 +13,9 @@ angular.module('app',
                 'app.directives',
                 'mapas.service',
                 'ngStorage',
-                'ksSwiper'
+                'ksSwiper',
+                'ui.bootstrap',
+                'bootstrapLightbox'
                ])
 
 .run(function($ionicPlatform) {

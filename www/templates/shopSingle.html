@@ -23,7 +23,7 @@
             </div>
             <ks-swiper-container slides-per-view="4" space-between="10" pagination-is-active="true" pagination-clickable="true" loop="true" initial-slide="0" direction="horizontal">
                 <ks-swiper-slide class="swiper-slide" ng-repeat="s in [1,2,3,4,5,6,7,8,9,10,11,12]">
-                    <img src="http://placehold.it/800x700">
+                    <img src="http://placehold.it/800x700" ng-click="openLightboxModal($index)">
                 </ks-swiper-slide>
             </ks-swiper-container>
         </ion-list>

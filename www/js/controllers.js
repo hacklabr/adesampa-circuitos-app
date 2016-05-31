@@ -177,3 +177,10 @@ angular.module('app.controllers', [])
     };
 })
  
+.controller('GalleryCtrl', function ($scope, Lightbox) {
+
+  $scope.openLightboxModal = function (index) {
+    Lightbox.openModal($scope.images, index);
+  };
+
+});
