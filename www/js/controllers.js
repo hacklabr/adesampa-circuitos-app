@@ -71,7 +71,7 @@ angular.module('app.controllers', [])
     };
 })
    
-.controller('shopsListCtrl', function(API, $scope, $stateParams, Storage, UserRoutes, Util) {
+.controller('shopsListCtrl', function(API, $scope, $stateParams, Storage, UserRoutes, Util, Map) {
     var userRoute = UserRoutes.get($stateParams.userRouteId);
     $scope.route = Storage.getRoute(userRoute.route);
     $scope.created = userRoute.created;
@@ -87,6 +87,19 @@ angular.module('app.controllers', [])
         return Storage.isBookmark(shop.id);
     }
 
+    $scope.selectList = function() {
+        $scope.isList = true;
+        $scope.isMap = false;
+    }
+    $scope.selectMap = function() {
+        $scope.isList = false;
+        $scope.isMap = true;
+        Map.init('shopsList');
+        Map.load($scope.shops);
+    }
+
+    $scope.selectList();
+
     if (userRoute.shops) {
         $scope.shops = userRoute.shops;
         return;
@@ -101,6 +114,8 @@ angular.module('app.controllers', [])
         shops = Util.sort_by_key(shops, 'name');
         UserRoutes.storeShops($stateParams.userRouteId, shops);
         $scope.shops = shops;
+        if ($scope.isMap)
+            Map.load($scope.shops);
     });
 
 })

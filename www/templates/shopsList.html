@@ -5,10 +5,10 @@
             <h1 class="page-title">{{route.title}} <span>{{created|date:"dd/MM/yy"}}</span></h1>
         </ion-list>
         <div class="button-bar">
-            <button class="button button-small button-clear button-view-list active">ver em lista</button>
-            <button class="button button-small button-clear button-view-map">ver no mapa</button>
+            <button ng-click="selectList()" class="button button-small button-clear button-view-list" ng-class="{active:isList}">ver em lista</button>
+            <button ng-click="selectMap()" class="button button-small button-clear button-view-map" ng-class="{active:isMap}">ver no mapa</button>
         </div>
-        <ion-list ng-if="mode=='lista'" ng-repeat="shop in shops" class="shop">
+        <ion-list ng-if="isList" ng-repeat="shop in shops" class="shop">
           <a ui-sref="tabsController.shopSingle({shop:shop.id})" class="shop-link">
             <h1 class="item item-body shop-title">{{shop.name}}</h1>
           </a>
@@ -21,5 +21,6 @@
           </div>
           <a ui-sref="tabsController.shopSingle({shop:shop.id})"><div class="icon ion-ios-arrow-forward"></div></a>
         </ion-list>
+        <div id="map-shopsList" ng-show="isMap" style="height: 450px;"></div>
     </ion-content>
 </ion-view>
