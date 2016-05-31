@@ -25,11 +25,8 @@
 
 .platform-android {
     .page-map {
-        .page-header {
-            top: 50px;
-        } 
         .button-shop-filter {
-            top: 17vmax;
+            top: 9vmax;
         }
     } 
 }
@@ -49,7 +46,7 @@
     right: 0;
     height: 100%;
     width: 100%;
-    position: absolute;
+    position: relative;
     min-height: 640px;
     @media screen and (min-height: 640px) {
         min-height: 768px;
