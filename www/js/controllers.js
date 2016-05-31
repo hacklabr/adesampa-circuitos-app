@@ -5,7 +5,7 @@ angular.module('app.controllers', [])
 })
 
 .controller('mapCtrl', function($scope, API, Util, Map) {
-    Map.init();
+    Map.init('map');
     API.applyMe.apply($scope);
 
     var detailProvider = function(shopId, callback) {
@@ -105,11 +105,23 @@ angular.module('app.controllers', [])
 
 })
    
-.controller('bookmarksCtrl', function($scope, Storage) {
-    $scope.shops = Storage.listBookmarks();
+.controller('bookmarksCtrl', function($scope, Storage, Map) {
+    var shops = Storage.listBookmarks();
+    $scope.shops = shops;
+    $scope.selectList = function() {
+        $scope.isList = true;
+        $scope.isMap = false;
+    }
+    $scope.selectMap = function() {
+        $scope.isList = false;
+        $scope.isMap = true;
+        Map.init('bookmarks');
+        Map.load(shops);
+    }
     $scope.removeBookmark = function(shop) {
         Storage.removeBookmark(shop.id);
     };
+    $scope.selectList();
 })
 
 .controller('shopSingleCtrl', [ 'API', '$scope', '$stateParams', function(API, $scope, $stateParams) {

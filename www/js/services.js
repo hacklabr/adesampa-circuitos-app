@@ -147,32 +147,64 @@ angular.module('app.services', [])
 .service('Map', function($compile, $templateRequest, $rootScope) {
     var self = this;
 
-    $templateRequest("templates/parts/map-popup.html")
-    $templateRequest("templates/parts/map-loading.html")
+    $templateRequest("templates/parts/map-popup.html");
+    $templateRequest("templates/parts/map-loading.html");
 
-    this.init = function() {
-        if (self.created) {
-            self.clean();
-        } else {
+    targets = {};
+
+    this.setTarget = function(target) {
+        if (self.target == target)
+            return
+        var map = document.getElementById('mapid');
+        var element = document.getElementById('map-'+target);
+        element.appendChild(map);
+        map.style.height = element.style.height;
+        map.style.width = element.style.width;
+        //self.map.invalidateSize(false);
+        if (self.target)
+            self.map.removeLayer(targets[self.target].cluster)
+        self.map.addLayer(targets[target].cluster);
+        self.target = target;
+    }
+
+    this.init = function(target) {
+        if (!self.created)
             self.create();
+        if (!targets[target]) {
+            self.createTarget(target);
+            self.setTarget(target);
+        } else {
+            self.setTarget(target);
+            self.clean(target);
         }
     };
 
     this.create = function() {
-        self.markers = [];
-        self.map = L.map('mapid').setView([-23.5498,-46.6330], 14);
+        self.map = L.map('mapid', {
+            zoomControl: false,
+        });
+        self.map.setView([-23.5498,-46.6330], 14);
         L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
             attribution: '&copy; Colaboradores do <a href="http://osm.org/copyright" title="OpenStreetMap" target="_blank">OpenStreetMap</a> ',
             subdomains: ['otile1','otile2','otile3','otile4']
         }).addTo( self.map );
-        self.clusterGroup = L.markerClusterGroup();
-        self.map.addLayer(self.clusterGroup);
-        return self.map;
+        self.created = true;
     };
 
-    this.clean = function() {
-        while (self.markers.length > 0) {
-            self.clusterGroup.removeLayer(self.markers.pop());
+    this.createTarget = function(target) {
+        targets[target] = {
+            markers: [],
+            cluster: L.markerClusterGroup(),
+        }
+    }
+
+    this.clean = function(target) {
+        if (!target)
+            target = self.target;
+        var markers = targets[target].markers;
+        var cluster = targets[target].cluster;
+        while (markers.length > 0) {
+            cluster.removeLayer(markers.pop());
         }
     };
 
@@ -198,8 +230,8 @@ angular.module('app.services', [])
                 });
             });
         });
-        self.clusterGroup.addLayer(marker);
-        self.markers.push(marker);
+        targets[self.target].cluster.addLayer(marker);
+        targets[self.target].markers.push(marker);
     };
 
     this.load = function(shops, detailProvider) {
@@ -217,6 +249,13 @@ angular.module('app.services', [])
             self.addMarker(l.latitude, l.longitude, shops[i].id, provider);
         };
     };
+
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        var tab = toState.name.split(/\./)[1];
+        if (targets[tab]) {
+            self.setTarget(tab);
+        }
+    });
 })
 
 

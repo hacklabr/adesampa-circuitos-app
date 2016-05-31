@@ -8,7 +8,7 @@
             <button class="button button-small button-clear button-view-list active">ver em lista</button>
             <button class="button button-small button-clear button-view-map">ver no mapa</button>
         </div>
-        <ion-list ng-repeat="shop in shops" class="shop">
+        <ion-list ng-if="mode=='lista'" ng-repeat="shop in shops" class="shop">
           <a ui-sref="tabsController.shopSingle({shop:shop.id})" class="shop-link">
             <h1 class="item item-body shop-title">{{shop.name}}</h1>
           </a>
