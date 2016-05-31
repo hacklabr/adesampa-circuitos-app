@@ -3,63 +3,21 @@ angular.module('app.controllers', [])
 .controller('homeCtrl', function($scope) {
 
 })
-   
-.controller('mapCtrl', function($scope, $compile, $templateRequest, API, Util) {
-    var map = L.map('mapid').setView([-23.5498,-46.6330], 14);
-    L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-        attribution: '&copy; Colaboradores do <a href="http://osm.org/copyright" title="OpenStreetMap" target="_blank">OpenStreetMap</a> ',
-        subdomains: ['otile1','otile2','otile3','otile4']
-    }).addTo( map );
 
+.controller('mapCtrl', function($scope, API, Util, Map) {
+    Map.init();
     API.applyMe.apply($scope);
 
-    $templateRequest("templates/parts/map-popup.html")
-    $templateRequest("templates/parts/map-loading.html")
-
-    var createMarker = function(lat, lng, shopId) {
-        var marker = L.marker([lat, lng]);
-        $templateRequest("templates/parts/map-loading.html").then(function(html) {
-            marker.bindPopup(html);
-        });
-        marker.loaded = false;
-        marker.on('click', function(e) {
-            if (marker.loaded)
-                return;
-            var popup = e.target.getPopup();
-            API.findOne({id: $EQ(shopId)}).then(function (shop) {
-                $templateRequest("templates/parts/map-popup.html").then(function(html){
-                    var scope = $scope.$new();
-                    scope.shop = shop;
-                    var linkFunction = $compile(angular.element(html));
-                    var content = linkFunction(scope)[0];
-                    popup.setContent(content);
-                    marker.loaded = true;
-                    popup.update();
-                });
-            });
-        });
-        return marker;
+    var detailProvider = function(shopId, callback) {
+        API.findOne({id: $EQ(shopId)}).then(callback);
     };
 
-    var markers = []
-    var clusterGroup = L.markerClusterGroup();
     var loadShops = function(categories) {
-        while (markers.length > 0) {
-            clusterGroup.removeLayer(markers.pop());
-        }
         var filters = {};
         if (categories && categories.length > 0)
             filters['term:area'] = $IN(categories);
         API.find(filters).then(function (shops) {
-            $scope.shops = shops;
-            var i, l, marker;
-            for (i=0; i<shops.length; i++) {
-                l = shops[i].location;
-                marker = createMarker(l.latitude, l.longitude, shops[i].id);
-                clusterGroup.addLayer(marker);
-                markers.push(marker);
-            }
-            markersLayer = map.addLayer(clusterGroup);
+            Map.load(shops, detailProvider);
         });
     };
 

@@ -144,6 +144,82 @@ angular.module('app.services', [])
         
 })
 
+.service('Map', function($compile, $templateRequest, $rootScope) {
+    var self = this;
+
+    $templateRequest("templates/parts/map-popup.html")
+    $templateRequest("templates/parts/map-loading.html")
+
+    this.init = function() {
+        if (self.created) {
+            self.clean();
+        } else {
+            self.create();
+        }
+    };
+
+    this.create = function() {
+        self.markers = [];
+        self.map = L.map('mapid').setView([-23.5498,-46.6330], 14);
+        L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            attribution: '&copy; Colaboradores do <a href="http://osm.org/copyright" title="OpenStreetMap" target="_blank">OpenStreetMap</a> ',
+            subdomains: ['otile1','otile2','otile3','otile4']
+        }).addTo( self.map );
+        self.clusterGroup = L.markerClusterGroup();
+        self.map.addLayer(self.clusterGroup);
+        return self.map;
+    };
+
+    this.clean = function() {
+        while (self.markers.length > 0) {
+            self.clusterGroup.removeLayer(self.markers.pop());
+        }
+    };
+
+    this.addMarker = function(lat, lng, shopId, detailProvider) {
+        var marker = L.marker([lat, lng]);
+        $templateRequest("templates/parts/map-loading.html").then(function(html) {
+            marker.bindPopup(html);
+        });
+        marker.loaded = false;
+        marker.on('click', function(e) {
+            if (marker.loaded)
+                return;
+            var popup = e.target.getPopup();
+            detailProvider(shopId, function (shop) {
+                $templateRequest("templates/parts/map-popup.html").then(function(html){
+                    var scope = $rootScope.$new();
+                    scope.shop = shop;
+                    var linkFunction = $compile(angular.element(html));
+                    var content = linkFunction(scope)[0];
+                    popup.setContent(content);
+                    marker.loaded = true;
+                    popup.update();
+                });
+            });
+        });
+        self.clusterGroup.addLayer(marker);
+        self.markers.push(marker);
+    };
+
+    this.load = function(shops, detailProvider) {
+        self.clean()
+        var providerFactory = function(shop) {
+            return function(shopId, callback) { callback(shop) };
+        }
+        var i, l, marker, provider;
+        for (i=0; i<shops.length; i++) {
+            l = shops[i].location;
+            if (detailProvider)
+                provider = detailProvider;
+            else
+                provider = providerFactory(shops[i]);
+            self.addMarker(l.latitude, l.longitude, shops[i].id, provider);
+        };
+    };
+})
+
+
 .factory('BlankFactory', [function(){
 
 }])
