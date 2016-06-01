@@ -126,7 +126,7 @@ angular.module('app.services', [])
     this.create = function(route, categories) {
         categories = Util.unique_sorted(categories)
         var userRoute = {
-            'route': route,
+            'route': Storage.getRoute(route),
             'created': new Date(),
             'categories': categories,
             //'shops': shops,

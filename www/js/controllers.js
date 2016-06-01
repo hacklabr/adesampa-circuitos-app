@@ -1,7 +1,5 @@
-
-
 angular.module('app.controllers', [])
-  
+
 .controller('homeCtrl', function($scope) {
 
 })
@@ -62,10 +60,7 @@ angular.module('app.controllers', [])
 })
    
 .controller('routesListCtrl', function($scope, Storage, UserRoutes) {
-    var userRoutes = JSON.parse(JSON.stringify(UserRoutes.list()));
-    for (var i=0; i<userRoutes.length; i++) {
-        userRoutes[i].route = Storage.getRoute(userRoutes[i].route);
-    }
+    var userRoutes = UserRoutes.list();
     $scope.userRoutes = userRoutes;
     $scope.removeRoute = function(route) {
         UserRoutes.remove(route.id);
@@ -84,7 +79,7 @@ angular.module('app.controllers', [])
     $scope.mapid = mapid;
 
     var userRoute = UserRoutes.get($stateParams.userRouteId);
-    $scope.route = Storage.getRoute(userRoute.route);
+    $scope.route = Storage.getRoute(userRoute.route.id);
     $scope.created = userRoute.created;
     $scope.categories = userRoute.categories;
 
@@ -123,8 +118,7 @@ angular.module('app.controllers', [])
     }
 
     API.applyMe.apply($scope)
-    var route = Storage.getRoute(userRoute.route)
-    var filters = {regiao: $EQ(route.title)}
+    var filters = {regiao: $EQ(userRoute.route.title)}
     if (userRoute.categories.length > 0)
         filters['term:area'] = $IN(userRoute.categories)
     API.find(filters).then(function (shops) {
