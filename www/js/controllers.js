@@ -1,3 +1,5 @@
+
+
 angular.module('app.controllers', [])
   
 .controller('homeCtrl', function($scope) {
@@ -5,6 +7,11 @@ angular.module('app.controllers', [])
 })
 
 .controller('mapCtrl', function($scope, API, Util, Map) {
+
+    var headerHeight = document.getElementsByTagName('ion-header-bar')[0].offsetHeight;
+    var menuHeight = document.getElementsByClassName('tab-nav')[0].offsetHeight;
+    document.getElementById('map-map').style.height = (window.innerHeight - menuHeight - headerHeight) + "px";
+
     Map.init('map');
     API.applyMe.apply($scope);
 
@@ -73,6 +80,7 @@ angular.module('app.controllers', [])
    
 .controller('shopsListCtrl', function(API, $scope, $stateParams, Storage, UserRoutes, Util, Map, $state) {
     var mapid = $state.current.name.split(/\./)[1];
+    var tab = $state.current.name.split(/_/)[1];
     $scope.mapid = mapid;
 
     var userRoute = UserRoutes.get($stateParams.userRouteId);
@@ -95,6 +103,12 @@ angular.module('app.controllers', [])
         $scope.isMap = false;
     }
     $scope.selectMap = function() {
+        var topHeight = document.getElementsByTagName('ion-header-bar')[0].offsetHeight;
+        topHeight += document.getElementsByClassName('tab-nav')[0].offsetHeight;
+        topHeight += document.querySelector('ion-nav-view[name='+tab+'] ion-list.page-header div.list').offsetHeight;
+        topHeight += document.querySelector('.button-bar').offsetHeight;
+        document.getElementById('map-'+mapid).style.height = (window.innerHeight - topHeight) + "px";
+
         $scope.isList = false;
         $scope.isMap = true;
         Map.init(mapid);
@@ -131,6 +145,12 @@ angular.module('app.controllers', [])
         $scope.isMap = false;
     }
     $scope.selectMap = function() {
+        var topHeight = document.getElementsByTagName('ion-header-bar')[0].offsetHeight;
+        topHeight += document.getElementsByClassName('tab-nav')[0].offsetHeight;
+        topHeight += document.querySelector('ion-nav-view[name=tab2] ion-list.page-header div.list').offsetHeight;
+        topHeight += document.querySelector('.button-bar').offsetHeight;
+        document.getElementById('map-bookmarks').style.height = (window.innerHeight - topHeight) + "px";
+
         $scope.isList = false;
         $scope.isMap = true;
         Map.init('bookmarks');
