@@ -9,6 +9,7 @@
 .button {
     line-height: 270%;
 }
+
 .button-bar {
     border-radius: 0 !important;
     .button {
@@ -45,4 +46,13 @@
             width: initial;
         }
     }
+}
+
+.button-splash { // used on home and on the route's list page when there's no created route
+    background: $pink;
+    color: #fff;
+    font-size: 3vmax;
+    font-weight: $bold;
+    margin: 8vmax auto 0;
+    max-width: 530px;
 }

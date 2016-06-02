@@ -228,3 +228,46 @@
     }
 }
 
+// no route message
+
+.no-route {
+    background: url(../img/background-maps.svg);
+    background-size: contain;
+    .message {
+        padding: 8% 4%;
+        h1 {
+            color: $pink;
+            font-size: 3.8vmax;
+            font-weight: $extra-bold;
+            line-height: 150%;
+            text-align: center;
+        }
+        h2 {
+            color: $gray-dark;
+            font-size: 2.2vmax;
+            font-weight: $extra-bold;
+            margin-top: 12%;
+        }
+        ol {
+            margin-bottom: 12%;
+            padding-left: 30px;
+            li {
+                font-size: 2.2vmax;
+                line-height: 170%;
+                list-style: decimal;
+                margin-bottom: 2%;
+            }
+            span {
+                color: $blue;
+                font-size: 2.3vmax;
+                font-weight: $bold;
+                i {
+                    &:before {
+                        font-size: 2.5vmax;
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+    }
+}
