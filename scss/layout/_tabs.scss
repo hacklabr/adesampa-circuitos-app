@@ -1,23 +1,23 @@
 .tabs {
-    background-color: $gray-lighter !important;
+    background-color: $gray-light !important;
     .tab-item {  
         .icon {
-            color: $gray !important;
+            color: $gray-dark !important;
             font-size: 24px;
             height: 24px;
             margin-top: 5px;
         }
         .tab-title {
-            color: $gray !important;
+            color: $gray-dark !important;
             font-weight: $extra-bold;
         }
     }
     .tab-item-active {
         .icon {
-            color: #000 !important;
+            color: $blue !important;
         }
         .tab-title {
-            color: #000 !important;
+            color: $blue !important;
         }
     }
 }
