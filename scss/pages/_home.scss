@@ -10,7 +10,7 @@
         background: url(../img/logo-app.svg) no-repeat center center;
         background-size: contain;
         height: 12vmax;
-        margin: 0 auto; 
+        margin: 8vmax auto 0; 
         width: 36vmax;
     }
     .home-slogan {
@@ -21,13 +21,29 @@
     .button-splash {
         background: $pink;
         color: #fff;
+        font-size: 3vmax;
         font-weight: $bold;
-        margin: 35% auto 0;
+        margin: 8vmax auto 0;
         max-width: 530px;
         text-transform: uppercase;
     }
+    .home-splash-slogan {
+        color: $pink;
+        font-size: 2.4vmax;
+        font-weight: $bold;
+        line-height: 120%;
+        margin: 0 auto; 
+        max-width: 530px;
+        padding: 1vmax 2vmax 0;
+        text-align: center;
+        span {
+            display: block;
+            font-size: 2vmax;
+            font-weight: normal;
+        }
+    }
     .home-affiliates {
-        bottom: 30px;
+        bottom: 8vmax;
         left: 50%;
         margin-left: -24vmax;
         position: absolute;
@@ -50,6 +66,19 @@
             background-image: url(../img/logo-prefeitura.svg);
             background-position: center right;
             @extend %logo;
+        }
+    }
+    .shopkeeper {
+        color: $gray;
+        font-size: 2vmax;
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        position: absolute;
+        text-align: center;
+        a {
+            color: $gray;
+            font-weight: $bold;
         }
     }
 }
