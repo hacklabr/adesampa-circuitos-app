@@ -3,14 +3,14 @@
         
         <ion-list class="page-header">
             <a ui-sref="tabsController.routes" class="button button-clear ion-arrow-left-c button-back"></a>
-            <h1 class="page-title">encontrar lojas no circuito</h1>
+            <h1 class="page-title">filtro de categoria</h1>
         </ion-list>
 
         <ion-list class="route-single-content">
             <div class="route-information">
                 <div class="button-bar button-bar-inline item">
                     <button class="button button-positive button-small button-clear button-view-information">histórico</button>
-                    <button class="button button-positive button-small button-clear button-view-photos">fotos</button>
+                    <!-- <button class="button button-positive button-small button-clear button-view-photos">fotos</button> -->
                 </div>
                 <h1 class="item item-body route-title">
                     {{route.title}}
@@ -44,7 +44,7 @@
                         </div>
                     </fieldset>
                 </div>
-                <a ui-sref="tabsController.shopsList({userRouteId:userRouteId})" ng-click="createUserRoute()" class="button button-block button-use-filter">criar lista de lojas</a>
+                <a ui-sref="tabsController.shopsList({userRouteId:userRouteId})" ng-click="createUserRoute()" class="button button-block button-use-filter">Criar meu Circuito</a>
             </form>
         </ion-list>
 

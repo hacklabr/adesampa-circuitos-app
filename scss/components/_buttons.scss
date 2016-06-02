@@ -29,7 +29,10 @@
             color: #fff;
             font-size: 2vmax;
             font-weight: $bold;
+            height: initial;
+            line-height: 150%;
             margin-right: 5vmax;
+            min-height: initial;
             padding: 0;
             width: initial;
         }

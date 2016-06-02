@@ -156,9 +156,9 @@
             background-position: center left;
             background-repeat: no-repeat;
             background-size: contain;
+            color: #fff;
             line-height: 100%;
             margin-bottom: 3%;
-            padding: 10px 0 0 50px;
         }
         .route-information {
             padding: 4%;
@@ -170,66 +170,53 @@
                 }
             }
             .route-description {
+                color: #fff;
                 font-size: 2.3vmax;
             }
         }
     }
     .filter {
+        .filter-title {
+            border-bottom: 1px solid $gray;
+        }
         .filter-content {
-            background: $gray;
             fieldset {
                 @extend %container;
             }
             legend {
-                color: #fff;
+                color: #000;
             }
         }
         .filter-label {
-            color: #fff;
+            color: #000;
         }
         .button-add-categories {
-            color: #fff;
+            color: #000;
         }
         .button-use-filter {
-            background-color: $gray;
+            background-color: $gray-dark;
             color: #fff;
         }
     }
 
     // page bras
     &.page-bras {
-        .route-title {
-            background-image: url(../img/icon-bras.svg);
-            color: $bras;
-        }
-        .filter .filter-content {
+        .route-single-content {
             background-color: $bras;
         }
     }
     &.page-bom-retiro {
-        .route-title {
-            background-image: url(../img/icon-bom-retiro.svg);
-            color: $bom-retiro;
-        }
-        .filter .filter-content {
+        .route-single-content {
             background-color: $bom-retiro;
         }
     }
     &.page-santa-ifigenia {
-        .route-title {
-            background-image: url(../img/icon-santa-ifigenia.svg);
-            color: $santa-ifigenia;
-        }
-        .filter .filter-content {
+        .route-single-content {
             background-color: $santa-ifigenia;
         }
     }
     &.page-vinte-e-cinco {
-        .route-title {
-            background-image: url(../img/icon-vinte-e-cinco.svg);
-            color: $vinte-e-cinco;
-        }
-        .filter .filter-content {
+        .route-single-content {
             background-color: $vinte-e-cinco;
         }
     }
