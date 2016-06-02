@@ -23,4 +23,20 @@
         </ion-list>
         <div id="map-{{mapid}}" ng-show="isMap"></div>
     </ion-content>
+    <div class="modal-wrapper">
+        <ion-list class="new-route-modal">
+            <h2 class="item item-body item-icon-right modal-title">
+                você acabou de criar<br>um <span>circuito!</span>
+            </h2>
+            <form class="modal-form">
+                  <fieldset>
+                      <label class="item item-input item-stacked-label">
+                          <span class="input-label">digite um nome</span>
+                          <input type="text" placeholder="Brás dia/mês/ano">
+                      </label>
+                  </fieldset>
+                  <div class="button-group"><span>salvar?</span> <a class="button button-save-route">sim</a> <a class="button button-cancel-route">não</a></div>
+            </form>
+        </ion-list>
+    </div>
 </ion-view>

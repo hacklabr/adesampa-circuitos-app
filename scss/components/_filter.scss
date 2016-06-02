@@ -8,15 +8,10 @@
         @extend %container;
     }
     .filter-title {
-        background: transparent;
-        border: 0;
         font-size: 2.6vmax;
         font-weight: $semi-bold;
         line-height: 100%;
         padding: 4%;
-        span {
-            font-weight: $extra-bold;
-        }
     }
     .filter-form {
         fieldset {
@@ -57,51 +52,6 @@
             font-size: 3vmax;
             font-weight: $semi-bold;
             margin: 4%;
-        }
-    }
-}
-
-.modal-wrapper {
-    background-color: rgba(0,0,0,0.7);
-    bottom: 0;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 100%;
-    z-index: 100000; 
-}
-
-.filter-modal {
-    background-color: $gray-light;
-    border-radius: 2vmax;
-    display: block;
-    left: 50%;
-    margin-left: -25vmax;
-    margin-top: -10vmax;
-    position: fixed;
-    top: 50%;
-    width: 50vmax;
-    z-index: 900;
-    .icon-accessory {
-        color: $gray-dark;
-    }
-    .filter-form {
-        fieldset {
-            padding-top: 0;
-        }
-        .button-add-categories {
-            color: $gray-dark;
-            margin-bottom: 0;
-        }
-        .button-use-filter {
-            background-color: $blue;
-            color: #fff;
-            font-size: 2.5vmax;
-            line-height: 150%;
-            margin: 0 0 4% 4%; 
-            min-height: initial;
         }
     }
 }

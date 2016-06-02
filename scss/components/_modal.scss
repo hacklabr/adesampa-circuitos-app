@@ -1,0 +1,111 @@
+.modal-wrapper {
+    background-color: rgba(0,0,0,0.7);
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 100000; 
+    .modal-title {
+        background: transparent;
+        border: 0;
+        font-size: 2.6vmax;
+        font-weight: $semi-bold;
+        line-height: 100%;
+        padding: 4%;
+        span {
+            font-weight: $extra-bold;
+        }
+    }
+    .modal-form {
+        fieldset {
+            border: 0;
+            padding: 4%;
+        }
+        legend {
+            border: 0;
+            font-size: 2.2vmax;
+            font-weight: $extra-bold;
+            line-height: 100%;
+            margin-bottom: 4%;
+        }
+        label {
+            padding: 0;
+        }
+        .input-label {
+            display: block;
+            margin-bottom: 2%;
+        }
+        input {
+            padding: 3%;
+        }
+    }
+}
+
+%modal {
+    background-color: $gray-light;
+    border-radius: 2vmax;
+    display: block;
+    left: 50%;
+    margin-left: -25vmax;
+    margin-top: -10vmax;
+    position: fixed;
+    top: 50%;
+    width: 50vmax;
+    z-index: 900;
+}
+
+.filter-modal {
+    @extend %modal;
+    .icon-accessory {
+        color: $gray-dark;
+    }
+    .filter-form {
+        fieldset {
+            padding-top: 0;
+        }
+        .button-add-categories {
+            color: $gray-dark;
+            margin-bottom: 0;
+        }
+        .button-use-filter {
+            @extend %button-small-modal;
+            background-color: $blue;
+        }
+    }
+}
+
+.new-route-modal {
+    @extend %modal;
+
+    .modal-title {
+        font-size: 3vmax;
+        line-height: 120%;
+    }
+    .modal-form {
+        fieldset {
+            padding-top: 0;
+        }
+        .input-label {
+            font-size: 2vmax;
+        }
+        .button-group {
+            margin: 3% 4% 0 4%;
+            span {
+                display: inline-block;
+                font-size: 2vmax;
+                padding: 1.5% 0;
+            }
+            .button-save-route {
+                @extend %button-small-modal;
+                background-color: $blue;
+            }
+            .button-cancel-route {
+                @extend %button-small-modal;
+                background-color: $red;
+            }
+        }
+    }
+}
