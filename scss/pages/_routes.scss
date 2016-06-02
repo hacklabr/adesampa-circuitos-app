@@ -6,7 +6,7 @@
         .item {
             background-color: transparent;
             border: 0;
-            color: #fff;
+            color: $gray;
             margin-top: 0;
             overflow: hidden;
             padding: 0;
@@ -16,9 +16,9 @@
 }
 .route {
     .list {
-        border-bottom: 1px solid #fff;    
+        border-bottom: 1px solid $gray;    
         .ion-ios-arrow-forward {
-            color: #fff;
+            color: $gray;
             font-size: 10vmax;
             margin-top: -5vmax;
             position: absolute;
@@ -28,57 +28,105 @@
     }
 }
 .route-title {
-    font-size: 5vmax;
+    color: $gray;
+    font-size: 5.1vmax;
     font-weight: $bold;
     line-height: 130%;
 }
 .route-subtitle {
-    font-size: 2.2vmax;
+    color: $gray;
+    font-size: 2.5vmax;
     font-weight: $bold;
     line-height: 130%;
 }
-.route-description {
-    font-size: 1.8vmax;
+.route-description, .route-products {
+    color: $gray;
+    font-size: 2.2vmax;
     font-weight: $normal;
     line-height: 140%;
-    margin-top: 3%;
-}
-
-// Styles per route
-.bom-retiro {
-    .list {
-        background-color: $bom-retiro;
-    }
-}
-.bras {
-    .list {
-        background-color: $bras;
-    }        
-}
-.santa-ifigenia {
-    .list {
-        background-color: $santa-ifigenia;
-    }        
-}
-.vinte-e-cinco {
-    .list {
-        background-color: $vinte-e-cinco;
-    }        
+    margin-top: 1vmax !important;
 }
 
 //** Routes
 .page-routes {
     .route-link {
         @extend %wrapper-link;
-        padding: 4% 14% 4% 8%;
+        padding: 4% 14% 4% 23%;
     }
 }
+
+// Styles per route
+.bom-retiro {
+    .list {
+        .route-title,
+        .route-subtitle,
+        .route-description,
+        .route-products,
+        .ion-ios-arrow-forward {
+            color: $bom-retiro;
+        }
+    }
+    .route-link {
+        background: url(../img/icon-bom-retiro.svg) no-repeat;
+        background-position: 3% 14%;
+        background-size: 18%;
+    }
+}
+.bras {
+    .list {
+        .route-title,
+        .route-subtitle,
+        .route-description,
+        .route-products,
+        .ion-ios-arrow-forward {
+            color: $bras;
+        }
+        .route-link {
+            background: url(../img/icon-bras.svg) no-repeat;
+            background-position: 3% 14%;
+            background-size: 18%;
+        }
+    }        
+}
+.santa-ifigenia {
+    .list {
+        .route-title,
+        .route-subtitle,
+        .route-description,
+        .route-products,
+        .ion-ios-arrow-forward {
+            color: $santa-ifigenia;
+        }
+        .route-link {
+            background: url(../img/icon-santa-ifigenia.svg) no-repeat;
+            background-position: 3% 14%;
+            background-size: 18%;
+        }
+    }        
+}
+.vinte-e-cinco {
+    .list {
+        .route-title,
+        .route-subtitle,
+        .route-description,
+        .route-products,
+        .ion-ios-arrow-forward {
+            color: $vinte-e-cinco;
+        }
+        .route-link {
+            background: url(../img/icon-vinte-e-cinco.svg) no-repeat;
+            background-position: 3% 14%;
+            background-size: 18%;
+        }
+    }        
+}
+
 
 //** Routes List
 
 .page-routes-list {
     .list {
-        background-color: $gray;
+        background-color: $gray-lighter;
     }
     .route-title {
         span {
