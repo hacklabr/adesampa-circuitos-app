@@ -1,5 +1,5 @@
 .page-map {
-    .page-header, .button-shop-filter {
+    .page-header {
         position: absolute;
         top: 0;
         left: 0;
@@ -13,30 +13,17 @@
         font-size: 2vmax;
         min-height: initial;
         min-width: initial;
-        padding: 0.5vmax 2vmax;
-        left: 2vmax;
+        padding: 0.5vmax 2vmax 0;
+        position: absolute;
+        bottom: 2vmax;
+        right: 2vmax;
+        z-index: 100000;
         &:before {
             font-size: 2.7vmax;
             line-height: 210%;
             padding-right: 1vmax; 
         }
     }
-}
-
-.platform-android {
-    .page-map {
-        .button-shop-filter {
-            top: 9vmax;
-        }
-    } 
-}
-
-.platform-ios {
-    .page-map {
-        .button-shop-filter {
-            top: 10vmax;
-        }
-    } 
 }
 
 .map-iframe {
