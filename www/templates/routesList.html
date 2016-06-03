@@ -2,8 +2,11 @@
     <ion-content padding="false" class="has-header">
         <ion-list class="route {{route.id}}" ng-repeat="route in userRoutes">
             <a ui-sref="tabsController.shopsList({userRouteId:route.id})" class="route-link">
-                <h1 class="item item-body route-title">    
+                <h1 class="item item-body route-title" ng-if="!route.title">
                   {{route.route.title}} <span>{{route.created|date:"dd/MM/yy"}}</span>
+                </h1>
+                <h1 class="item item-body route-title" ng-if="route.title">
+                  {{route.title}} <span>{{route.created|date:"dd/MM/yy"}}</span>
                 </h1>
             </a>
             <div class="route-wrapper">
@@ -16,7 +19,7 @@
         </ion-list>
 
 
-        <div class="no-route">
+        <div class="no-route" ng-if="userRoutes.length==0">
             <div class="message">
                 <h1>Você ainda não criou nenhum circuito! ;(</h1>
                 <h2>Veja como é fácil</h2>

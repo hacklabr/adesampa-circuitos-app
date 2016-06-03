@@ -82,6 +82,7 @@ angular.module('app.controllers', [])
     $scope.route = Storage.getRoute(userRoute.route.id);
     $scope.created = userRoute.created;
     $scope.categories = userRoute.categories;
+    $scope.data = { userRouteTitle: userRoute.title };
 
     $scope.addBookmark = function(shop) {
         Storage.storeBookmark(shop);
@@ -111,6 +112,25 @@ angular.module('app.controllers', [])
     }
 
     $scope.selectList();
+
+    if ($stateParams.userRouteId == 'new') {
+        $scope.editing = true;
+        $scope.newRoute = true;
+    }
+
+    $scope.saveRoute = function() {
+        $scope.editing = false;
+        UserRoutes.save($stateParams.userRouteId, $scope.data.userRouteTitle);
+        $scope.newRoute = false;
+    }
+    $scope.cancelSave = function() {
+        $scope.editing = false;
+        $scope.newRoute = false;
+        $scope.data.userRouteTitle = userRoute.title;
+    }
+    $scope.editRoute = function() {
+        $scope.editing = true;
+    }
 
     if (userRoute.shops) {
         $scope.shops = userRoute.shops;
@@ -169,7 +189,7 @@ angular.module('app.controllers', [])
         $scope.shop = shop;
     });
 }])
-   
+
 .controller('routeSingleCtrl', function($scope, $stateParams, Storage, UserRoutes) {
     $scope.route = Storage.getRoute($stateParams.route);
     $scope.data = {category: []}
@@ -187,7 +207,7 @@ angular.module('app.controllers', [])
                               verbose_order: orders[$scope.filters.length]})
     }
     $scope.createUserRoute = function() {
-        $scope.userRouteId = UserRoutes.create($stateParams.route, $scope.data.category)
+        $scope.userRouteId = UserRoutes.create($stateParams.route, $scope.data.category);
     };
 })
  

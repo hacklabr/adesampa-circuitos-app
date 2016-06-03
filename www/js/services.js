@@ -59,6 +59,7 @@ angular.module('app.services', [])
 })
 
 .service('Storage', function($localStorage, Util) {
+    var self = this;
     if (!$localStorage.userRoutes) {
         $localStorage.userRoutes = [];
     }
@@ -77,6 +78,17 @@ angular.module('app.services', [])
         return routeIndex[routeId];
     }
 
+    this.newUserRoute = function(userRoute) {
+        userRoute.id = 'new';
+        userRouteIndex['new'] = userRoute;
+        return 'new';
+    }
+    this.saveUserRoute = function(id, title) {
+        userRoute = userRouteIndex[id];
+        userRoute.title = title;
+        if (id == 'new')
+            self.storeUserRoute(userRoute);
+    }
     this.storeUserRoute = function(userRoute) {
         userRoute.id = Util.next_id($localStorage.userRoutes);
         $localStorage.userRoutes.unshift(userRoute)
@@ -131,9 +143,9 @@ angular.module('app.services', [])
             'categories': categories,
             //'shops': shops,
         }
-        Storage.storeUserRoute(userRoute)
-        return userRoute.id
+        return Storage.newUserRoute(userRoute)
     }
+    this.save = Storage.saveUserRoute;
     this.list = Storage.listUserRoutes;
     this.get = Storage.getUserRoute;
     this.remove = Storage.removeUserRoute;
@@ -210,7 +222,10 @@ angular.module('app.services', [])
     this.addMarker = function(lat, lng, shopId, detailProvider) {
         var marker = L.marker([lat, lng]);
         $templateRequest("templates/parts/map-loading.html").then(function(html) {
-            marker.bindPopup(html);
+            marker.bindPopup(html, {
+                autoPan: true,
+                autoPanPaddingTopLeft: L.Point(50, 50),
+            });
         });
         marker.loaded = false;
         marker.on('click', function(e) {

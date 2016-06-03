@@ -2,7 +2,9 @@
     <ion-content padding="false" class="has-header">
         <ion-list class="page-header">
             <a ui-sref="tabsController.routesList" class="button button-clear ion-arrow-left-c button-back"></a>
-            <h1 class="page-title">{{route.title}} <span>{{created|date:"dd/MM/yy"}}</span></h1>
+            <h1 ng-if="!data.userRouteTitle" class="page-title">{{route.title}} <span>{{created|date:"dd/MM/yy"}}</span></h1>
+            <h1 ng-if="data.userRouteTitle" class="page-title">{{data.userRouteTitle}} <span>{{created|date:"dd/MM/yy"}}</span></h1>
+            <button ng-click="editRoute()" class="button button-clear icon-left ion-edit button-search-list">editar</button>
         </ion-list>
         <div class="button-bar">
             <button ng-click="selectList()" class="button button-small button-clear button-view-list" ng-class="{active:isList}">ver em lista</button>
@@ -23,19 +25,22 @@
         </ion-list>
         <div id="map-{{mapid}}" ng-show="isMap"></div>
     </ion-content>
-    <div class="modal-wrapper">
+    <div class="modal-wrapper" ng-if="editing">
         <ion-list class="new-route-modal">
-            <h2 class="item item-body item-icon-right modal-title">
+            <h2 class="item item-body item-icon-right modal-title" ng-if="newRoute">
                 você acabou de criar<br>um <span>circuito!</span>
+            </h2>
+            <h2 class="item item-body item-icon-right modal-title" ng-if="!newRoute">
+              edite o nome deste circuito</span>
             </h2>
             <form class="modal-form">
                   <fieldset>
                       <label class="item item-input item-stacked-label">
                           <span class="input-label">digite um nome</span>
-                          <input type="text" placeholder="Brás dia/mês/ano">
+                          <input type="text" placeholder="{{route.title}}" ng-model="data.userRouteTitle">
                       </label>
                   </fieldset>
-                  <div class="button-group"><span>salvar?</span> <a class="button button-save-route">sim</a> <a class="button button-cancel-route">não</a></div>
+                  <div class="button-group"><span>salvar?</span> <a ng-click="saveRoute()" class="button button-save-route">sim</a> <a class="button button-cancel-route" ng-click="cancelSave()">não</a></div>
             </form>
         </ion-list>
     </div>

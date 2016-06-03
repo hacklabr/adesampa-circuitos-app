@@ -1,10 +1,11 @@
 <ion-view title="" id="bookmarks" class="page-bookmarks">
     <ion-content padding="false" class="has-header">
 
+      <div ng-if="shops.length>0">
         <ion-list class="page-header">
             <a ui-sref="tabsController.shopsList" class="button button-clear ion-arrow-left-c button-back"></a>
             <h1 class="page-title">favoritos <span>lista de lojas</span></h1>
-            <button class="button button-clear icon-left ion-edit button-search-list">editar</button>
+            <button ng-if="TODO" class="button button-clear icon-left ion-edit button-search-list">editar</button>
         </ion-list>
 
 
@@ -19,7 +20,7 @@
                 <h1 class="item item-body shop-title">{{shop.name}}</h1>
                 </a>
                 <div class="shop-wrapper">
-                    <p class="item item-body shop-description"><strong>Regiao: TODO</strong>
+                    <p ng-if="TODO" class="item item-body shop-description"><strong>Regiao: </strong>
                     </p>
                     <p class="item item-body shop-description">segmentos: <strong>{{shop.terms.area.join(", ")}}</strong></p>
                     <div class="item item-body shop-actions">
@@ -29,9 +30,23 @@
             </div>
         </ion-list>
         <div id="map-bookmarks" ng-show="isMap"></div>
+      </div>
+      <div class="no-route" ng-if="shops.length==0">
+        <div class="message">
+          <h1>Organize as suas lojas favoritas aqui</h1>
+          <h2>Veja como é fácil</h2>
+          <ol>
+            <li>Crie um circuito (<span><i class="icon ion-android-add-circle"></i> novo</span> no menu geral ou no botão no fim da lista)</li>
+            <li>Na lista de lojas, clique em <span><i class="icon ion-star"></i> adicionar aos favoritos</span></li>
+            <li>Pronto! Sempre que quiser acessar as suas lojas favoritas elas estarão disponíveis na aba <span><i class="icon ion-star"></i> favoritos</span></li>
+          </ol>
+          <a ui-sref="tabsController.routes" class="button button-block button-splash">Criar um circuito!</a>
+        </div>
+      </div>
+
 
     </ion-content>
-    <div class="modal-wrapper">
+    <div class="modal-wrapper" ng-if="TODO">
         <ion-list class="filter filter-modal">
             <h2 class="item item-body item-icon-right modal-title">
                 filtrar a lista <i class="icon ion-close icon-accessory"></i>
