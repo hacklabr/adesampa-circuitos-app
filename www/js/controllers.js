@@ -176,7 +176,7 @@ angular.module('app.controllers', [])
     $scope.selectList();
 })
 
-.controller('shopSingleCtrl', [ 'API', '$scope', '$stateParams', function(API, $scope, $stateParams) {
+.controller('shopSingleCtrl', function(API, $scope, $stateParams, $ionicHistory) {
     API.applyMe.apply($scope);
     API.findOne({id: $EQ($stateParams.shop)}).then(function (shop) {
         // TODO: remover isso depois de arrumar os dados no servidor
@@ -188,7 +188,11 @@ angular.module('app.controllers', [])
         }
         $scope.shop = shop;
     });
-}])
+
+    $scope.back = function() {
+        $ionicHistory.goBack();
+    }
+})
 
 .controller('routeSingleCtrl', function($scope, $stateParams, Storage, UserRoutes) {
     $scope.route = Storage.getRoute($stateParams.route);
