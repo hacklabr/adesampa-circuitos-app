@@ -156,11 +156,8 @@ angular.module('app.services', [])
         
 })
 
-.service('Map', function($compile, $templateRequest, $rootScope) {
+.service('Map', function($compile, $rootScope, $window) {
     var self = this;
-
-    $templateRequest("templates/parts/map-popup.html");
-    $templateRequest("templates/parts/map-loading.html");
 
     targets = {};
 
@@ -193,6 +190,7 @@ angular.module('app.services', [])
     this.create = function() {
         self.map = L.map('mapid', {
             zoomControl: false,
+            tap: false,
         });
         self.map.setView([-23.5498,-46.6330], 14);
         L.tileLayer( 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -219,30 +217,10 @@ angular.module('app.services', [])
         }
     };
 
-    this.addMarker = function(lat, lng, shopId, detailProvider) {
+    this.addMarker = function(lat, lng, shopId) {
         var marker = L.marker([lat, lng]);
-        $templateRequest("templates/parts/map-loading.html").then(function(html) {
-            marker.bindPopup(html, {
-                autoPan: true,
-                autoPanPaddingTopLeft: L.Point(50, 50),
-            });
-        });
-        marker.loaded = false;
-        marker.on('click', function(e) {
-            if (marker.loaded)
-                return;
-            var popup = e.target.getPopup();
-            detailProvider(shopId, function (shop) {
-                $templateRequest("templates/parts/map-popup.html").then(function(html){
-                    var scope = $rootScope.$new();
-                    scope.shop = shop;
-                    var linkFunction = $compile(angular.element(html));
-                    var content = linkFunction(scope)[0];
-                    popup.setContent(content);
-                    marker.loaded = true;
-                    popup.update();
-                });
-            });
+        marker.on('mousedown', function(e) {
+            $window.location.href = '#/tabs/tab4/shopsingle/'+shopId;
         });
         targets[self.target].cluster.addLayer(marker);
         targets[self.target].markers.push(marker);
