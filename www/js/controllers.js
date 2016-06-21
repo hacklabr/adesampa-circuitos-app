@@ -180,7 +180,7 @@ angular.module('app.controllers', [])
     API.applyMe.apply($scope);
     API.findOne({id: $EQ($stateParams.shop)}).then(function (shop) {
         // TODO: remover isso depois de arrumar os dados no servidor
-        if (shop.emailPublico.match(/^E-mail: /)) {
+        if (shop.emailPublico && shop.emailPublico.match(/^E-mail: /)) {
             shop.emailPublico = shop.emailPublico.replace(/^E-mail: /, '');
         }
         if (shop.telefonePublico) {
