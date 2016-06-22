@@ -159,31 +159,31 @@ angular.module('app.services', [])
 .service('Map', function($compile, $rootScope, $window) {
     var self = this;
 
-    targets = {};
+    tabs = {};
 
-    this.setTarget = function(target) {
-        if (self.target == target)
+    this.setTab = function(tab) {
+        if (self.tab == tab)
             return
         var map = document.getElementById('mapid');
-        var element = document.getElementById('map-'+target);
+        var element = document.getElementById('map-'+tab);
         element.appendChild(map);
         map.style.height = element.style.height;
         map.style.width = element.style.width;
-        if (self.target)
-            self.map.removeLayer(targets[self.target].cluster)
-        self.map.addLayer(targets[target].cluster);
-        self.target = target;
+        if (self.tab)
+            self.map.removeLayer(tabs[self.tab].cluster)
+        self.map.addLayer(tabs[tab].cluster);
+        self.tab = tab;
     }
 
-    this.init = function(target) {
+    this.init = function(tab) {
         if (!self.created)
             self.create();
-        if (!targets[target]) {
-            self.createTarget(target);
-            self.setTarget(target);
+        if (!tabs[tab]) {
+            self.createTab(tab);
+            self.setTab(tab);
         } else {
-            self.setTarget(target);
-            self.clean(target);
+            self.setTab(tab);
+            self.clean(tab);
         }
     };
 
@@ -200,8 +200,8 @@ angular.module('app.services', [])
         self.created = true;
     };
 
-    this.createTarget = function(target) {
-        targets[target] = {
+    this.createTab = function(tab) {
+        tabs[tab] = {
             markers: [],
             cluster: L.markerClusterGroup({
                 maxClusterRadius: 45
@@ -209,11 +209,11 @@ angular.module('app.services', [])
         }
     }
 
-    this.clean = function(target) {
-        if (!target)
-            target = self.target;
-        var markers = targets[target].markers;
-        var cluster = targets[target].cluster;
+    this.clean = function(tab) {
+        if (!tab)
+            tab = self.tab;
+        var markers = tabs[tab].markers;
+        var cluster = tabs[tab].cluster;
         while (markers.length > 0) {
             cluster.removeLayer(markers.pop());
         }
@@ -222,18 +222,18 @@ angular.module('app.services', [])
     this.addMarker = function(lat, lng, shopId) {
         var marker = L.marker([lat, lng]);
         marker.on('mousedown', function(e) {
-            var tab = $window.location.hash.split('/')[2];
+            var currentTab = $window.location.hash.split('/')[2];
             // TODO gato
             var tabMap = {
                 map: 'tab4',
                 bookmarks: 'tab2',
             }
-            if (tabMap[tab])
-                tab = tabMap[tab];
-            $window.location.href = '#/tabs/'+tab+'/shopsingle/'+shopId;
+            if (tabMap[currentTab])
+                currentTab = tabMap[currentTab];
+            $window.location.href = '#/tabs/'+currentTab+'/shopsingle/'+shopId;
         });
-        targets[self.target].cluster.addLayer(marker);
-        targets[self.target].markers.push(marker);
+        tabs[self.tab].cluster.addLayer(marker);
+        tabs[self.tab].markers.push(marker);
     };
 
     this.load = function(shops, detailProvider) {
@@ -254,8 +254,8 @@ angular.module('app.services', [])
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         var tab = toState.name.split(/\./)[1]
-        if (targets[tab]) {
-            self.setTarget(tab);
+        if (tabs[tab]) {
+            self.setTab(tab);
         }
     });
 })
