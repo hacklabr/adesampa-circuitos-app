@@ -220,7 +220,15 @@ angular.module('app.services', [])
     this.addMarker = function(lat, lng, shopId) {
         var marker = L.marker([lat, lng]);
         marker.on('mousedown', function(e) {
-            $window.location.href = '#/tabs/tab4/shopsingle/'+shopId;
+            var tab = $window.location.hash.split('/')[2];
+            // TODO gato
+            var tabMap = {
+                map: 'tab4',
+                bookmarks: 'tab2',
+            }
+            if (tabMap[tab])
+                tab = tabMap[tab];
+            $window.location.href = '#/tabs/'+tab+'/shopsingle/'+shopId;
         });
         targets[self.target].cluster.addLayer(marker);
         targets[self.target].markers.push(marker);
