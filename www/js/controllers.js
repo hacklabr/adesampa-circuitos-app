@@ -4,13 +4,13 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('mapCtrl', function($scope, API, Util, Map) {
+.controller('mapCtrl', function($scope, API, Util, Map, $localStorage) {
 
     var headerHeight = document.getElementsByTagName('ion-header-bar')[0].offsetHeight;
     var menuHeight = document.getElementsByClassName('tab-nav')[0].offsetHeight;
     document.getElementById('map-map').style.height = (window.innerHeight - menuHeight - headerHeight) + "px";
 
-    Map.init('map');
+    Map.selectDataset('map');
     API.applyMe.apply($scope);
 
     var detailProvider = function(shopId, callback) {
@@ -21,11 +21,16 @@ angular.module('app.controllers', [])
         var filters = {};
         if (categories && categories.length > 0)
             filters['term:area'] = $IN(categories);
-        API.find(filters).then(function (shops) {
-            Map.load(shops, detailProvider);
-        });
+        if ($localStorage.cache) {
+            Map.load('map', $localStorage.cache, detailProvider);
+        } else {
+            API.find(filters).then(function (shops) {
+                $localStorage.cache = shops;
+                Map.load('map', shops, detailProvider);
+            });
+        }
     };
-
+    
     loadShops();
 
     var categories = Util.merge_lists(ROUTES.map(function(obj) { return obj.categories }));
@@ -107,7 +112,7 @@ angular.module('app.controllers', [])
 
         $scope.isList = false;
         $scope.isMap = true;
-        Map.init(mapid);
+        //Map.init(mapid);
         Map.load($scope.shops);
     }
 
@@ -163,12 +168,15 @@ angular.module('app.controllers', [])
         topHeight += document.getElementsByClassName('tab-nav')[0].offsetHeight;
         topHeight += document.querySelector('ion-nav-view[name=tab2] ion-list.page-header div.list').offsetHeight;
         topHeight += document.querySelector('.button-bar').offsetHeight;
+        console.log(window.innerHeight - topHeight)
         document.getElementById('map-bookmarks').style.height = (window.innerHeight - topHeight) + "px";
 
         $scope.isList = false;
         $scope.isMap = true;
-        Map.init('bookmarks');
-        Map.load(shops);
+        //Map.init('tab2');
+        Map.load('bookmarks', shops);
+        console.log('asdf')
+        Map.update('bookmarks');
     }
     $scope.removeBookmark = function(shop) {
         Storage.removeBookmark(shop.id);

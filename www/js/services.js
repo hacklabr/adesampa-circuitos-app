@@ -156,39 +156,19 @@ angular.module('app.services', [])
         
 })
 
-.service('Map', function($compile, $rootScope, $window) {
+.service('Map', function($rootScope, $window, $ionicHistory) {
     var self = this;
 
-    tabs = {};
+    dataSets = {};
+    targets = {}
+    this.rootDOM = null;
 
-    this.setTab = function(tab) {
-        if (self.tab == tab)
-            return
-        var map = document.getElementById('mapid');
-        var element = document.getElementById('map-'+tab);
-        element.appendChild(map);
-        map.style.height = element.style.height;
-        map.style.width = element.style.width;
-        if (self.tab)
-            self.map.removeLayer(tabs[self.tab].cluster)
-        self.map.addLayer(tabs[tab].cluster);
-        self.tab = tab;
+    this.setRootDOM = function(element) {
+        self.rootDOM = element;
     }
 
-    this.init = function(tab) {
-        if (!self.created)
-            self.create();
-        if (!tabs[tab]) {
-            self.createTab(tab);
-            self.setTab(tab);
-        } else {
-            self.setTab(tab);
-            self.clean(tab);
-        }
-    };
-
     this.create = function() {
-        self.map = L.map('mapid', {
+        self.map = L.map(self.rootDOM, {
             zoomControl: false,
             tap: false,
         });
@@ -200,8 +180,10 @@ angular.module('app.services', [])
         self.created = true;
     };
 
-    this.createTab = function(tab) {
-        tabs[tab] = {
+    this.createDataset = function(dataset) {
+        if (!self.created)
+            self.create();
+        dataSets[dataset] = {
             markers: [],
             cluster: L.markerClusterGroup({
                 maxClusterRadius: 45
@@ -209,35 +191,46 @@ angular.module('app.services', [])
         }
     }
 
-    this.clean = function(tab) {
-        if (!tab)
-            tab = self.tab;
-        var markers = tabs[tab].markers;
-        var cluster = tabs[tab].cluster;
+    this.selectDataset = function(dataset) {
+        if (!dataSets[dataset])
+            self.createDataset(dataset);
+
+        if (self.dataset)
+            self.map.removeLayer(dataSets[self.dataset].cluster)
+
+        self.dataset = dataset
+        self.map.addLayer(dataSets[dataset].cluster);
+    }
+
+    this.clean = function(dataset) {
+        if (!dataset)
+            dataset = self.dataset;
+        var markers = dataSets[dataset].markers;
+        var cluster = dataSets[dataset].cluster;
         while (markers.length > 0) {
             cluster.removeLayer(markers.pop());
         }
     };
 
-    this.addMarker = function(lat, lng, shopId) {
+    this.setLinkPath = function(path) {
+        self.linkPath = path;
+    }
+
+    this.addMarker = function(dataset, lat, lng, shopId) {
         var marker = L.marker([lat, lng]);
         marker.on('mousedown', function(e) {
-            var currentTab = $window.location.hash.split('/')[2];
-            // TODO gato
-            var tabMap = {
-                map: 'tab4',
-                bookmarks: 'tab2',
-            }
-            if (tabMap[currentTab])
-                currentTab = tabMap[currentTab];
-            $window.location.href = '#/tabs/'+currentTab+'/shopsingle/'+shopId;
+            if (self.linkPath)
+                $window.location.href = self.linkPath + shopId;
         });
-        tabs[self.tab].cluster.addLayer(marker);
-        tabs[self.tab].markers.push(marker);
+        dataSets[dataset].cluster.addLayer(marker);
+        dataSets[dataset].markers.push(marker);
     };
 
-    this.load = function(shops, detailProvider) {
-        self.clean()
+    this.load = function(dataset, shops, detailProvider) {
+        if (!dataSets[dataset])
+            self.createDataset(dataset);
+        else
+            self.clean(dataset)
         var providerFactory = function(shop) {
             return function(shopId, callback) { callback(shop) };
         }
@@ -248,16 +241,80 @@ angular.module('app.services', [])
                 provider = detailProvider;
             else
                 provider = providerFactory(shops[i]);
-            self.addMarker(l.latitude, l.longitude, shops[i].id, provider);
+            self.addMarker(dataset, l.latitude, l.longitude, shops[i].id, provider);
         };
     };
 
+    this.createTarget = function(dataset, target, element, linkpath) {
+        console.log('creating target ' + target);
+        targets[target] = {
+            dataset: dataset,
+            target: target,
+            element: element,
+            linkpath: linkpath,
+        }
+        var currentState = $ionicHistory.currentView().stateName.split(/\./)[1];
+        if (currentState == target)
+            self.update(currentState);
+    }
+
+    this.update = function(currentState) {
+        var ctx = targets[currentState]
+        if (!ctx)
+            return
+        
+        // Set proper context in Map
+        self.selectDataset(ctx.dataset);
+        self.setLinkPath(ctx.linkpath);
+        
+        // Append map element to this element
+        ctx.element.appendChild(self.rootDOM);
+        self.rootDOM.style.height = ctx.element.style.height;
+        self.rootDOM.style.width = ctx.element.style.width;
+    };
+
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        console.log('state changed to ' + toState.name)
+        self.update(toState.name.split(/\./)[1]);
+    });
+    
+    /*
+    this.setTab = function(tab) {
+        if (self.dataset == tab)
+            return
+        var map = document.getElementById('mapid');
+        var element = document.getElementById('map-'+tab);
+        element.appendChild(map);
+        map.style.height = element.style.height;
+        map.style.width = element.style.width;
+        if (self.dataset)
+            self.map.removeLayer(dataSets[self.dataset].cluster)
+        self.map.addLayer(dataSets[tab].cluster);
+        self.dataset = tab;
+    }
+
+    this.init = function(tab) {
+        if (!self.created)
+            self.create();
+        if (!dataSets[tab]) {
+            self.createDataset(tab);
+            self.setTab(tab);
+        } else {
+            self.setTab(tab);
+            self.clean(tab);
+        }
+    };
+    */
+
+    /*
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         var tab = toState.name.split(/\./)[1]
-        if (tabs[tab]) {
+        console.log(toState)
+        if (dataSets[tab]) {
             self.setTab(tab);
         }
     });
+    */
 })
 
 
