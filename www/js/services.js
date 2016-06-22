@@ -203,7 +203,9 @@ angular.module('app.services', [])
     this.createTarget = function(target) {
         targets[target] = {
             markers: [],
-            cluster: L.markerClusterGroup(),
+            cluster: L.markerClusterGroup({
+                maxClusterRadius: 45
+            }),
         }
     }
 
