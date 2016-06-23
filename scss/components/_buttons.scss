@@ -13,8 +13,21 @@
 .button-bar {
     border-radius: 0 !important;
     .button {
-        border-bottom: 4px solid #949494;
         border-radius: 0 !important;
+        i {
+            margin-right: 1vmax;
+        }
+    }
+}
+
+.button-bar-base {
+    .button {
+    }
+}
+
+.button-bar-custom {
+    .button {
+        border-bottom: 4px solid #949494;
         color: #949494;
         font-size: 2.1vmax;
         font-weight: $extra-bold;

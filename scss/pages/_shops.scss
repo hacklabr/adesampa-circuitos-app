@@ -50,16 +50,20 @@
     line-height: 130%;
 }
 .shop-description {
-    font-size: 1.8vmax;
+    font-size: 2vmax;
     font-weight: $normal;
     line-height: 140%;
     margin-top: 3%;
     p {
-        font-size: 1.8vmax;
+        font-size: 2vmax;
         font-weight: $normal;
         line-height: 140%;
         margin: 0; 
     }
+}
+.gallery-title {
+    font-weight: bold;
+    padding: 4% !important;
 }
 .button-bookmark, .button-delete {
     color: #fff;
@@ -81,8 +85,5 @@
 .page-shop-single {
     .shop-wrapper {
         padding: 4%;
-    }
-    .shop-description {
-        margin-top: 3% !important;
     }
 }
