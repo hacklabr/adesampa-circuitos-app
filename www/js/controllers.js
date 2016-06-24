@@ -82,6 +82,16 @@ angular.module('app.controllers', [])
     var mapid = $state.current.name.split(/\./)[1];
     var tab = $state.current.name.split(/_/)[1];
     $scope.mapid = mapid;
+    datasets = {
+        tab1: 'home',
+        tab5: 'routes',
+    }
+    var dataset = datasets[tab];
+    var target = dataset;
+    $scope.dataset = dataset;
+    $scope.target = target;
+    $scope.tab = tab;
+
 
     var userRoute = UserRoutes.get($stateParams.userRouteId);
     $scope.route = Storage.getRoute(userRoute.route.id);
@@ -112,8 +122,8 @@ angular.module('app.controllers', [])
 
         $scope.isList = false;
         $scope.isMap = true;
-        //Map.init(mapid);
-        Map.load($scope.shops);
+
+        Map.update(target);
     }
 
     $scope.selectList();
@@ -139,6 +149,7 @@ angular.module('app.controllers', [])
 
     if (userRoute.shops) {
         $scope.shops = userRoute.shops;
+        Map.load(dataset, $scope.shops);
         return;
     }
 
@@ -150,10 +161,8 @@ angular.module('app.controllers', [])
         shops = Util.sort_by_key(shops, 'name');
         UserRoutes.storeShops($stateParams.userRouteId, shops);
         $scope.shops = shops;
-        if ($scope.isMap)
-            Map.load($scope.shops);
+        Map.load(dataset, $scope.shops);
     });
-
 })
    
 .controller('bookmarksCtrl', function($scope, Storage, Map) {
@@ -196,8 +205,10 @@ angular.module('app.controllers', [])
     });
 
     datasets = {
+        tab1: 'home',
         tab2: 'bookmarks',
         tab4: 'map',
+        tab5: 'routes',
     }
     var tab = $state.current.name.split(/_/)[1];
     var dataset = datasets[tab];

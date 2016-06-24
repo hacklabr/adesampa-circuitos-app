@@ -23,7 +23,7 @@
           </div>
           <a ui-sref="tabsController.shopSingle({shop:shop.id})"><div class="icon ion-ios-arrow-forward"></div></a>
         </ion-list>
-        <div id="map-{{mapid}}" ng-show="isMap"></div>
+        <div map-container dataset="{{dataset}}" target="{{target}}" linkpath="#/tabs/{{tab}}/shopsingle/" id="map-{{mapid}}" ng-show="isMap"></div>
     </ion-content>
     <div class="modal-wrapper" ng-if="editing">
         <ion-list class="new-route-modal">
