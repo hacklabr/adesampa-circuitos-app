@@ -30,7 +30,7 @@ angular.module('app.controllers', [])
             });
         }
     };
-    
+
     loadShops();
 
     var categories = Util.merge_lists(ROUTES.map(function(obj) { return obj.categories }));
@@ -159,6 +159,7 @@ angular.module('app.controllers', [])
 .controller('bookmarksCtrl', function($scope, Storage, Map) {
     var shops = Storage.listBookmarks();
     $scope.shops = shops;
+    Map.load('bookmarks', shops);
     $scope.selectList = function() {
         $scope.isList = true;
         $scope.isMap = false;
@@ -168,23 +169,20 @@ angular.module('app.controllers', [])
         topHeight += document.getElementsByClassName('tab-nav')[0].offsetHeight;
         topHeight += document.querySelector('ion-nav-view[name=tab2] ion-list.page-header div.list').offsetHeight;
         topHeight += document.querySelector('.button-bar').offsetHeight;
-        console.log(window.innerHeight - topHeight)
         document.getElementById('map-bookmarks').style.height = (window.innerHeight - topHeight) + "px";
 
         $scope.isList = false;
         $scope.isMap = true;
-        //Map.init('tab2');
-        Map.load('bookmarks', shops);
-        console.log('asdf')
         Map.update('bookmarks');
     }
     $scope.removeBookmark = function(shop) {
         Storage.removeBookmark(shop.id);
     };
+
     $scope.selectList();
 })
 
-.controller('shopSingleCtrl', function(API, $scope, $stateParams, $ionicHistory) {
+.controller('shopSingleCtrl', function(API, $scope, $stateParams, $ionicHistory, $state, Map) {
     API.applyMe.apply($scope);
     API.findOne({id: $EQ($stateParams.shop)}).then(function (shop) {
         // TODO: remover isso depois de arrumar os dados no servidor
@@ -196,6 +194,18 @@ angular.module('app.controllers', [])
         }
         $scope.shop = shop;
     });
+
+    datasets = {
+        tab2: 'bookmarks',
+        tab4: 'map',
+    }
+    var tab = $state.current.name.split(/_/)[1];
+    var dataset = datasets[tab];
+    var target = dataset + '-shop';
+    $scope.dataset = dataset;
+    $scope.target = target;
+
+    Map.update(target);
 
     $scope.back = function() {
         $ionicHistory.goBack();

@@ -14,26 +14,28 @@
                     <p ng-if="shop.emailPublico"><strong>e-mail:</strong> <a ng-href="mailto:{{shop.emailPublico}}">{{shop.emailPublico}}</a></p>
                 </div>
             </div>
+            <!--
             <div class="button-bar">
                 <button class="button button-light button-small button-call"><i class="icon ion-ios-telephone"></i>ligar</button>
                 <button class="button button-stable button-small button-email"><i class="icon ion-android-mail"></i>email</button>
                 <button ng-if="isBookmark(shop)" ng-click="removeBookmark(shop)" class="button button-dark button-small button-remove"><i class="icon icon-left ion-trash-a"></i>remover</button>
                 <button ng-if="!isBookmark(shop)" ng-click="addBookmark(shop)" class="button button-small button-dark button-add-bookmark"><i class="icon ion-star"></i>favoritar</button>
             </div>
-            <div class="shop-map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d467692.05329557677!2d-46.87618432695848!3d-23.681530212626512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce448183a461d1%3A0x9ba94b08ff335bae!2zU8OjbyBQYXVsbywgU1A!5e0!3m2!1spt-BR!2sbr!4v1466709465934" width="100%" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
+            -->
+            <div map-container dataset="{{dataset}}" target="{{target}}" class="shop-map" style="height: 200px;"></div>
             <div class="shop-wrapper">
                 <div class="item item-body shop-description">
                     {{shop.shortDescription}}
                 </div>
             </div>
+            <!--
             <h2 class="item item-body gallery-title">Galeria</h2>
             <ks-swiper-container slides-per-view="4" space-between="10" pagination-is-active="true" pagination-clickable="true" loop="true" initial-slide="0" direction="horizontal">
                 <ks-swiper-slide class="swiper-slide" ng-repeat="s in [1,2,3,4,5,6,7,8,9,10,11,12]">
                     <img src="http://placehold.it/800x700" ng-click="openLightboxModal($index)">
                 </ks-swiper-slide>
             </ks-swiper-container>
+            -->
         </ion-list>
     </ion-content>
 </ion-view>

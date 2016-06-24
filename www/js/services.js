@@ -160,7 +160,9 @@ angular.module('app.services', [])
     var self = this;
 
     dataSets = {};
-    targets = {}
+    targets = {};
+    states = {};
+
     this.rootDOM = null;
 
     this.setRootDOM = function(element) {
@@ -245,21 +247,23 @@ angular.module('app.services', [])
         };
     };
 
-    this.createTarget = function(dataset, target, element, linkpath) {
-        console.log('creating target ' + target);
-        targets[target] = {
+    this.createTarget = function(dataset, target, element, linkpath, state) {
+        var data = { 
             dataset: dataset,
             target: target,
             element: element,
             linkpath: linkpath,
+            state: state,
         }
-        var currentState = $ionicHistory.currentView().stateName.split(/\./)[1];
-        if (currentState == target)
-            self.update(currentState);
+        targets[target] = data;
+        states[state] = data;
+        var currentState = $ionicHistory.currentView().stateName;
+        if (currentState == state)
+            self.update(target);
     }
 
-    this.update = function(currentState) {
-        var ctx = targets[currentState]
+    this.update = function(target) {
+        var ctx = targets[target]
         if (!ctx)
             return
         
@@ -274,47 +278,11 @@ angular.module('app.services', [])
     };
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-        console.log('state changed to ' + toState.name)
-        self.update(toState.name.split(/\./)[1]);
+        if (states[toState.name]) {
+            self.update(states[toState.name].target);
+        }
     });
     
-    /*
-    this.setTab = function(tab) {
-        if (self.dataset == tab)
-            return
-        var map = document.getElementById('mapid');
-        var element = document.getElementById('map-'+tab);
-        element.appendChild(map);
-        map.style.height = element.style.height;
-        map.style.width = element.style.width;
-        if (self.dataset)
-            self.map.removeLayer(dataSets[self.dataset].cluster)
-        self.map.addLayer(dataSets[tab].cluster);
-        self.dataset = tab;
-    }
-
-    this.init = function(tab) {
-        if (!self.created)
-            self.create();
-        if (!dataSets[tab]) {
-            self.createDataset(tab);
-            self.setTab(tab);
-        } else {
-            self.setTab(tab);
-            self.clean(tab);
-        }
-    };
-    */
-
-    /*
-    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-        var tab = toState.name.split(/\./)[1]
-        console.log(toState)
-        if (dataSets[tab]) {
-            self.setTab(tab);
-        }
-    });
-    */
 })
 
 

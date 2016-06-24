@@ -8,10 +8,11 @@ angular.module('app.directives', [])
     }
 })
 
-.directive('mapContainer', function(Map) {
+.directive('mapContainer', function(Map, $ionicHistory) {
     return {
         link: function(scope, element, attr) {
-            Map.createTarget(attr.dataset, attr.target, element[0], attr.linkpath);
+            var currentState = $ionicHistory.currentView().stateName
+            Map.createTarget(attr.dataset, attr.target, element[0], attr.linkpath, currentState);
         },
    };
 })
