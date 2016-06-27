@@ -159,9 +159,10 @@ angular.module('app.services', [])
 .service('Map', function($rootScope, $window, $ionicHistory) {
     var self = this;
 
-    dataSets = {};
-    targets = {};
-    states = {};
+    var dataSets = {};
+    var targets = {};
+    var states = {};
+    var viewTimeout = null;
 
     this.rootDOM = null;
 
@@ -266,15 +267,25 @@ angular.module('app.services', [])
         self.clean();
         var l = shop.location
         self.addMarker(self.dataset, l.latitude, l.longitude);
-        setTimeout(function() {
-            self.map.setView([l.latitude, l.longitude], 15);
-        }, 2);
+        self.setView([l.latitude, l.longitude], 16);
+    }
+
+    this.saveView = function() {
+        if (!self.target)
+            return;
+        var data = targets[self.target];
+        data.center = self.map.getCenter();
+        data.zoom = self.map.getZoom();
     }
 
     this.update = function(target) {
-        var ctx = targets[target]
+        self.saveView();
+
+        var ctx = targets[target];
         if (!ctx)
             return
+
+        self.target = target;
         
         // Set proper context in Map
         self.selectDataset(ctx.dataset);
@@ -285,7 +296,18 @@ angular.module('app.services', [])
         self.rootDOM.style.height = ctx.element.style.height;
         self.rootDOM.style.width = ctx.element.style.width;
         setTimeout(function() { self.map.invalidateSize() }, 1);
+        if (targets[target].zoom)
+            self.setView(targets[target].center, targets[target].zoom)
     };
+
+    this.setView = function(center, zoom) {
+        if (viewTimeout)
+            clearTimeout(viewTimeout);
+        viewTimeout = setTimeout(function() {
+            viewTimeout = null;
+            self.map.setView(center, zoom);
+        }, 2);
+    }
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         if (states[toState.name]) {
