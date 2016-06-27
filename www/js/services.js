@@ -262,6 +262,15 @@ angular.module('app.services', [])
             self.update(target);
     }
 
+    this.focus = function(shop) {
+        self.clean();
+        var l = shop.location
+        self.addMarker(self.dataset, l.latitude, l.longitude);
+        setTimeout(function() {
+            self.map.setView([l.latitude, l.longitude], 15);
+        }, 2);
+    }
+
     this.update = function(target) {
         var ctx = targets[target]
         if (!ctx)
@@ -275,6 +284,7 @@ angular.module('app.services', [])
         ctx.element.appendChild(self.rootDOM);
         self.rootDOM.style.height = ctx.element.style.height;
         self.rootDOM.style.width = ctx.element.style.width;
+        setTimeout(function() { self.map.invalidateSize() }, 1);
     };
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {

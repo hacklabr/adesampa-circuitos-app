@@ -21,7 +21,8 @@ angular.module('app.controllers', [])
         var filters = {};
         if (categories && categories.length > 0)
             filters['term:area'] = $IN(categories);
-        if ($localStorage.cache) {
+        if (false && $localStorage.cache) {
+            // for development purposes
             Map.load('map', $localStorage.cache, detailProvider);
         } else {
             API.find(filters).then(function (shops) {
@@ -91,7 +92,6 @@ angular.module('app.controllers', [])
     $scope.dataset = dataset;
     $scope.target = target;
     $scope.tab = tab;
-
 
     var userRoute = UserRoutes.get($stateParams.userRouteId);
     $scope.route = Storage.getRoute(userRoute.route.id);
@@ -202,6 +202,7 @@ angular.module('app.controllers', [])
             shop.phoneHref = shop.telefonePublico.replace(/\D/g, '').replace(/^/, '+55');
         }
         $scope.shop = shop;
+        Map.focus(shop);
     });
 
     datasets = {

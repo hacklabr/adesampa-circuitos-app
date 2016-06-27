@@ -22,7 +22,7 @@
                 <button ng-if="!isBookmark(shop)" ng-click="addBookmark(shop)" class="button button-small button-dark button-add-bookmark"><i class="icon ion-star"></i>favoritar</button>
             </div>
             -->
-            <div map-container dataset="{{dataset}}" target="{{target}}" class="shop-map" style="height: 200px;"></div>
+            <div map-container dataset="shop-{{dataset}}" target="{{target}}" class="shop-map" style="height: 200px;"></div>
             <div class="shop-wrapper">
                 <div class="item item-body shop-description">
                     {{shop.shortDescription}}

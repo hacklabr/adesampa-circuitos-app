@@ -354,7 +354,7 @@ mapas.factory('mapas.service.space', ['$http', '$q', 'mapas.service.entity', 'ma
 
             api.util.applyMe.apply(this);
 
-            api._selectOne = 'id,name,subTitle,endereco,type,shortDescription,longDescription,terms,classificacaoEtaria,owner.id,owner.name,emailPublico,telefonePublico,horario'
+            api._selectOne = 'id,name,subTitle,endereco,type,shortDescription,longDescription,terms,classificacaoEtaria,owner.id,owner.name,emailPublico,telefonePublico,horario,location'
 
             api.findByOwner = function (agentId, params) {
                 params = params || {};
