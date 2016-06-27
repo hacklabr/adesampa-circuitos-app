@@ -75,7 +75,7 @@ angular.module('app.controllers', [])
     };
 })
    
-.controller('shopsListCtrl', function(API, $scope, $stateParams, Storage, UserRoutes, Util, Map, $state) {
+.controller('shopsListCtrl', function(API, $scope, $stateParams, Storage, UserRoutes, Util, Map, $state, $ionicHistory) {
     var mapid = $state.current.name.split(/\./)[1];
     var tab = $state.current.name.split(/_/)[1];
     $scope.mapid = mapid;
@@ -120,6 +120,9 @@ angular.module('app.controllers', [])
         $scope.isMap = true;
 
         Map.update(target);
+    }
+    $scope.back = function() {
+        $ionicHistory.goBack();
     }
 
     $scope.selectList();

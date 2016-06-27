@@ -1,7 +1,7 @@
 <ion-view title="" hide-back-button="true" id="shop-list" class="page-shops-list">
     <ion-content padding="false" class="has-header">
         <ion-list class="page-header">
-            <a ui-sref="tabsController.routesList" class="button button-clear ion-arrow-left-c button-back"></a>
+            <a ng-click="back()" class="button button-clear ion-arrow-left-c button-back"></a>
             <h1 ng-if="!data.userRouteTitle" class="page-title">{{route.title}} <span>{{created|date:"dd/MM/yy"}}</span></h1>
             <h1 ng-if="data.userRouteTitle" class="page-title">{{data.userRouteTitle}} <span>{{created|date:"dd/MM/yy"}}</span></h1>
             <button ng-click="editRoute()" class="button button-clear icon-left ion-edit button-search-list">editar</button>
