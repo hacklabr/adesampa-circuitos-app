@@ -13,21 +13,17 @@ angular.module('app.controllers', [])
     Map.selectDataset('map');
     API.applyMe.apply($scope);
 
-    var detailProvider = function(shopId, callback) {
-        API.findOne({id: $EQ(shopId)}).then(callback);
-    };
-
     var loadShops = function(categories) {
         var filters = {};
         if (categories && categories.length > 0)
             filters['term:area'] = $IN(categories);
         if (false && $localStorage.cache) {
             // for development purposes
-            Map.load('map', $localStorage.cache, detailProvider);
+            Map.load('map', $localStorage.cache);
         } else {
             API.find(filters).then(function (shops) {
                 $localStorage.cache = shops;
-                Map.load('map', shops, detailProvider);
+                Map.load('map', shops);
             });
         }
     };

@@ -229,22 +229,15 @@ angular.module('app.services', [])
         dataSets[dataset].markers.push(marker);
     };
 
-    this.load = function(dataset, shops, detailProvider) {
+    this.load = function(dataset, shops) {
         if (!dataSets[dataset])
             self.createDataset(dataset);
         else
             self.clean(dataset)
-        var providerFactory = function(shop) {
-            return function(shopId, callback) { callback(shop) };
-        }
-        var i, l, marker, provider;
+        var i, l, marker;
         for (i=0; i<shops.length; i++) {
             l = shops[i].location;
-            if (detailProvider)
-                provider = detailProvider;
-            else
-                provider = providerFactory(shops[i]);
-            self.addMarker(dataset, l.latitude, l.longitude, shops[i].id, provider);
+            self.addMarker(dataset, l.latitude, l.longitude, shops[i].id);
         };
     };
 
