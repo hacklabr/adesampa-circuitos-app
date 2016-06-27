@@ -235,10 +235,21 @@ angular.module('app.services', [])
         else
             self.clean(dataset)
         var i, l, marker;
+        var minLat = null;
+        var minLng = null;
+        var maxLat = null;
+        var maxLng = null;
         for (i=0; i<shops.length; i++) {
             l = shops[i].location;
             self.addMarker(dataset, l.latitude, l.longitude, shops[i].id);
+
+            if (minLat == null || l.latitude < minLat) minLat = l.latitude;
+            if (maxLat == null || l.latitude > maxLat) maxLat = l.latitude;
+            if (minLng == null || l.longitude < minLng) minLng = l.longitude;
+            if (maxLng == null || l.longitude > maxLng) maxLng = l.longitude;
         };
+
+        self.initView(minLat, minLng, maxLat, maxLng);
     };
 
     this.createTarget = function(dataset, target, element, linkpath, state) {
@@ -292,6 +303,14 @@ angular.module('app.services', [])
         if (targets[target].zoom)
             self.setView(targets[target].center, targets[target].zoom)
     };
+
+    this.initView = function(minLat, minLng, maxLat, maxLng) {
+        self.map.fitBounds([
+            [minLat, minLng],
+            [maxLat, maxLng],
+        ])
+        self.saveView();
+    }
 
     this.setView = function(center, zoom) {
         if (viewTimeout)
