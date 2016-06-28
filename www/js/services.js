@@ -375,7 +375,6 @@ angular.module('app.services', [])
         if (!headingWatch && navigator.compass)
             headingWatch = navigator.compass.watchHeading(function(heading) {
                 userHeading = heading;
-                console.log(heading);
                 self.updateUserMarker();
             })
     }

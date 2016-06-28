@@ -204,7 +204,7 @@ angular.module('app.controllers', [])
     $scope.selectList();
 })
 
-.controller('shopSingleCtrl', function(API, $scope, $stateParams, $ionicHistory, $state, Map, $ionicLoading) {
+.controller('shopSingleCtrl', function(API, $scope, $stateParams, $ionicHistory, $state, Map, Storage, $ionicLoading) {
     API.applyMe.apply($scope);
     $ionicLoading.show(LOADING);
     API.findOne({id: $EQ($stateParams.shop)}).then(function (shop) {
@@ -216,6 +216,17 @@ angular.module('app.controllers', [])
             shop.phoneHref = shop.telefonePublico.replace(/\D/g, '').replace(/^/, '+55');
         }
         $scope.shop = shop;
+
+        $scope.addBookmark = function() {
+            Storage.storeBookmark(shop);
+            $scope.isBookmark = true;
+        };
+        $scope.removeBookmark = function() {
+            Storage.removeBookmark(shop.id);
+            $scope.isBookmark = false;
+        };
+        $scope.isBookmark = Storage.isBookmark(shop.id);
+
         $ionicLoading.hide();
         Map.focus(shop);
     });

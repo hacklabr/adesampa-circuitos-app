@@ -14,14 +14,12 @@
                     <p ng-if="shop.emailPublico"><strong>e-mail:</strong> <a ng-href="mailto:{{shop.emailPublico}}">{{shop.emailPublico}}</a></p>
                 </div>
             </div>
-            <!--
             <div class="button-bar">
-                <button class="button button-light button-small button-call"><i class="icon ion-ios-telephone"></i>ligar</button>
-                <button class="button button-stable button-small button-email"><i class="icon ion-android-mail"></i>email</button>
-                <button ng-if="isBookmark(shop)" ng-click="removeBookmark(shop)" class="button button-dark button-small button-remove"><i class="icon icon-left ion-trash-a"></i>remover</button>
-                <button ng-if="!isBookmark(shop)" ng-click="addBookmark(shop)" class="button button-small button-dark button-add-bookmark"><i class="icon ion-star"></i>favoritar</button>
+              <a class="button button-light button-small button-call" ng-if="shop.phoneHref" ng-href="tel:{{shop.phoneHref}}"><i class="icon ion-ios-telephone"></i>ligar</a>
+              <a class="button button-stable button-small button-email" ng-if="shop.emailPublico" ng-href="mailto:{{shop.emailPublico}}"><i class="icon ion-android-mail"></i>email</a>
+              <button ng-if="isBookmark" ng-click="removeBookmark()" class="button button-dark button-small button-remove"><i class="icon icon-left ion-trash-a"></i>remover</button>
+              <button ng-if="!isBookmark" ng-click="addBookmark()" class="button button-small button-dark button-add-bookmark"><i class="icon ion-star"></i>favoritar</button>
             </div>
-            -->
             <div map-container dataset="shop-{{dataset}}" target="{{target}}" class="shop-map" style="height: 200px;"></div>
             <div class="shop-wrapper">
                 <div class="item item-body shop-description">
