@@ -20,13 +20,13 @@
               <button ng-if="isBookmark" ng-click="removeBookmark()" class="button button-dark button-small button-remove"><i class="icon icon-left ion-trash-a"></i>remover</button>
               <button ng-if="!isBookmark" ng-click="addBookmark()" class="button button-small button-dark button-add-bookmark"><i class="icon ion-star"></i>favoritar</button>
             </div>
-            <div map-container dataset="shop-{{dataset}}" target="{{target}}" class="shop-map" style="height: 200px;"></div>
+            <div map-container dataset="shop-{{dataset}}" target="{{target}}" class="shop-map"></div>
+            <!--
             <div class="shop-wrapper">
                 <div class="item item-body shop-description">
                     {{shop.shortDescription}}
                 </div>
             </div>
-            <!--
             <h2 class="item item-body gallery-title">Galeria</h2>
             <ks-swiper-container slides-per-view="4" space-between="10" pagination-is-active="true" pagination-clickable="true" loop="true" initial-slide="0" direction="horizontal">
                 <ks-swiper-slide class="swiper-slide" ng-repeat="s in [1,2,3,4,5,6,7,8,9,10,11,12]">

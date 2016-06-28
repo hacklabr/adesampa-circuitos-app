@@ -205,6 +205,14 @@ angular.module('app.controllers', [])
 })
 
 .controller('shopSingleCtrl', function(API, $scope, $stateParams, $ionicHistory, $state, Map, Storage, $ionicLoading) {
+    var tab = $state.current.name.split(/_/)[1];
+    var height = document.getElementsByTagName('ion-header-bar')[0].offsetHeight;
+    height += document.getElementsByClassName('tab-nav')[0].offsetHeight;
+    height += document.querySelector('ion-nav-view[name='+tab+'] ion-list.page-header div.list').offsetHeight;
+    height += document.querySelector('ion-list.shop .list').offsetHeight;
+    document.querySelector('div[map-container]').style.height = (window.innerHeight - height) + "px";
+    console.log(height);
+
     API.applyMe.apply($scope);
     $ionicLoading.show(LOADING);
     API.findOne({id: $EQ($stateParams.shop)}).then(function (shop) {
@@ -237,7 +245,6 @@ angular.module('app.controllers', [])
         tab4: 'map',
         tab5: 'routes',
     }
-    var tab = $state.current.name.split(/_/)[1];
     var dataset = datasets[tab];
     var target = dataset + '-shop';
     $scope.dataset = dataset;
