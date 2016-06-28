@@ -24,6 +24,7 @@ angular.module('app.controllers', [])
             API.find(filters).then(function (shops) {
                 $localStorage.cache = shops;
                 Map.load('map', shops);
+                Map.initView('map');
             });
         }
     };
@@ -104,11 +105,12 @@ angular.module('app.controllers', [])
     $scope.isBookmark = function(shop) {
         return Storage.isBookmark(shop.id);
     }
-
     $scope.selectList = function() {
         $scope.isList = true;
         $scope.isMap = false;
     }
+
+    var initialized = false;
     $scope.selectMap = function() {
         var topHeight = document.getElementsByTagName('ion-header-bar')[0].offsetHeight;
         topHeight += document.getElementsByClassName('tab-nav')[0].offsetHeight;
@@ -120,6 +122,10 @@ angular.module('app.controllers', [])
         $scope.isMap = true;
 
         Map.update(target);
+        if (!initialized) {
+            Map.initView(target, userRoute.route);
+            initialized = true;
+        }
     }
     $scope.back = function() {
         $ionicHistory.goBack();
@@ -168,6 +174,7 @@ angular.module('app.controllers', [])
     var shops = Storage.listBookmarks();
     $scope.shops = shops;
     Map.load('bookmarks', shops);
+    Map.initView('map');
     $scope.selectList = function() {
         $scope.isList = true;
         $scope.isMap = false;

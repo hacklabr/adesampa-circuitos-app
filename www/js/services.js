@@ -156,12 +156,13 @@ angular.module('app.services', [])
         
 })
 
-.service('Map', function($rootScope, $window, $ionicHistory) {
+.service('Map', function($rootScope, $window, $ionicHistory, Storage) {
     var self = this;
 
     var dataSets = {};
     var targets = {};
     var states = {};
+    var positions = {};
     var viewTimeout = null;
 
     this.rootDOM = null;
@@ -175,7 +176,8 @@ angular.module('app.services', [])
             zoomControl: false,
             tap: false,
         });
-        self.map.setView([-23.5498,-46.6330], 14);
+        self.map.setView(CENTER, ZOOM);
+        self.map.setMaxBounds(MAXBOUNDS);
         L.tileLayer( 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; Colaboradores do <a href="http://osm.org/copyright" title="OpenStreetMap" target="_blank">OpenStreetMap</a> ',
             subdomains: ['a', 'b', 'c']
@@ -235,21 +237,10 @@ angular.module('app.services', [])
         else
             self.clean(dataset)
         var i, l, marker;
-        var minLat = null;
-        var minLng = null;
-        var maxLat = null;
-        var maxLng = null;
         for (i=0; i<shops.length; i++) {
             l = shops[i].location;
             self.addMarker(dataset, l.latitude, l.longitude, shops[i].id);
-
-            if (minLat == null || l.latitude < minLat) minLat = l.latitude;
-            if (maxLat == null || l.latitude > maxLat) maxLat = l.latitude;
-            if (minLng == null || l.longitude < minLng) minLng = l.longitude;
-            if (maxLng == null || l.longitude > maxLng) maxLng = l.longitude;
         };
-
-        self.initView(minLat, minLng, maxLat, maxLng);
     };
 
     this.createTarget = function(dataset, target, element, linkpath, state) {
@@ -277,7 +268,7 @@ angular.module('app.services', [])
     this.saveView = function() {
         if (!self.target)
             return;
-        var data = targets[self.target];
+        var data = positions[self.target] || {};
         data.center = self.map.getCenter();
         data.zoom = self.map.getZoom();
     }
@@ -300,17 +291,9 @@ angular.module('app.services', [])
         self.rootDOM.style.height = ctx.element.style.height;
         self.rootDOM.style.width = ctx.element.style.width;
         setTimeout(function() { self.map.invalidateSize() }, 1);
-        if (targets[target].zoom)
-            self.setView(targets[target].center, targets[target].zoom)
+        if (positions[target])
+            self.setView(positions[target].center, positions[target].zoom)
     };
-
-    this.initView = function(minLat, minLng, maxLat, maxLng) {
-        self.map.fitBounds([
-            [minLat, minLng],
-            [maxLat, maxLng],
-        ])
-        self.saveView();
-    }
 
     this.setView = function(center, zoom) {
         if (viewTimeout)
@@ -319,6 +302,23 @@ angular.module('app.services', [])
             viewTimeout = null;
             self.map.setView(center, zoom);
         }, 2);
+    }
+
+    this.initView = function(target, route) {
+        if (!route) {
+            positions[target] = {
+                center: CENTER,
+                zoom: ZOOM,
+            }
+        } else {
+            positions[target] = {
+                center: route.center,
+                zoom: route.zoom,
+            }
+        }
+        if (self.target == target) {
+            self.setView(positions[target].center, positions[target].zoom);
+        }
     }
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {

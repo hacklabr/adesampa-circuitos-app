@@ -1,6 +1,11 @@
+var CENTER = [-23.542448535036787,-46.63301467895508]
+var ZOOM = 14;
+var MAXBOUNDS = [[-23.8909, -46.8884], [-23.4345, -46.3153]];
 var ROUTES = [
         { id: 'bras',
           title: 'Brás',
+          center: [-23.54364842214825, -46.61720306761708],
+          zoom: 14,
           headline: 'Moda para todos os gostos e bolsos',
           description: 'No famoso bairro do Brás você encontre as melhores lojas de moda e produtos de qualidade com preços especiais.',
           categories: [ 'Alimentos',
@@ -36,6 +41,8 @@ var ROUTES = [
         },
         { id: 'bom-retiro',
           title: 'Bom Retiro',
+          center: [-23.531392575917064, -46.64086548313208],
+          zoom: 15,
           headline: 'O destino de quem procura roupas a bom preço',
           description: 'O bairro Bom Retiro abriga as mais variadas e excelentes lojas no setor de moda e vestuário da cidade de São Paulo. Conheça!',
           categories: [ 'Aviamentos',
@@ -60,6 +67,8 @@ var ROUTES = [
         },
         { id: 'santa-ifigenia',
           title: 'Santa Ifigênia',
+          center: [-23.540374323957664, -46.63952036578849],
+          zoom: 16,
           headline: 'O maior oferta de eletrônicos do país',
           description: 'O bairro é destino conhecido pela grande quantidade de lojas especializadas em eletrônicos com o menor preço do mercado.',
           categories: ['Alarmes e CFTV',
@@ -86,6 +95,8 @@ var ROUTES = [
         },
         { id: 'vinte-e-cinco',
           title: '25 de Março',
+          center: [-23.542261577576905, -46.63207322359085],
+          zoom: 16,
           headline: 'Aqui você encontra de tudo um pouco',
           description: 'O bairro é considerado o maior centro comercial da América Latina. O mais movimentado e diversificado centro de compras varejista e atacadista.',
           categories: [ 'Alimentos',
