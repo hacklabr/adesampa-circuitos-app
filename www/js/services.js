@@ -257,7 +257,8 @@ angular.module('app.services', [])
         if (currentState == state)
             self.update(target);
 
-        locationButton.onclick = self.goToUserPosition;
+        if (locationButton)
+            locationButton.onclick = self.goToUserPosition;
     }
 
     this.focus = function(shop) {
@@ -328,40 +329,71 @@ angular.module('app.services', [])
     }
 
     var locationWatch;
-    var locationMarker;
+    var headingWatch;
     var userLocation;
+    var userHeading;
+    var locationMarker;
     var locationCircle;
+
+    var userIcon = L.icon({
+        iconUrl: 'img/user_pin.svg',
+        iconSize: [27, 38],
+        iconAnchor: [13.5, 24.5],
+    });
+
+    this.updateUserMarker = function() {
+        if (!userLocation)
+            return
+        if (!locationMarker) {
+            locationMarker = L.marker(
+                [userLocation.latitude, userLocation.longitude],
+                {
+                    icon: userIcon,
+                }
+            );
+            locationCircle = L.circle([userLocation.latitude, userLocation.longitude], 80, {
+                color: '#55F',
+                fillColor: '#30f',
+                fillOpacity: 0.1
+            })
+            self.map.addLayer(locationMarker);
+            self.map.addLayer(locationCircle);
+        } else {
+            locationMarker.setLatLng([userLocation.latitude, userLocation.longitude]);
+            locationCircle.setLatLng([userLocation.latitude, userLocation.longitude]);
+        }
+        if (userHeading && userHeading.magneticHeading)
+            locationMarker.setRotationAngle(userHeading.magneticHeading);
+    }
+    
     this.navigationOn = function() {
-        if (locationWatch)
-            return;
-        locationWatch = navigator.geolocation.watchPosition(function(pos) {
-            if (!locationMarker) {
-                locationMarker = L.marker(
-                    [pos.coords.latitude, pos.coords.longitude],
-                    {
-                    }
-                );
-                locationCircle = L.circle([pos.coords.latitude, pos.coords.longitude], 100, {
-                    color: '#55F',
-                    fillColor: '#30f',
-                    fillOpacity: 0.2
-                })
-                self.map.addLayer(locationMarker);
-                self.map.addLayer(locationCircle);
-            } else {
-                locationMarker.setLatLng([pos.coords.latitude, pos.coords.longitude]);
-            }
-            userLocation = pos.coords;
-        });
+        if (!locationWatch && navigator.geolocation)
+            locationWatch = navigator.geolocation.watchPosition(function(pos) {
+                userLocation = pos.coords;
+                self.updateUserMarker();
+            });
+        if (!headingWatch && navigator.compass)
+            headingWatch = navigator.compass.watchHeading(function(heading) {
+                userHeading = heading;
+                console.log(heading);
+                self.updateUserMarker();
+            })
     }
 
     this.navigationOff = function() {
-        navigator.geolocation.clearWatch(locationWatch);
+        if (locationWatch && navigator.geolocation)
+            navigator.geolocation.clearWatch(locationWatch);
+        if (headingWatch && navigator.compass)
+            navigator.compass.clearWatch(headingWatch);
         locationWatch = null;
+        headingWatch = null;
     }
 
     this.goToUserPosition = function() {
-        self.setView([userLocation.latitude, userLocation.longitude], 16, true);
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            userLocation = pos.coords;
+            self.setView([userLocation.latitude, userLocation.longitude], 16, true);
+        });
     }
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {

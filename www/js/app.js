@@ -13,6 +13,7 @@ angular.module('app',
                 'app.directives',
                 'mapas.service',
                 'ngStorage',
+                'ngCordova',
                 'ksSwiper',
                 'ui.bootstrap',
                 'bootstrapLightbox'
