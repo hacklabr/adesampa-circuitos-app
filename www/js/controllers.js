@@ -1,10 +1,15 @@
+var LOADING = {
+    template: 'Carregando...',
+    hideOnStateChange: true,
+}
+
 angular.module('app.controllers', [])
 
 .controller('homeCtrl', function($scope) {
 
 })
 
-.controller('mapCtrl', function($scope, API, Util, Map, $localStorage) {
+.controller('mapCtrl', function($scope, API, Util, Map, $localStorage, $ionicLoading) {
 
     var headerHeight = document.getElementsByTagName('ion-header-bar')[0].offsetHeight;
     var menuHeight = document.getElementsByClassName('tab-nav')[0].offsetHeight;
@@ -21,8 +26,10 @@ angular.module('app.controllers', [])
             // for development purposes
             Map.load('map', $localStorage.cache);
         } else {
+            $ionicLoading.show(LOADING);
             API.find(filters).then(function (shops) {
                 $localStorage.cache = shops;
+                $ionicLoading.hide();
                 Map.load('map', shops);
                 Map.initView('map');
             });
@@ -76,7 +83,7 @@ angular.module('app.controllers', [])
     };
 })
    
-.controller('shopsListCtrl', function(API, $scope, $stateParams, Storage, UserRoutes, Util, Map, $state, $ionicHistory) {
+.controller('shopsListCtrl', function(API, $scope, $stateParams, Storage, UserRoutes, Util, Map, $state, $ionicHistory, $ionicLoading) {
     var mapid = $state.current.name.split(/\./)[1];
     var tab = $state.current.name.split(/_/)[1];
     $scope.mapid = mapid;
@@ -162,10 +169,12 @@ angular.module('app.controllers', [])
     var filters = {regiao: $EQ(userRoute.route.title)}
     if (userRoute.categories.length > 0)
         filters['term:area'] = $IN(userRoute.categories)
+    $ionicLoading.show(LOADING);
     API.find(filters).then(function (shops) {
         shops = Util.sort_by_key(shops, 'name');
         UserRoutes.storeShops($stateParams.userRouteId, shops);
         $scope.shops = shops;
+        $ionicLoading.hide();
         Map.load(dataset, $scope.shops);
     });
 })
@@ -197,8 +206,9 @@ angular.module('app.controllers', [])
     $scope.selectList();
 })
 
-.controller('shopSingleCtrl', function(API, $scope, $stateParams, $ionicHistory, $state, Map) {
+.controller('shopSingleCtrl', function(API, $scope, $stateParams, $ionicHistory, $state, Map, $ionicLoading) {
     API.applyMe.apply($scope);
+    $ionicLoading.show(LOADING);
     API.findOne({id: $EQ($stateParams.shop)}).then(function (shop) {
         // TODO: remover isso depois de arrumar os dados no servidor
         if (shop.emailPublico && shop.emailPublico.match(/^E-mail: /)) {
@@ -208,6 +218,7 @@ angular.module('app.controllers', [])
             shop.phoneHref = shop.telefonePublico.replace(/\D/g, '').replace(/^/, '+55');
         }
         $scope.shop = shop;
+        $ionicLoading.hide();
         Map.focus(shop);
     });
 
