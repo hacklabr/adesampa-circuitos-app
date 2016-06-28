@@ -10,7 +10,6 @@ angular.module('app.controllers', [])
 })
 
 .controller('mapCtrl', function($scope, API, Util, Map, $localStorage, $ionicLoading) {
-
     var headerHeight = document.getElementsByTagName('ion-header-bar')[0].offsetHeight;
     var menuHeight = document.getElementsByClassName('tab-nav')[0].offsetHeight;
     document.getElementById('map-map').style.height = (window.innerHeight - menuHeight - headerHeight) + "px";
@@ -202,7 +201,6 @@ angular.module('app.controllers', [])
     $scope.removeBookmark = function(shop) {
         Storage.removeBookmark(shop.id);
     };
-
     $scope.selectList();
 })
 

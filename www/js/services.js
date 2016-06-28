@@ -153,7 +153,6 @@ angular.module('app.services', [])
         var route = self.get(routeId);
         route.shops = shops;
     }
-        
 })
 
 .service('Map', function($rootScope, $window, $ionicHistory, Storage) {
@@ -243,19 +242,22 @@ angular.module('app.services', [])
         };
     };
 
-    this.createTarget = function(dataset, target, element, linkpath, state) {
+    this.createTarget = function(dataset, target, element, locationButton, linkpath, state) {
         var data = { 
             dataset: dataset,
             target: target,
             element: element,
             linkpath: linkpath,
             state: state,
+            locationButton: locationButton,
         }
         targets[target] = data;
         states[state] = data;
         var currentState = $ionicHistory.currentView().stateName;
         if (currentState == state)
             self.update(target);
+
+        locationButton.onclick = self.goToUserPosition;
     }
 
     this.focus = function(shop) {
@@ -293,14 +295,18 @@ angular.module('app.services', [])
         setTimeout(function() { self.map.invalidateSize() }, 1);
         if (positions[target])
             self.setView(positions[target].center, positions[target].zoom)
+        self.navigationOn();
     };
 
-    this.setView = function(center, zoom) {
+    this.setView = function(center, zoom, fly) {
         if (viewTimeout)
             clearTimeout(viewTimeout);
         viewTimeout = setTimeout(function() {
             viewTimeout = null;
-            self.map.setView(center, zoom);
+            if (fly)
+                self.map.flyTo(center, zoom);
+            else
+                self.map.setView(center, zoom);
         }, 2);
     }
 
@@ -321,9 +327,48 @@ angular.module('app.services', [])
         }
     }
 
+    var locationWatch;
+    var locationMarker;
+    var userLocation;
+    var locationCircle;
+    this.navigationOn = function() {
+        if (locationWatch)
+            return;
+        locationWatch = navigator.geolocation.watchPosition(function(pos) {
+            if (!locationMarker) {
+                locationMarker = L.marker(
+                    [pos.coords.latitude, pos.coords.longitude],
+                    {
+                    }
+                );
+                locationCircle = L.circle([pos.coords.latitude, pos.coords.longitude], 100, {
+                    color: '#55F',
+                    fillColor: '#30f',
+                    fillOpacity: 0.2
+                })
+                self.map.addLayer(locationMarker);
+                self.map.addLayer(locationCircle);
+            } else {
+                locationMarker.setLatLng([pos.coords.latitude, pos.coords.longitude]);
+            }
+            userLocation = pos.coords;
+        });
+    }
+
+    this.navigationOff = function() {
+        navigator.geolocation.clearWatch(locationWatch);
+        locationWatch = null;
+    }
+
+    this.goToUserPosition = function() {
+        self.setView([userLocation.latitude, userLocation.longitude], 16, true);
+    }
+
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         if (states[toState.name]) {
             self.update(states[toState.name].target);
+        } else {
+            self.navigationOff();
         }
     });
     
