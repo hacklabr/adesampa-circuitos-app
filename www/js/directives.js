@@ -18,7 +18,11 @@ angular.module('app.directives', [])
                 locationButton = null;
             }
             var currentState = $ionicHistory.currentView().stateName
+            console.log(attr.height)
+            if (attr.height)
+                element[0].style.height = attr.height + "px";
             Map.createTarget(attr.dataset, attr.target, element[0], locationButton, attr.linkpath, currentState);
+
         },
    };
 })
