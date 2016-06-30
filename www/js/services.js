@@ -274,11 +274,11 @@ angular.module('app.services', [])
         var data = positions[self.target] || {};
         data.center = self.map.getCenter();
         data.zoom = self.map.getZoom();
+        positions[self.target] = data;
     }
 
     this.update = function(target) {
         self.saveView();
-
         var ctx = targets[target];
         if (!ctx)
             return
