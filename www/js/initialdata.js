@@ -118,7 +118,7 @@ var ROUTES = [
                       ]
         },
         { id: 'mercado-municipal',
-          title: 'Mercado Municipal',
+          title: 'Mercado Municipal de SP',
           center: [-23.542098056818663, -46.629491930070806],
           zoom: 18,
           headline: 'O maior ícone gastronômico do Brasil',
