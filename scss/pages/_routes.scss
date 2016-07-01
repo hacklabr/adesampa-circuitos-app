@@ -90,6 +90,22 @@
         }
     }        
 }
+.mercado-municipal {
+    .list {
+        .route-title,
+        .route-subtitle,
+        .route-description,
+        .route-products,
+        .ion-ios-arrow-forward {
+            color: $mercado-municipal;
+        }
+        .route-link {
+            background: url(../img/icon-mercado-municipal.svg) no-repeat;
+            background-position: 3% 14%;
+            background-size: 18%;
+        }
+    }
+}
 .santa-ifigenia {
     .list {
         .route-title,
@@ -121,6 +137,22 @@
             background-size: 18%;
         }
     }        
+}
+.feira-da-madrugada {
+    .list {
+        .route-title,
+        .route-subtitle,
+        .route-description,
+        .route-products,
+        .ion-ios-arrow-forward {
+            color: $feira-da-madrugada;
+        }
+        .route-link {
+            background: url(../img/icon-feira-da-madrugada.svg) no-repeat;
+            background-position: 3% 14%;
+            background-size: 18%;
+        }
+    }
 }
 
 
@@ -211,6 +243,12 @@
             background-color: $bras;
         }
     }
+    // page bras
+    &.page-mercado-municipal {
+        .route-single-content {
+            background-color: $mercado-municipal;
+        }
+    }
     &.page-bom-retiro {
         .route-single-content {
             background-color: $bom-retiro;
@@ -226,6 +264,12 @@
             background-color: $vinte-e-cinco;
         }
     }
+    &.page-feira-da-madrugada {
+        .route-single-content {
+            background-color: $feira-da-madrugada;
+        }
+    }
+
 }
 
 // no route message

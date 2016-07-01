@@ -117,5 +117,22 @@ var ROUTES = [
                         'Fantasia',
                       ]
         },
+        { id: 'mercado-municipal',
+          title: 'Mercado Municipal',
+          center: [-23.542098056818663, -46.629491930070806],
+          zoom: 18,
+          headline: 'O maior ícone gastronômico do Brasil',
+          description: 'O Mercado Municipal Paulistano é um dos mais tradicionais pontos gourmet da cidade.',
+          categories: [ 'Açougue',
+                        'Empórios',
+                        'Hortifruti',
+                        'Peixaria',
+                        'Laticinios',
+                        'Avicola',
+                        'Mercearia',
+                        'Alimentação',
+                        'Outros',
+                      ]
+        },
     ]
 
