@@ -337,8 +337,8 @@ angular.module('app.services', [])
 
     var userIcon = L.icon({
         iconUrl: 'img/user_pin.svg',
-        iconSize: [27, 38],
-        iconAnchor: [13.5, 24.5],
+        iconSize: [14, 19],
+        iconAnchor: [7, 12],
     });
 
     this.updateUserMarker = function() {
@@ -351,16 +351,18 @@ angular.module('app.services', [])
                     icon: userIcon,
                 }
             );
+            /*
             locationCircle = L.circle([userLocation.latitude, userLocation.longitude], 80, {
                 color: '#55F',
                 fillColor: '#30f',
                 fillOpacity: 0.1
             })
+            */
             self.map.addLayer(locationMarker);
-            self.map.addLayer(locationCircle);
+            //self.map.addLayer(locationCircle);
         } else {
             locationMarker.setLatLng([userLocation.latitude, userLocation.longitude]);
-            locationCircle.setLatLng([userLocation.latitude, userLocation.longitude]);
+            //locationCircle.setLatLng([userLocation.latitude, userLocation.longitude]);
         }
         if (userHeading && userHeading.magneticHeading)
             locationMarker.setRotationAngle(userHeading.magneticHeading);
