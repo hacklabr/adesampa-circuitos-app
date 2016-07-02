@@ -46,13 +46,21 @@ angular.module('app.controllers', [])
     };
     $scope.filters = [ 0 ];
 
-    $scope.addFilter = function() {
-        $scope.filters.push($scope.filters.length);
-    }
-    $scope.filterMap = function() {
+    var filterMap = function() {
         loadShops($scope.data.category);
         $scope.data.modal = false;
     }
+
+    $scope.cleanFilters = function() {
+        $scope.data.category = [];
+        $scope.filters = [ 0 ];
+        filterMap();
+    }
+
+    $scope.addFilter = function() {
+        $scope.filters.push($scope.filters.length);
+    }
+    $scope.filterMap = filterMap;
 
 })
    

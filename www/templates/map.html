@@ -8,7 +8,7 @@
         </ion-list>
 
         <div class="map-filter-buttons">
-            <button ng-if="data.category.length>0" ng-click="data.category=[]; filterMap()" class="button button-block button-clear icon-left ion-trash-a button-edit-filter">limpar filtros de lojas</button>
+            <button ng-if="data.category.length>0" ng-click="cleanFilters()" class="button button-block button-clear icon-left ion-trash-a button-edit-filter">limpar filtros de lojas</button>
             <button ng-click="data.modal=true" class="button button-block button-clear icon-left ion-edit button-edit-filter">editar filtro de lojas</button>
         </div>
 
@@ -24,7 +24,7 @@
                         <div class="item item-body filter-label">escolha uma categoria:</div>
                         <label class="item item-input item-select" for="select-categories" ng-repeat="filter in filters">
                             <span class="input-label">--/--</span>
-                            <select id="select-categories" ng-model="data.category[filter]">
+                            <select ng-model="data.category[filter]">
                                 <option></option>
                                 <option ng-repeat="category in categories">{{category}}</option>
                             </select>
