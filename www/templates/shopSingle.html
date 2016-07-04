@@ -8,6 +8,7 @@
             <div class="shop-wrapper">
                 <h1 class="item item-body shop-title">{{shop.name}}</h1>
                 <div class="item item-body shop-description">
+                    <p><strong>{{shop.terms.area.join(", ")}}</strong></p>
                     <p><strong>endereço:</strong> {{shop.endereco}}</p>
                     <p ng-if="shop.horario"><strong>horario:</strong> {{shop.horario}}</p>
                     <p ng-if="shop.telefonePublico"><strong>telefone:</strong> <a ng-href="tel:{{shop.phoneHref}}">{{shop.telefonePublico}}</a></p>
