@@ -33,7 +33,7 @@
                         <div class="item item-body filter-label">escolha uma categoria:</div>
                         <label class="item item-input item-select" for="select-categories">
                             <span class="input-label">--/--</span>
-                            <select id="select-categories" ng-model="data.category[filter.index]">
+                            <select ng-model="data.category[filter.index]">
                                 <option></option>
                                 <option ng-repeat="category in route.categories" value="{{category}}">{{category}}</option>
                             </select>
