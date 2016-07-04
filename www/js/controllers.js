@@ -112,9 +112,11 @@ angular.module('app.controllers', [])
 
     $scope.addBookmark = function(shop) {
         Storage.storeBookmark(shop);
+        Map.loadShop('bookmarks', shop);
     };
     $scope.removeBookmark = function(shop) {
         Storage.removeBookmark(shop.id);
+        Map.removeShop('bookmarks', shop);
     };
     $scope.isBookmark = function(shop) {
         return Storage.isBookmark(shop.id);
@@ -208,6 +210,7 @@ angular.module('app.controllers', [])
     }
     $scope.removeBookmark = function(shop) {
         Storage.removeBookmark(shop.id);
+        Map.removeShop('bookmarks', shop);
     };
     $scope.selectList();
 })
@@ -227,10 +230,12 @@ angular.module('app.controllers', [])
 
         $scope.addBookmark = function() {
             Storage.storeBookmark(shop);
+            Map.loadShop('bookmarks', shop);
             $scope.isBookmark = true;
         };
         $scope.removeBookmark = function() {
             Storage.removeBookmark(shop.id);
+            Map.removeShop('bookmarks', shop);
             $scope.isBookmark = false;
         };
         $scope.isBookmark = Storage.isBookmark(shop.id);

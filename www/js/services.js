@@ -192,6 +192,7 @@ angular.module('app.services', [])
             cluster: L.markerClusterGroup({
                 maxClusterRadius: 45
             }),
+            index: {},
         }
     }
 
@@ -228,19 +229,42 @@ angular.module('app.services', [])
         });
         dataSets[dataset].cluster.addLayer(marker);
         dataSets[dataset].markers.push(marker);
+        dataSets[dataset].index[shopId] = marker;
     };
 
+    this.removeMarker = function(dataset, shopId) {
+        var marker = dataSets[dataset].index[shopId];
+        delete dataSets[dataset].index[shopId];
+        dataSets[dataset].cluster.removeLayer(marker);
+        for (var i=0; i<dataSets[dataset].markers.length; i++) {
+            if (dataSets[dataset].markers[i] == marker) {
+                dataSets[dataset].markers.splice(i, 1);
+                return;
+            }
+        }
+    }
+
     this.load = function(dataset, shops) {
-        if (!dataSets[dataset])
-            self.createDataset(dataset);
-        else
+        if (dataSets[dataset])
             self.clean(dataset)
         var i, l, marker;
         for (i=0; i<shops.length; i++) {
-            l = shops[i].location;
-            self.addMarker(dataset, l.latitude, l.longitude, shops[i].id);
+            self.loadShop(dataset, shops[i]);
         };
     };
+
+    this.loadShop = function(dataset, shop) {
+        if (!dataSets[dataset])
+            self.createDataset(dataset);
+        l = shop.location;
+        self.addMarker(dataset, l.latitude, l.longitude, shop.id);
+    }
+
+    this.removeShop = function(dataset, shop) {
+        if (!dataSets[dataset])
+            return;
+        self.removeMarker(dataset, shop.id);
+    }
 
     this.createTarget = function(dataset, target, element, locationButton, linkpath, state) {
         var data = { 
