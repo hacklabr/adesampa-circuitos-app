@@ -85,6 +85,12 @@ angular.module('app.routes', ['ionicUIRouter'])
     controller: 'shopkeeperCtrl'
   })
 
+  .state('about', {
+      url: '/about',
+      templateUrl: 'templates/about.html',
+      controller: 'aboutCtrl'
+  })
+
   .state('tabsController.routesList', {
     url: '/routeslist',
     views: {

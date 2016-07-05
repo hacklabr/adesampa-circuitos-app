@@ -75,6 +75,10 @@ angular.module('app.controllers', [])
 .controller('shopkeeperCtrl', function($scope) {
 
 })
+
+.controller('aboutCtrl', function($scope) {
+
+})
    
 .controller('routesListCtrl', function($scope, Storage, UserRoutes) {
     var userRoutes = UserRoutes.list();
