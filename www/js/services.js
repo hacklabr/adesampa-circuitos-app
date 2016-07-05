@@ -290,6 +290,8 @@ angular.module('app.services', [])
         var l = shop.location
         self.addMarker(self.dataset, l.latitude, l.longitude);
         self.setView([l.latitude, l.longitude], 16);
+        // Workaround to show pin in some cases, apparently leaflet markercluster bug
+        setTimeout(function() { self.map.panBy([0, 0]) }, 1000);
     }
 
     this.saveView = function() {
