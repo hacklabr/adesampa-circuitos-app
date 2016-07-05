@@ -1,3 +1,11 @@
+1.0.1 - 05/07/2016
+==================
+- [FIX] pin às vezes não aparecia na página de loja
+- [FIX] não dava pra selecionar mais de uma categoria no filtro da criação de rota
+- [FIX] mudanças na lista de favoritos não eram refletidas no mapa de favoritos
+- [FIX] mapa na página da loja eventualmente sumia quando loja era marcada como favorita
+- [FIX] remoção de botões que não funcionam (criar primeiro circuito a partir da página de favoritos ou meus circuitos)
+
 1.0.0 - 03/07/2016
 ==================
 
@@ -5,4 +13,3 @@
 - Mapa, circuitos dos usuários, favoritos
 
 
-	

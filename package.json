@@ -1,7 +1,7 @@
 {
   "name": "adesampa",
-  "version": "1.0.0",
-  "description": "adesampa: An Ionic project",
+  "version": "1.0.1",
+  "description": "Guia de Compras SAMPA",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^2.0.4",
