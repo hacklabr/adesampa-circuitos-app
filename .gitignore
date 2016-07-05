@@ -7,3 +7,6 @@ plugins/
 www/css/ionic.app.*
 *~
 \#*
+www/lib/*
+*.apk
+screenshot*
