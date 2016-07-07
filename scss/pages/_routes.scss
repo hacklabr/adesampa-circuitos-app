@@ -275,8 +275,20 @@
 // no route message
 
 .no-route {
-    background: url(../img/background-maps.svg);
-    background-size: contain;
+    .background {
+        background: url(../img/background-maps.svg);
+        background-size: contain;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: -1;
+        opacity: 0.5;
+    }
+
     .message {
         padding: 8% 4%;
         h1 {
