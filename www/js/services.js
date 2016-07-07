@@ -223,7 +223,7 @@ angular.module('app.services', [])
 
     this.addMarker = function(dataset, lat, lng, shopId) {
         var marker = L.marker([lat, lng]);
-        marker.on('mousedown', function(e) {
+        marker.on('click', function(e) {
             if (self.linkPath)
                 $window.location.href = self.linkPath + shopId;
         });
