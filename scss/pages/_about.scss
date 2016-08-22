@@ -18,6 +18,7 @@
     }
 
     .footer-logos {
+        text-align: center;
         .logo-prefeitura {
             width: 38%;
             float: right;
@@ -27,11 +28,9 @@
 
         .logo-adesampa {
             width: 38%;
-            float: left;
-            margin-left: 10%;
+            // float: left;
+            // margin-left: 10%;
             margin-bottom: 2em;
         }
-
     }
-
 }

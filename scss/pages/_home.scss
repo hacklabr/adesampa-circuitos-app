@@ -48,7 +48,8 @@
     .home-affiliates {
         bottom: 8vmax;
         left: 50%;
-        margin-left: -24vmax;
+        // margin-left: -24vmax;
+        margin-left: -10.5vmax;
         position: absolute;
         text-align: center;
         %logo {
@@ -61,13 +62,13 @@
         .logo-adesampa {
             background-image: url(../img/logo-adesampa.svg);
             background-position: center left;
-            border-right: 2px solid red;
+            // border-right: 2px solid red;
             @extend %logo;
-
         }
         .logo-prefeitura {
             background-image: url(../img/logo-prefeitura.svg);
             background-position: center right;
+            display: none;
             @extend %logo;
         }
     }
