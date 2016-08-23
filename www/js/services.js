@@ -1,7 +1,7 @@
 angular.module('app.services', [])
 
 .service('API', ['mapas.service.space', function(spaceApi) {
-    var api = spaceApi('http://mapa.desenvolvimentolocal.hacklab.com.br/');
+    var api = spaceApi('http://guiadecompras.adesampa.com.br/');
     this.applyMe = api.util.applyMe
     this.find = api.find
     this.findOne = api.findOne
@@ -432,7 +432,6 @@ angular.module('app.services', [])
     });
     
 })
-
 
 .factory('BlankFactory', [function(){
 
