@@ -1,6 +1,6 @@
 {
   "name": "adesampa",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Guia de Compras SAMPA",
   "dependencies": {
     "gulp": "^3.5.6",

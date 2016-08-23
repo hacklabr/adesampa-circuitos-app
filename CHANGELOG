@@ -1,3 +1,11 @@
+1.2.0 - 23/08/2016
+==================
+- [FIX] Clique no pin no mapa no iOS
+- [FIX] Opacidade do fundo de mapas na home não dava legibilidade
+- Remoção do logo da prefeitura devido ao período eleitoral
+- Categoria "Feira da Madrugada" no Brás
+- Página de informação para o Lojista, com link para novo site http://guiadecompras.adesampa.com.br
+
 1.1.1 - 05/07/2016
 ==================
 - [FIX] Link correto para "Meus Circuitos" no menu hamburguinho
